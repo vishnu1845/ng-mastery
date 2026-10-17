@@ -65,7 +65,7 @@ TOPICS ──► topicRoutes() ──► /rxjs-flattening/switch-map
              (lazy demo)       (notes.md)       (real source files from /code)
 ```
 
-- **Notes**: `notes.md` is imported as text (`"loader": { ".md": "text" }` in `angular.json`), so it is part of the prerendered HTML.
+- **Notes**: `notes.md` is imported as text (`"loader": { ".md": "text" }` in `angular.json`), so it is part of the prerendered HTML. Fenced code (```` ```ts ````, ```` ```html ````, ```` ```json ````) is pulled out of the markdown and shown as a highlighted, copyable code block.
 - **Code**: `angular.json` copies `src/**` and the root config files into `/code` as static assets. The Code tab fetches them, and Shiki highlights them in the browser. What you read is exactly what runs.
 
 ## How to add a lesson
@@ -105,7 +105,7 @@ Optional lesson fields: `children` (child routes for routing demos), `providers`
 - Every color, size and radius is a CSS variable in `src/styles/_tokens.scss`.
 - Dark is the default theme. Light mode and the accent presets (Angular, Ocean, Lime) only swap variables.
 - Backgrounds are neutral warm grays that get lighter as a surface rises: `--sidebar-bg` < `--bg` < `--surface` < `--raised`. Only the accent carries color, so text stays easy to read.
-- Plain elements already look right: a `<button>` looks like a button. Variants are `.btn-primary`, `.btn-ghost` and `.icon-btn`. Surfaces are `.panel` and `.callout`, plus `.badge` and `.data-table`.
+- Plain elements already look right: a `<button>` looks like a button. Variants are `.btn-primary`, `.btn-ghost` and `.icon-btn`. Surfaces are `.panel` and `.callout`, plus `.badge`, `.data-table` and `.segmented` (a `role="radiogroup"` of buttons). Layout helpers for demos: `.stack`, `.row`, `.cols` (responsive columns) and `.field` (label above input).
 - The brand gradient appears only where it means something: the logo, live topics, the active topic and the demo stage.
 
 ## Mock API
