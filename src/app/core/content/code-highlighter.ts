@@ -2,7 +2,8 @@ import { inject, Service } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import type { HighlighterCore } from 'shiki/core';
 
-export type CodeLang = 'angular-ts' | 'angular-html' | 'scss' | 'json' | 'bash';
+/** `text` is Shiki's built-in plain text (no grammar to load), used for folder trees and output. */
+export type CodeLang = 'angular-ts' | 'angular-html' | 'scss' | 'json' | 'bash' | 'text';
 
 /**
  * Syntax highlighting with Shiki (same grammars as VS Code, including Angular templates).

@@ -21,6 +21,12 @@
   gap: var(--space-4);
 }
 
+// Wide tables scroll sideways inside this box instead of widening the page
+.table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 // A label sitting above its input
 .field {
   display: grid;

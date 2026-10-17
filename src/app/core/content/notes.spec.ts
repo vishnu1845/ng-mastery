@@ -45,10 +45,23 @@ describe('splitBlocks', () => {
 
     expect(block).toMatchObject({ kind: 'code', lang: 'json', label: 'JSON' });
   });
+
+  it('keeps folder trees as plain text', () => {
+    const [block] = splitBlocks('```text\nsrc/\n└── main.ts\n```');
+
+    expect(block).toMatchObject({ kind: 'code', lang: 'text', code: 'src/\n└── main.ts' });
+  });
 });
 
 describe('renderMarkdown', () => {
   it('turns markdown into HTML', () => {
     expect(renderMarkdown('**bold**')).toContain('<strong>bold</strong>');
+  });
+
+  it('wraps tables so they can scroll on small screens', () => {
+    const html = renderMarkdown('| a | b |\n| - | - |\n| 1 | 2 |');
+
+    expect(html).toContain('<div class="table-wrap"><table>');
+    expect(html).toContain('</table></div>');
   });
 });

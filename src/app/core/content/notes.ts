@@ -25,6 +25,7 @@ const FENCES: Record<string, { lang: CodeLang; label: string }> = {
   scss: { lang: 'scss', label: 'SCSS' },
   json: { lang: 'json', label: 'JSON' },
   bash: { lang: 'bash', label: 'Terminal' },
+  text: { lang: 'text', label: 'Text' },
 };
 
 const CODE_FENCE = /^```(\w*)\n([\s\S]*?)^```[ \t]*$/gm;
@@ -77,5 +78,10 @@ function addText(blocks: NoteBlock[], markdown: string): void {
 
 /** Markdown → HTML. Angular still sanitizes the result when it is bound to [innerHTML]. */
 export function renderMarkdown(markdown: string): string {
-  return marked.parse(markdown, { async: false, gfm: true });
+  const html = marked.parse(markdown, { async: false, gfm: true });
+
+  // Wide tables scroll inside their own box on phones (.table-wrap is a global utility)
+  return html
+    .replaceAll('<table>', '<div class="table-wrap"><table>')
+    .replaceAll('</table>', '</table></div>');
 }
