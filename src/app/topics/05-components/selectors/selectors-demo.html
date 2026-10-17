@@ -1,0 +1,51 @@
+<div class="kinds">
+  <section class="kind">
+    <p class="kind-head">
+      <span class="kind-name">Element</span>
+      <code>selector: 'app-tag-badge'</code>
+    </p>
+    <div class="preview">
+      <app-tag-badge>New</app-tag-badge>
+    </div>
+    <code class="dom">{{ badgeHtml() }}</code>
+  </section>
+
+  <section class="kind">
+    <p class="kind-head">
+      <span class="kind-name">Attribute</span>
+      <code>selector: 'button[appPrimary]'</code>
+    </p>
+    <form class="preview" (submit)="submit($event)">
+      <label class="field">
+        Name (press Enter)
+        <input #nameInput type="text" [value]="name()" (input)="name.set(nameInput.value)" />
+      </label>
+      <button appPrimary type="submit">Save</button>
+    </form>
+    <code class="dom">{{ buttonHtml() }}</code>
+    @if (saved(); as who) {
+      <p class="text-success small">
+        Form submitted for "{{ who }}": native button behaviour kept.
+      </p>
+    }
+  </section>
+
+  <section class="kind">
+    <p class="kind-head">
+      <span class="kind-name">Class</span>
+      <code>selector: '.app-chip'</code>
+    </p>
+    <div class="preview">
+      <span class="app-chip">angular</span>
+    </div>
+    <code class="dom">{{ chipHtml() }}</code>
+  </section>
+</div>
+
+<p class="muted small">
+  The grey lines are the real DOM from this page. The odd
+  <code>_nghost</code>
+  /
+  <code>_ngcontent</code>
+  attributes are how Angular scopes styles, covered in View encapsulation.
+</p>

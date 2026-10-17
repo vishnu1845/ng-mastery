@@ -1,0 +1,68 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.xray-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 16rem);
+  gap: var(--space-5);
+  align-items: start;
+}
+
+// THE MINI PAGE
+.page {
+  display: grid;
+  gap: var(--space-5);
+  padding-bottom: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--bg);
+
+  // X-ray on: every child component reads these two variables in its own :host styles
+  &.is-xray {
+    --xray-outline: 1px dashed var(--accent);
+    --xray-label: block;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr));
+  gap: var(--space-5) var(--space-3);
+  padding: var(--space-2) var(--space-4) 0;
+}
+
+// TREE
+.tree {
+  display: grid;
+  gap: var(--space-2);
+
+  pre {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--code-bg);
+    font-size: var(--fs-xs);
+    line-height: 1.7;
+  }
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+@media (max-width: 48rem) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

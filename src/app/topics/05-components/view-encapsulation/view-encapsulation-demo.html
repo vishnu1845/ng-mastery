@@ -1,0 +1,56 @@
+<label class="toggle">
+  <input type="checkbox" [checked]="showNone()" (change)="toggleNone()" />
+  Add the
+  <code>None</code>
+  component to the page (its style becomes global)
+</label>
+
+<div class="boxes">
+  <div class="box">
+    <span class="box-label">Plain &lt;p&gt;, no component</span>
+    <p class="encap-msg">Outside: I have no styles of my own</p>
+  </div>
+  <div class="box">
+    <span class="box-label">Emulated (default)</span>
+    <app-emulated-msg />
+  </div>
+  @if (showNone()) {
+    <div class="box is-none">
+      <span class="box-label">None</span>
+      <app-none-msg />
+    </div>
+  }
+  <div class="box">
+    <span class="box-label">ShadowDom</span>
+    @if (inBrowser()) {
+      <app-shadow-msg />
+    } @else {
+      <p class="muted">Loading…</p>
+    }
+  </div>
+</div>
+
+<p class="muted explain">
+  @if (showNone()) {
+    The global red reaches the plain paragraph, and its wavy underline even gets into the Emulated
+    component (which never set an underline). Only the Shadow DOM one is untouched.
+  } @else {
+    The Emulated green doesn't leak to the plain paragraph next to it. Now add the None component.
+  }
+</p>
+
+@if (generated()) {
+  <section class="stack">
+    <p class="muted">What Angular generated on this page</p>
+    <app-code-block
+      [code]="generatedCss()"
+      lang="scss"
+      label="real CSS from document.styleSheets"
+    />
+    <p class="small">
+      <code>#shadow-root</code>
+      on the ShadowDom host:
+      <strong [class.text-success]="hasShadowRoot()">{{ hasShadowRoot() ? 'yes' : 'no' }}</strong>
+    </p>
+  </section>
+}

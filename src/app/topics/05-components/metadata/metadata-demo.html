@@ -1,0 +1,33 @@
+<section class="group">
+  <div class="group-head">
+    <h3 class="group-title">No providers in the metadata</h3>
+    <code>&#64;Component(&#123; selector: 'app-shared-tally', … &#125;)</code>
+  </div>
+  <div class="row-of-three">
+    @for (slot of slots; track slot) {
+      <app-shared-tally />
+    }
+  </div>
+  <p class="muted small">
+    Click any +1: all three change. They share one instance from the root injector, which lives as
+    long as the app.
+  </p>
+</section>
+
+<section class="group">
+  <div class="group-head">
+    <h3 class="group-title">providers: [CounterStore]</h3>
+    <code>
+      &#64;Component(&#123; selector: 'app-own-tally', providers: [CounterStore], … &#125;)
+    </code>
+  </div>
+  <div class="row-of-three">
+    @for (slot of slots; track slot) {
+      <app-own-tally />
+    }
+  </div>
+  <p class="muted small">
+    Each tally gets its own instance (new numbers every time you open this lesson), and it is
+    destroyed with the component.
+  </p>
+</section>

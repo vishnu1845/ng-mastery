@@ -1,0 +1,63 @@
+<!-- 1. WHY :host { display: block } -->
+<section class="part">
+  <h3 class="part-title">1. Same width and padding, different display</h3>
+  <div class="cols">
+    <div class="case">
+      <p class="case-label">No display rule</p>
+      <p class="muted small">
+        Computed display:
+        <code>{{ inlineDisplay() || '…' }}</code>
+      </p>
+      <div class="flow">
+        Text before
+        <app-inline-card>I should be 12rem wide</app-inline-card>
+        text after.
+      </div>
+    </div>
+    <div class="case">
+      <p class="case-label"><code>:host &#123; display: block &#125;</code></p>
+      <p class="muted small">
+        Computed display:
+        <code>{{ blockDisplay() || '…' }}</code>
+      </p>
+      <div class="flow">
+        Text before
+        <app-block-card>I am 12rem wide</app-block-card>
+        text after.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 + 3. :host(.active) AND A CSS VARIABLE FROM THE PARENT -->
+<section class="part">
+  <h3 class="part-title">2. :host(.active) and a CSS variable instead of ::ng-deep</h3>
+  <div class="row controls">
+    <label class="check">
+      <input type="checkbox" [checked]="active()" (change)="active.set(!active())" />
+      Parent adds
+      <code>class="active"</code>
+    </label>
+    <div class="segmented" role="radiogroup" aria-label="--card-accent">
+      @for (option of accents; track option.value) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="accent() === option.value"
+          (click)="accent.set(option.value)"
+        >
+          <span class="swatch" [style.background]="option.value"></span>
+          {{ option.name }}
+        </button>
+      }
+    </div>
+  </div>
+  <div class="themed" [style.--card-accent]="accent()">
+    <app-themed-card [class.active]="active()">Themed by my parent</app-themed-card>
+  </div>
+  <code class="how">
+    &lt;div [style.--card-accent]="'{{ accent() }}'"&gt;&lt;app-themed-card [class.active]="{{
+      active()
+    }}" /&gt;&lt;/div&gt;
+  </code>
+</section>

@@ -1,0 +1,39 @@
+<div class="row control">
+  <span id="wifi-label" class="label">Wi-Fi</span>
+  <app-toggle-switch aria-labelledby="wifi-label" (changed)="changes.set(changes() + 1)" />
+  <span class="muted small">Click it, or Tab to it and press Space or Enter.</span>
+</div>
+
+<section class="stack">
+  <p class="muted">The host element right now (real DOM, opening tag)</p>
+  <code class="dom" aria-live="polite">{{ hostHtml() || '…' }}</code>
+  <table class="data-table origins">
+    <thead>
+      <tr>
+        <th scope="col">On the tag</th>
+        <th scope="col">Comes from</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="mono">role, tabindex, aria-checked, class</td>
+        <td>
+          the component's own
+          <code>host</code>
+          metadata
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">aria-labelledby</td>
+        <td>the parent's template</td>
+      </tr>
+      <tr>
+        <td class="mono">_nghost-… / _ngcontent-…</td>
+        <td>Angular's style scoping</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="muted small">Toggled {{ changes() }} {{ changes() === 1 ? 'time' : 'times' }}.</p>
+</section>
+
+<app-code-block [code]="oldWay" label="the older decorator way" />

@@ -1,0 +1,28 @@
+<label class="xray-toggle">
+  <input type="checkbox" [checked]="xray()" (change)="xray.set(!xray())" />
+  X-ray: show every component
+</label>
+
+<div class="layout">
+  <section class="page" [class.is-xray]="xray()" aria-label="Mini shop page">
+    <app-shop-header [cartCount]="cart().length" />
+    <div class="grid">
+      @for (product of products; track product.id) {
+        <app-product-card [product]="product" (added)="add($event)" />
+      }
+    </div>
+  </section>
+
+  <section class="tree" aria-label="Component tree">
+    <p class="muted">The component tree</p>
+    <pre class="mono">
+app-anatomy-demo
+├── app-shop-header
+│   └── app-cart-badge ({{ cart().length }})
+└── app-product-card ×{{ products.length }}</pre>
+    <p class="muted small">
+      Click "Add to cart": the card sends an event up, the page updates the count, and the header
+      passes it down to the badge.
+    </p>
+  </section>
+</div>

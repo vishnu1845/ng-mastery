@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.side {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+// The stars keep their own width; the code block below fills the column
+.rating {
+  justify-self: start;
+}
+
+.side-title {
+  font-size: var(--fs-base);
+}
+
+.log {
+  display: grid;
+  gap: var(--space-2);
+
+  .entry {
+    justify-self: start;
+  }
+}
+
+.small {
+  font-size: var(--fs-xs);
+}

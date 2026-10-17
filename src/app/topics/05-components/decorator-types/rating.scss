@@ -1,0 +1,39 @@
+// Shared by both ratings: they must look and behave the same
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+
+  &:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+:host(.is-rated) {
+  border-color: color-mix(in oklab, var(--accent) 50%, transparent);
+}
+
+button {
+  width: 2rem;
+  min-height: 2rem;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-faint);
+  font-size: var(--fs-lg);
+
+  &.is-on {
+    color: var(--warning);
+  }
+}
+
+.label {
+  min-width: 3.5rem;
+  margin-left: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}

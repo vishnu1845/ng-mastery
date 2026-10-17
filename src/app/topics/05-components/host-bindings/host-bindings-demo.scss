@@ -1,0 +1,22 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.control {
+  gap: var(--space-4);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.small {
+  font-size: var(--fs-xs);
+}

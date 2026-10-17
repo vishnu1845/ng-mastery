@@ -1,0 +1,48 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.kinds {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.kind {
+  display: grid;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.kind-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.kind-name {
+  min-width: 5rem;
+  font-weight: 600;
+}
+
+.preview {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+}
+
+// The real DOM, one long line that wraps anywhere
+.dom {
+  justify-self: start;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+.small {
+  font-size: var(--fs-xs);
+}

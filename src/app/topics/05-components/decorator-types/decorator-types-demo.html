@@ -1,0 +1,26 @@
+<p class="muted">
+  Click the stars, or focus a rating and use the arrow keys. Both versions behave exactly the same.
+</p>
+
+<div class="cols">
+  <section class="side">
+    <h3 class="side-title">With decorators (old style)</h3>
+    <app-decorator-rating class="rating" (rated)="record('DecoratorRating', $event)" />
+    <app-code-block [code]="oldCode" label="decorator-rating.ts (short)" />
+  </section>
+
+  <section class="side">
+    <h3 class="side-title">With functions (modern)</h3>
+    <app-signal-rating class="rating" (rated)="record('SignalRating', $event)" />
+    <app-code-block [code]="newCode" label="signal-rating.ts (short)" />
+  </section>
+</div>
+
+<section class="panel log" aria-live="polite">
+  <p class="muted">Output events, newest first</p>
+  @for (line of log(); track $index) {
+    <code class="entry">{{ line }}</code>
+  } @empty {
+    <p class="muted small">Nothing yet.</p>
+  }
+</section>
