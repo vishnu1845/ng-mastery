@@ -1,0 +1,28 @@
+@if (files().length === 0) {
+  <p class="empty">
+    This lesson is theory only, so there is no demo code. Everything is in the notes.
+  </p>
+} @else {
+  <div class="file-tabs" role="tablist" aria-label="Source files">
+    @for (file of files(); track file) {
+      <button
+        class="file-tab"
+        type="button"
+        role="tab"
+        [attr.aria-selected]="file === active()"
+        [title]="file"
+        (click)="active.set(file)"
+      >
+        {{ fileName(file) }}
+      </button>
+    }
+  </div>
+
+  @if (source.hasValue()) {
+    <app-code-block [code]="source.value()" [lang]="lang()" [label]="active()" />
+  } @else if (source.error()) {
+    <p class="empty">Couldn't load {{ active() }}. Run a fresh build and try again.</p>
+  } @else {
+    <p class="empty">Loading {{ fileName(active() ?? '') }}…</p>
+  }
+}

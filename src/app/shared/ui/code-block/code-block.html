@@ -1,0 +1,15 @@
+<div class="code-head">
+  <span class="code-label">{{ label() ?? lang() }}</span>
+  <button class="btn-ghost copy" type="button" (click)="copy()">
+    <ng-icon [name]="copied() ? 'lucideCheck' : 'lucideCopy'" aria-hidden="true" />
+    {{ copied() ? 'Copied' : 'Copy' }}
+  </button>
+</div>
+
+<div class="code-surface">
+  @if (highlighted.value(); as html) {
+    <div [innerHTML]="html"></div>
+  } @else {
+    <pre><code>{{ code() }}</code></pre>
+  }
+</div>

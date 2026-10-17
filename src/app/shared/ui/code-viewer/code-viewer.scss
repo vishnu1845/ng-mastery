@@ -1,0 +1,34 @@
+:host {
+  display: block;
+}
+
+.file-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.file-tab {
+  min-height: 2rem;
+  padding: 0 var(--space-3);
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+
+  &:hover {
+    border-color: var(--border);
+  }
+
+  &[aria-selected='true'] {
+    border-color: var(--border-strong);
+    background: var(--raised);
+    color: var(--text);
+  }
+}
+
+.empty {
+  color: var(--text-muted);
+}

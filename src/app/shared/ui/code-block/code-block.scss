@@ -1,0 +1,27 @@
+:host {
+  display: block;
+}
+
+.code-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-2);
+}
+
+.code-label {
+  overflow: hidden;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.copy {
+  min-height: 1.75rem;
+  padding: 0 var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
