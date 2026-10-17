@@ -4,6 +4,7 @@
 .stack {
   display: grid;
   gap: var(--space-4);
+  align-content: start;
 }
 
 .row {
@@ -13,8 +14,29 @@
   gap: var(--space-2);
 }
 
+// As many 16rem columns as fit, one column on phones
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+}
+
+// A label sitting above its input
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
 .muted {
   color: var(--text-muted);
+}
+
+.text-success {
+  color: var(--success);
+}
+
+.text-danger {
+  color: var(--danger);
 }
 
 .mono {

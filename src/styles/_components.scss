@@ -68,6 +68,30 @@ button,
   font-size: 1.05rem;
 }
 
+// SEGMENTED CONTROL: a role="radiogroup" of buttons, the checked one is raised
+.segmented {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-self: start;
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+
+  button {
+    border-color: transparent;
+    background: transparent;
+    color: var(--text-muted);
+
+    &[aria-checked='true'] {
+      border-color: var(--border-strong);
+      background: var(--raised);
+      color: var(--text);
+    }
+  }
+}
+
 // FORM FIELDS
 input:not([type='checkbox'], [type='radio'], [type='range'], [type='color']),
 select,
