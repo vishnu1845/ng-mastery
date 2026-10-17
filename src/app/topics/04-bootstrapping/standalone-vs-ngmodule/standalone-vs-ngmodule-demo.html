@@ -4,7 +4,7 @@
     <app-code-block [code]="moduleCode" label="2 files, 3 things to wire up" />
     <div class="row">
       <button type="button" [disabled]="!!moduleStatus()" (click)="startModule()">
-        bootstrapModule(CounterModule)
+        bootstrapModule&#8203;(CounterModule)
       </button>
     </div>
     <div class="box" [class.is-running]="moduleStatus()">
@@ -18,7 +18,7 @@
     <app-code-block [code]="standaloneCode" label="1 line" />
     <div class="row">
       <button type="button" [disabled]="!!standaloneStatus()" (click)="startStandalone()">
-        bootstrapApplication(StandaloneCounter)
+        bootstrapApplication&#8203;(StandaloneCounter)
       </button>
     </div>
     <div class="box" [class.is-running]="standaloneStatus()">
