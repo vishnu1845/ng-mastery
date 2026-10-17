@@ -1,0 +1,101 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.side-label {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}
+
+// THE VIEW
+.card {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.greeting {
+  font-size: var(--fs-xl);
+  overflow-wrap: anywhere;
+}
+
+progress {
+  width: 100%;
+  accent-color: var(--accent);
+}
+
+// THE WIRES
+.lanes {
+  display: grid;
+  margin: var(--space-2) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lane {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.lane-head,
+.lane-foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.lane-type {
+  font-weight: 500;
+}
+
+.lane-foot {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}
+
+.count {
+  font-variant-numeric: tabular-nums;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+.wire {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--border-strong);
+}
+
+.dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  background: var(--gradient);
+  box-shadow: 0 0 0.75rem var(--accent);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.hint {
+  font-size: var(--fs-sm);
+}

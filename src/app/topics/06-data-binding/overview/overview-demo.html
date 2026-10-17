@@ -1,0 +1,53 @@
+<div class="cols">
+  <section class="panel card" aria-label="The rendered view">
+    <p class="side-label">The view</p>
+    <h3 class="greeting">Hi, {{ name() || 'stranger' }}</h3>
+
+    <label class="field">
+      Name
+      <input [(ngModel)]="name" (input)="typed()" autocomplete="off" />
+    </label>
+
+    <div class="field">
+      <span>Likes</span>
+      <progress [value]="likes()" [max]="maxLikes" aria-label="Likes"></progress>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn-primary" [disabled]="likes() >= maxLikes" (click)="like()">
+        ♥ Like ({{ likes() }})
+      </button>
+      <button type="button" class="btn-ghost" (click)="reset()">Reset from TS</button>
+    </div>
+  </section>
+
+  <section class="panel" aria-label="Data flow">
+    <p class="side-label">Data flow</p>
+    <ol class="lanes">
+      @for (lane of lanes; track lane.id) {
+        <li class="lane" #lane [attr.data-lane]="lane.id">
+          <div class="lane-head">
+            <span class="lane-type">{{ lane.type }}</span>
+            <code>{{ lane.code }}</code>
+          </div>
+          <div class="track" aria-hidden="true">
+            <span>TS</span>
+            <span class="wire"><span class="dot"></span></span>
+            <span>View</span>
+          </div>
+          <p class="lane-foot">
+            <span>{{ lane.direction }}</span>
+            <span class="count">
+              {{ fired()[lane.id] }} {{ fired()[lane.id] === 1 ? 'time' : 'times' }}
+            </span>
+          </p>
+        </li>
+      }
+    </ol>
+  </section>
+</div>
+
+<p class="muted hint">
+  Click Like: the event goes up to TS, and the new count comes back down. Type a name: two-way
+  binding sends it up, and interpolation brings it back down into the greeting.
+</p>

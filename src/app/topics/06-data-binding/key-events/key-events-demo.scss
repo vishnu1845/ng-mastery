@@ -1,0 +1,91 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+// CHAT
+.chat {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.messages {
+  display: grid;
+  gap: var(--space-2);
+  max-height: 14rem;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+.bubble {
+  justify-self: end;
+  max-width: 85%;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-sm) var(--radius-md);
+  background: var(--raised);
+  font-size: var(--fs-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+textarea {
+  resize: vertical;
+}
+
+// KEY LOG
+.log {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.key-row {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+kbd {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--raised);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}
+
+.code {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}

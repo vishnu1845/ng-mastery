@@ -1,0 +1,77 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+// PROFILE
+.profile {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-5);
+  align-items: start;
+
+  img {
+    border-radius: 50%;
+  }
+}
+
+.themes button {
+  text-transform: capitalize;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+}
+
+progress {
+  flex: 1;
+  min-width: 6rem;
+  accent-color: var(--accent);
+}
+
+.value {
+  overflow-wrap: anywhere;
+}
+
+// THE TRAP
+.case {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  > button,
+  > code {
+    justify-self: start;
+  }
+
+  &.is-wrong {
+    border-color: color-mix(in oklab, var(--danger) 55%, transparent);
+  }
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-1) var(--space-4);
+  margin: 0;
+  font-size: var(--fs-sm);
+
+  dt {
+    color: var(--text-muted);
+  }
+
+  dd {
+    margin: 0;
+  }
+}

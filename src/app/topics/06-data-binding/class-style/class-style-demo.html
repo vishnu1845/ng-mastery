@@ -1,0 +1,113 @@
+<div class="stage-box">
+  <div
+    #toast
+    class="toast"
+    role="status"
+    [class.is-error]="hasError()"
+    [class]="{ 'is-dense': dense(), 'is-pinned': pinned() }"
+    [style.border-radius.px]="radius()"
+    [style.width.%]="width()"
+    [style.--toast-accent]="accent()"
+  >
+    <span class="icon" aria-hidden="true">{{ hasError() ? '!' : '✓' }}</span>
+    <div class="toast-text">
+      <p class="toast-title">{{ hasError() ? 'Upload failed' : 'Upload complete' }}</p>
+      <p class="toast-body">resume.pdf · 240 KB</p>
+    </div>
+    @if (pinned()) {
+      <span class="pin">Pinned</span>
+    }
+  </div>
+</div>
+
+<p class="muted small">The toast's real opening tag</p>
+<code class="dom">{{ toastHtml() || '…' }}</code>
+
+<div class="controls">
+  <section class="group">
+    <h3 class="title">Classes</h3>
+
+    <label class="control">
+      <code>[class.is-error]="hasError()"</code>
+      <span class="check">
+        <input
+          type="checkbox"
+          [checked]="hasError()"
+          (change)="hasError.set($event.target.checked)"
+        />
+        hasError()
+      </span>
+    </label>
+
+    <div class="control">
+      <code>{{ objectBinding }}</code>
+      <div class="row">
+        <label class="check">
+          <input type="checkbox" [checked]="dense()" (change)="dense.set($event.target.checked)" />
+          dense()
+        </label>
+        <label class="check">
+          <input
+            type="checkbox"
+            [checked]="pinned()"
+            (change)="pinned.set($event.target.checked)"
+          />
+          pinned()
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <section class="group">
+    <h3 class="title">Styles</h3>
+
+    <label class="control">
+      <code>[style.border-radius.px]="radius()"</code>
+      <span class="range">
+        <input
+          type="range"
+          min="0"
+          max="28"
+          [value]="radius()"
+          (input)="radius.set($event.target.valueAsNumber)"
+        />
+        <span class="mono">{{ radius() }}px</span>
+      </span>
+    </label>
+
+    <label class="control">
+      <code>[style.width.%]="width()"</code>
+      <span class="range">
+        <input
+          type="range"
+          min="50"
+          max="100"
+          [value]="width()"
+          (input)="width.set($event.target.valueAsNumber)"
+        />
+        <span class="mono">{{ width() }}%</span>
+      </span>
+    </label>
+
+    <div class="control">
+      <code>[style.--toast-accent]="accent()"</code>
+      <div class="row" role="radiogroup" aria-label="Accent colour">
+        @for (colour of accents; track colour) {
+          <button
+            type="button"
+            class="swatch"
+            role="radio"
+            [attr.aria-checked]="accent() === colour"
+            [attr.aria-label]="colour"
+            [style.background]="colour"
+            (click)="accent.set(colour)"
+          ></button>
+        }
+      </div>
+    </div>
+  </section>
+</div>
+
+<p class="muted small">
+  The static class="toast" never goes away: bound classes are added next to it, not instead of it.
+</p>

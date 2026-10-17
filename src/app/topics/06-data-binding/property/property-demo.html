@@ -1,0 +1,141 @@
+<section class="stack">
+  <h3 class="title">Any type, not just strings</h3>
+
+  <div class="profile">
+    <img #image [src]="avatar()" [alt]="name() + ' avatar'" width="72" height="72" />
+
+    <div class="stack">
+      <label class="field">
+        Name
+        <input
+          #nameInput
+          [value]="name()"
+          [readOnly]="locked()"
+          (input)="name.set($event.target.value)"
+          autocomplete="off"
+        />
+      </label>
+
+      <div class="row">
+        <div class="segmented themes" role="radiogroup" aria-label="Avatar colours">
+          @for (option of themes; track option) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="theme() === option"
+              (click)="theme.set(option)"
+            >
+              {{ option }}
+            </button>
+          }
+        </div>
+        <label class="check">
+          <input
+            type="checkbox"
+            [checked]="locked()"
+            (change)="locked.set($event.target.checked)"
+          />
+          Lock the name
+        </label>
+      </div>
+
+      <div class="row">
+        <button
+          #saveButton
+          type="button"
+          class="btn-primary"
+          [disabled]="saving() || !name().trim()"
+          (click)="save()"
+        >
+          {{ saving() ? 'Saving…' : 'Save' }}
+        </button>
+        <progress #bar [value]="saves()" max="3" aria-label="Saves"></progress>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">DOM property</th>
+          <th scope="col">Value on the element</th>
+          <th scope="col">typeof</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of domValues(); track row.property) {
+          <tr>
+            <td class="mono">{{ row.property }}</td>
+            <td class="mono value">{{ row.value }}</td>
+            <td>
+              <span class="badge">{{ row.type }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">The trap: interpolation vs property binding</h3>
+
+  <div class="row">
+    <span class="mono small">blocked() =</span>
+    <div class="segmented" role="radiogroup" aria-label="Value of blocked()">
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="!blocked()"
+        (click)="blocked.set(false)"
+      >
+        false
+      </button>
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="blocked()"
+        (click)="blocked.set(true)"
+      >
+        true
+      </button>
+    </div>
+  </div>
+
+  <div class="cols">
+    <div class="panel case">
+      <code ngNonBindable>[disabled]="blocked()"</code>
+      <button #propButton type="button" [disabled]="blocked()" (click)="countClick('prop')">
+        Save
+      </button>
+      <dl class="facts">
+        <dt>Angular passes</dt>
+        <dd class="mono">{{ blocked() }} (boolean)</dd>
+        <dt>button.disabled</dt>
+        <dd class="mono">{{ trapResult().prop }}</dd>
+        <dt>Clicks</dt>
+        <dd class="mono">{{ clicks().prop }}</dd>
+      </dl>
+    </div>
+
+    <div class="panel case" [class.is-wrong]="!blocked()">
+      <code ngNonBindable>disabled="{{ blocked() }}"</code>
+      <button #textButton type="button" disabled="{{ blocked() }}" (click)="countClick('text')">
+        Save
+      </button>
+      <dl class="facts">
+        <dt>Angular passes</dt>
+        <dd class="mono">"{{ blocked() }}" (string)</dd>
+        <dt>button.disabled</dt>
+        <dd class="mono">{{ trapResult().text }}</dd>
+        <dt>Clicks</dt>
+        <dd class="mono">{{ clicks().text }}</dd>
+      </dl>
+    </div>
+  </div>
+
+  <p class="muted small">
+    Set blocked() to false: the right button stays disabled, because the string "false" is truthy.
+  </p>
+</section>

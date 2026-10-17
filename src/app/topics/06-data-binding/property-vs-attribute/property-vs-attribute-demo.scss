@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.kind {
+  display: inline-block;
+  min-width: 5.5rem;
+  color: var(--text-muted);
+}
+
+.data-table code {
+  font-size: var(--fs-xs);
+}
+
+.strong {
+  color: var(--accent);
+}
+
+// BUTTONS
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.action {
+  display: grid;
+  gap: var(--space-1);
+  justify-items: start;
+
+  button {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+  }
+}
+
+.callout {
+  margin: 0;
+}

@@ -1,0 +1,54 @@
+<section class="panel state">
+  <div class="state-value">
+    <span class="muted small">city() in the component</span>
+    <strong class="mono">"{{ city() }}"</strong>
+  </div>
+  <div class="row">
+    <span class="muted small">Change it from TS:</span>
+    <button type="button" (click)="city.set('Mumbai')">city.set('Mumbai')</button>
+    <button type="button" (click)="city.set('')">city.set('')</button>
+  </div>
+</section>
+
+<div class="ways">
+  <label class="way">
+    <span class="way-head">
+      <code>[(ngModel)]="city"</code>
+      <span class="badge badge-accent">TS ⬌ View</span>
+    </span>
+    <input [(ngModel)]="city" autocomplete="off" />
+  </label>
+
+  <label class="way">
+    <span class="way-head">
+      <code>[ngModel]="city()" (ngModelChange)="onModelChange($event)"</code>
+      <span class="badge badge-accent">TS ⬌ View</span>
+    </span>
+    <input [ngModel]="city()" (ngModelChange)="onModelChange($event)" autocomplete="off" />
+    <span class="muted small">
+      The same thing written out. ngModelChange fired {{ modelChanges() }}
+      {{ modelChanges() === 1 ? 'time' : 'times' }}, only when you typed, never for city.set().
+    </span>
+  </label>
+
+  <label class="way">
+    <span class="way-head">
+      <code>[value]="city()"</code>
+      <span class="badge">TS ➝ View only</span>
+    </span>
+    <input [value]="city()" autocomplete="off" />
+    <span class="muted small">
+      Type here: city() doesn't change, because nothing sends the text back.
+    </span>
+  </label>
+</div>
+
+<section class="stack">
+  <h3 class="title">Your own two-way binding with model()</h3>
+  <div class="row model-row">
+    <code>&lt;app-qty-stepper [(value)]="qty" /&gt;</code>
+    <app-qty-stepper [(value)]="qty" [max]="5" />
+    <span class="mono">qty() = {{ qty() }}</span>
+    <button type="button" class="btn-ghost" (click)="qty.set(1)">qty.set(1)</button>
+  </div>
+</section>

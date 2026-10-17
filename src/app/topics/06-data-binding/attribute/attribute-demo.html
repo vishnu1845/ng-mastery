@@ -1,0 +1,83 @@
+<section class="stack">
+  <h3 class="title">ARIA and data attributes on an upload bar</h3>
+
+  <div class="upload panel">
+    <div class="upload-head">
+      <span>resume.pdf</span>
+      <span class="mono">{{ percent() }}%</span>
+    </div>
+
+    <div
+      #bar
+      class="bar"
+      role="progressbar"
+      aria-label="Upload"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [attr.aria-valuenow]="percent()"
+      [attr.aria-busy]="state() === 'uploading' ? true : null"
+      [attr.data-state]="state()"
+    >
+      <div class="fill" [style.width.%]="percent()"></div>
+    </div>
+
+    <div class="row">
+      <button type="button" class="btn-primary" [disabled]="state() !== 'idle'" (click)="upload()">
+        Upload
+      </button>
+      <button type="button" class="btn-ghost" (click)="reset()">Reset</button>
+    </div>
+  </div>
+
+  <p class="muted small">The progress bar's real HTML right now</p>
+  <code class="dom" aria-live="off">{{ barHtml() || '…' }}</code>
+  <p class="muted small">
+    aria-busy only exists while uploading, because the binding gives null the rest of the time. The
+    green colour when done comes from CSS reading the data-state attribute.
+  </p>
+</section>
+
+<section class="stack">
+  <h3 class="title">colspan has no DOM property</h3>
+
+  <label class="check">
+    <input type="checkbox" [checked]="showTax()" (change)="showTax.set($event.target.checked)" />
+    Show the GST column
+  </label>
+
+  <div class="table-wrap">
+    <table class="data-table invoice">
+      <thead>
+        <tr>
+          <th scope="col">Item</th>
+          <th scope="col">Qty</th>
+          @if (showTax()) {
+            <th scope="col">GST</th>
+          }
+          <th scope="col">Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Angular course</td>
+          <td>1</td>
+          @if (showTax()) {
+            <td>18%</td>
+          }
+          <td>₹999</td>
+        </tr>
+        <tr class="total">
+          <td #totalCell [attr.colspan]="showTax() ? 3 : 2">Total</td>
+          <td>₹999</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <code class="dom">{{ cellHtml() || '…' }}</code>
+
+  <div class="panel compile-error">
+    <code ngNonBindable>&lt;td [colspan]="showTax() ? 3 : 2"&gt;</code>
+    <p class="error">NG8002: Can't bind to 'colspan' since it isn't a known property of 'td'.</p>
+  </div>
+</section>

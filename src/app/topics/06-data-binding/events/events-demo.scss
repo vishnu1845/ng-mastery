@@ -1,0 +1,75 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-4);
+}
+
+.try {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  > code {
+    justify-self: start;
+    font-size: var(--fs-xs);
+  }
+
+  > button {
+    justify-self: start;
+  }
+
+  &.wide {
+    grid-column: 1 / -1;
+  }
+}
+
+// POINTER PAD
+.pad {
+  position: relative;
+  display: grid;
+  height: 6rem;
+  overflow: hidden;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+  cursor: crosshair;
+  place-items: end start;
+  padding: var(--space-2);
+  touch-action: none;
+
+  // offsetX/Y are measured from the event target, so the pad itself must be the target
+  > * {
+    pointer-events: none;
+  }
+}
+
+.dot {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--gradient);
+  transform: translate(-50%, -50%);
+}
+
+.mood {
+  font-size: var(--fs-lg);
+}
+
+.detail {
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}

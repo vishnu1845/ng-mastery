@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-4);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  > code {
+    justify-self: start;
+    font-size: var(--fs-xs);
+  }
+}
+
+.calls button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+// SCOPE ERROR
+.compile-error {
+  display: grid;
+  gap: var(--space-2);
+  border-color: color-mix(in oklab, var(--danger) 45%, transparent);
+
+  pre {
+    margin: 0;
+    overflow-x: auto;
+    font-size: var(--fs-xs);
+  }
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}

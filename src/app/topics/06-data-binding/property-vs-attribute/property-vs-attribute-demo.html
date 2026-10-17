@@ -1,0 +1,138 @@
+<section class="stack">
+  <h3 class="title">A text input</h3>
+
+  <form #form class="stack" (submit)="$event.preventDefault()">
+    <label class="field">
+      City, starts as value="Pune"
+      <input #city name="city" value="Pune" autocomplete="off" (input)="readText('typed')" />
+    </label>
+
+    <div class="row">
+      <label class="check">
+        <input #agree type="checkbox" name="agree" checked (change)="readBox()" />
+        Send me updates, starts with the checked attribute
+      </label>
+    </div>
+  </form>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Read</th>
+          <th scope="col">Right now</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <span class="kind">Attribute</span>
+            <code>getAttribute('value')</code>
+          </td>
+          <td class="mono">"{{ text()?.attribute }}"</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="kind">Property</span>
+            <code>.value</code>
+          </td>
+          <td class="mono strong">"{{ text()?.property }}"</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="kind">Property</span>
+            <code>.defaultValue</code>
+            <span class="muted small">mirrors the attribute</span>
+          </td>
+          <td class="mono">"{{ text()?.defaultValue }}"</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="kind">Attribute</span>
+            <code>hasAttribute('checked')</code>
+          </td>
+          <td class="mono">{{ box().attribute }}</td>
+        </tr>
+        <tr>
+          <td>
+            <span class="kind">Property</span>
+            <code>.checked</code>
+          </td>
+          <td class="mono strong">{{ box().property }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="actions">
+    <div class="action">
+      <button type="button" (click)="setProperty()">input.value = 'Mumbai'</button>
+      <span class="muted small">
+        In Angular:
+        <code>[value]</code>
+      </span>
+    </div>
+    <div class="action">
+      <button type="button" (click)="setAttribute()">setAttribute('value', 'Delhi')</button>
+      <span class="muted small">
+        In Angular:
+        <code>[attr.value]</code>
+      </span>
+    </div>
+    <div class="action">
+      <button type="button" class="btn-ghost" (click)="reset()">form.reset()</button>
+      <span class="muted small">back to the attribute</span>
+    </div>
+  </div>
+
+  <p class="callout small" aria-live="polite">
+    @switch (lastAction()) {
+      @case ('typed') {
+        Typing only changes the property. The attribute still says "{{ text()?.attribute }}".
+      }
+      @case ('property') {
+        The property changed what you see. The attribute still says "{{ text()?.attribute }}".
+      }
+      @case ('attribute') {
+        @if (text()?.property === text()?.attribute) {
+          Nothing was edited yet, so the box still follows the attribute.
+        } @else {
+          The attribute is now "Delhi", but the box didn't change: once a value has been edited, the
+          attribute no longer controls it.
+        }
+      }
+      @case ('reset') {
+        form.reset() copied the attribute back into the property.
+      }
+      @default {
+        Type in the box or use the buttons, and compare the attribute with the property.
+      }
+    }
+  </p>
+</section>
+
+<section class="stack">
+  <h3 class="title">Names don't always match</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">HTML attribute</th>
+          <th scope="col">DOM property</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (pair of namePairs; track pair.attribute) {
+          <tr>
+            <td class="mono">{{ pair.attribute }}</td>
+            <td class="mono">{{ pair.property }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="muted small">
+    Angular maps the common ones for us, so [tabindex] and [readonly] work. colspan isn't mapped,
+    which is why it needs [attr.colspan].
+  </p>
+</section>

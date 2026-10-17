@@ -1,0 +1,154 @@
+<div class="row controls">
+  <label class="field">
+    name()
+    <input [value]="name()" (input)="name.set($event.target.value)" autocomplete="off" />
+  </label>
+
+  <div class="field">
+    <span>qty()</span>
+    <div class="row">
+      <button type="button" aria-label="One less" (click)="changeQty(-1)">−</button>
+      <span class="qty">{{ qty() }}</span>
+      <button type="button" aria-label="One more" (click)="changeQty(1)">+</button>
+    </div>
+  </div>
+
+  <label class="check">
+    <input type="checkbox" [checked]="!!user()" (change)="toggleCity($event.target.checked)" />
+    user() has a city
+  </label>
+</div>
+
+<section class="stack">
+  <h3 class="title">Live expressions</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Template</th>
+          <th scope="col">Rendered right now</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ name() }}</code>
+          </td>
+          <td class="out">{{ name() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ name().toUpperCase() }}</code>
+          </td>
+          <td class="out">{{ name().toUpperCase() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ qty() * price() }}</code>
+          </td>
+          <td class="out">{{ qty() * price() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ qty() === 1 ? 'item' : 'items' }}</code>
+          </td>
+          <td class="out">{{ qty() === 1 ? 'item' : 'items' }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ user()?.city ?? 'No city yet' }}</code>
+          </td>
+          <td class="out">{{ user()?.city ?? 'No city yet' }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ `${qty()} × ₹${price()}` }}</code>
+          </td>
+          <td class="out">{{ `${qty()} × ₹${price()}` }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ typeof qty() }}</code>
+          </td>
+          <td class="out">{{ typeof qty() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ tags().filter((tag) => tag.length > 5).length }}</code>
+          </td>
+          <td class="out">{{ tags().filter((tag) => tag.length > 5).length }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">The result is always a string</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Template</th>
+          <th scope="col">Text on the page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ tags() }}</code>
+          </td>
+          <td class="out">{{ tags() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ settings() }}</code>
+          </td>
+          <td class="out">{{ settings() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ nothing() }}</code>
+          </td>
+          <td class="out">“{{ nothing() }}” (empty, no error)</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ isAdmin() }}</code>
+          </td>
+          <td class="out">{{ isAdmin() }}</td>
+        </tr>
+        <tr>
+          <td>
+            <code ngNonBindable>{{ price() / 3 }}</code>
+          </td>
+          <td class="out">{{ price() / 3 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Not allowed: the build stops</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Template</th>
+          <th scope="col">Angular 22 compiler says</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of notAllowed; track row.code) {
+          <tr>
+            <td>
+              <code>{{ row.code }}</code>
+            </td>
+            <td class="error">{{ row.error }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

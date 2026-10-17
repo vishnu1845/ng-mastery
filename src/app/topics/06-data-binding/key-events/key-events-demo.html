@@ -1,0 +1,66 @@
+<div class="cols">
+  <section class="panel chat">
+    <ol class="messages" aria-label="Chat history">
+      @for (message of messages(); track $index) {
+        <li class="bubble">{{ message }}</li>
+      }
+    </ol>
+
+    <label class="field">
+      Message
+      <textarea
+        #box
+        rows="2"
+        placeholder="Enter sends, Shift+Enter adds a line"
+        [value]="draft()"
+        (input)="draft.set(box.value)"
+        (keydown)="pressed($event)"
+        (keydown.enter)="send($event)"
+        (keydown.shift.enter)="newLine()"
+        (keydown.escape)="clear()"
+        (keydown.arrowUp)="editLast($event)"
+        (keydown.alt.s)="saveDraft($event, 'keydown.alt.s')"
+        (keydown.code.alt.keyS)="saveDraft($event, 'keydown.code.alt.keyS')"
+      ></textarea>
+    </label>
+
+    <div class="row footer">
+      <button type="button" class="btn-primary" [disabled]="!draft().trim()" (click)="sendDraft()">
+        Send
+      </button>
+      <span class="muted small">
+        {{ savedAt() ? 'Draft saved at ' + savedAt() : 'Alt+S saves a draft' }}
+      </span>
+    </div>
+  </section>
+
+  <section class="panel log">
+    <h3 class="title">Which filters fired</h3>
+    <ol class="rows">
+      @for (row of rows(); track row.id) {
+        <li class="key-row">
+          <div class="keys">
+            <kbd>{{ row.keys }}</kbd>
+            <span class="mono code">{{ row.code }}</span>
+          </div>
+          @if (row.fired.length) {
+            <div class="row">
+              @for (filter of row.fired; track filter) {
+                <span class="badge badge-accent">({{ filter }})</span>
+              }
+            </div>
+          } @else {
+            <span class="muted small">no filter matched</span>
+          }
+        </li>
+      } @empty {
+        <li class="muted small">Type in the message box. Each key press shows up here.</li>
+      }
+    </ol>
+  </section>
+</div>
+
+<p class="muted small">
+  Press Shift+Enter: (keydown.enter) stays quiet, because the match is exact and Shift is part of
+  it. On a Mac, Option+S types ß, so only the code. version fires.
+</p>

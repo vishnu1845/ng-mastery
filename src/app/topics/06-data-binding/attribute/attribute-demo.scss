@@ -1,0 +1,72 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+// UPLOAD BAR
+.upload {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.upload-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--fs-sm);
+}
+
+.bar {
+  height: 0.6rem;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--raised);
+}
+
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--gradient);
+  transition: width 200ms var(--ease);
+}
+
+// CSS reads the data attribute that Angular binds
+.bar[data-state='done'] .fill {
+  background: var(--success);
+}
+
+// INVOICE TABLE
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+}
+
+.total td {
+  font-weight: 600;
+}
+
+.compile-error {
+  display: grid;
+  gap: var(--space-2);
+  border-color: color-mix(in oklab, var(--danger) 45%, transparent);
+}
+
+.error {
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}

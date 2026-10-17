@@ -1,0 +1,73 @@
+<div class="grid">
+  <section class="panel card">
+    <h3 class="title">An element</h3>
+    <code>&lt;input #email /&gt;</code>
+
+    <label class="field">
+      Email
+      <input #email type="email" placeholder="you@example.com" autocomplete="off" />
+    </label>
+
+    <div class="row">
+      <button type="button" class="btn-primary" (click)="subscribed.set(email.value)">
+        Subscribe
+      </button>
+      <button type="button" class="btn-ghost" (click)="focusEmail()">Focus it from TS</button>
+    </div>
+
+    <p class="small" [class.muted]="!subscribed()">
+      @if (subscribed()) {
+        Subscribed: {{ subscribed() }}
+      } @else {
+        Nothing stores the text while you type. email.value is read once, on click.
+      }
+    </p>
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">A component</h3>
+    <code>&lt;app-stopwatch #sw /&gt;</code>
+
+    <app-stopwatch #sw />
+
+    <div class="row calls">
+      <button type="button" [disabled]="sw.running()" (click)="sw.start()">sw.start()</button>
+      <button type="button" [disabled]="!sw.running()" (click)="sw.stop()">sw.stop()</button>
+      <button type="button" class="btn-ghost" (click)="sw.reset()">sw.reset()</button>
+    </div>
+
+    <p class="small muted">These buttons live in the parent and call the child's methods.</p>
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">A directive, by its exportAs name</h3>
+    <code>&lt;input ngModel #user="ngModel" /&gt;</code>
+
+    <label class="field">
+      Username, at least 3 letters
+      <input ngModel #user="ngModel" required minlength="3" autocomplete="off" />
+    </label>
+
+    <div class="row">
+      <span class="badge" [class.badge-accent]="user.valid">valid: {{ user.valid }}</span>
+      <span class="badge" [class.badge-accent]="user.dirty">dirty: {{ user.dirty }}</span>
+      <span class="badge" [class.badge-accent]="user.touched">touched: {{ user.touched }}</span>
+    </div>
+
+    <p class="small" [class.text-danger]="user.invalid" [class.text-success]="user.valid">
+      @if (user.hasError('required')) {
+        Required
+      } @else if (user.hasError('minlength')) {
+        Too short: {{ user.value.length }} of 3
+      } @else {
+        Looks good
+      }
+    </p>
+  </section>
+</div>
+
+<div class="panel compile-error">
+  <p class="small muted">Refs stay inside their own block. This does not compile:</p>
+  <pre class="mono">{{ scopeExample }}</pre>
+  <p class="error">Property 'inner' does not exist on type 'TemplateRefsDemo'.</p>
+</div>

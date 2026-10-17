@@ -1,0 +1,41 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.controls {
+  align-items: end;
+  gap: var(--space-5);
+}
+
+.qty {
+  min-width: 2ch;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.data-table code {
+  font-size: var(--fs-xs);
+}
+
+.out {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.error {
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}

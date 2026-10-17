@@ -1,0 +1,89 @@
+<div class="grid">
+  <section class="panel try">
+    <code>(click)="onClick($event)"</code>
+    <button type="button" class="btn-primary" (click)="onClick($event)">
+      Clicked {{ clicks() }} {{ clicks() === 1 ? 'time' : 'times' }}
+    </button>
+  </section>
+
+  <section class="panel try">
+    <code>(input)="query.set($event.target.value)"</code>
+    <input
+      aria-label="Search"
+      placeholder="Type to search"
+      autocomplete="off"
+      (input)="query.set($event.target.value); onInput($event, $event.target.value)"
+    />
+    <p class="small muted">query() = "{{ query() }}"</p>
+  </section>
+
+  <section class="panel try">
+    <code>(change)="city.set(citySelect.value)"</code>
+    <select
+      #citySelect
+      aria-label="City"
+      [value]="city()"
+      (change)="city.set(citySelect.value); onChange($event, citySelect.value)"
+    >
+      <option>Pune</option>
+      <option>Mumbai</option>
+      <option>Bengaluru</option>
+    </select>
+    <p class="small muted">
+      A select has children, so $event.target isn't narrowed here. The #citySelect ref is typed
+      instead.
+    </p>
+  </section>
+
+  <section class="panel try">
+    <code>(pointermove) and (pointerdown)</code>
+    <div class="pad" (pointermove)="onPointerMove($event)" (pointerdown)="onPointerDown($event)">
+      @if (pointer(); as point) {
+        <span class="dot" [style.left.px]="point.x" [style.top.px]="point.y"></span>
+        <span class="small muted">x {{ point.x }}, y {{ point.y }}</span>
+      } @else {
+        <span class="small muted">Move or tap here</span>
+      }
+    </div>
+  </section>
+
+  <section class="panel try wide">
+    <code>(picked)="onPicked($event)" on a component</code>
+    <div class="row">
+      <app-emoji-picker (picked)="onPicked($event)" />
+      <span class="mood">{{ mood() || 'Pick a mood' }}</span>
+    </div>
+  </section>
+</div>
+
+<section class="stack">
+  <h3 class="title">What $event was</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Binding</th>
+          <th scope="col">$event type</th>
+          <th scope="col">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (entry of log(); track entry.id) {
+          <tr>
+            <td class="mono">{{ entry.binding }}</td>
+            <td>
+              <span class="badge" [class.badge-accent]="entry.binding !== '(picked)'">
+                {{ entry.type }}
+              </span>
+            </td>
+            <td class="mono detail">{{ entry.detail }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3" class="muted">Use anything above and the events show up here.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
