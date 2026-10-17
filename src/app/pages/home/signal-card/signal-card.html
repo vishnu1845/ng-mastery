@@ -1,0 +1,17 @@
+<div class="card">
+  <p class="file">counter.ts</p>
+
+  <!-- prettier-ignore -->
+  <pre class="code"><code><span class="name">count</span> = <span class="fn">signal</span>(0);
+<span class="name">double</span> = <span class="fn">computed</span>(() =&gt; <span class="fn">count</span>() * 2);
+
+<span class="fn">count</span>()   <span class="comment">// </span><output class="value">{{ count() }}</output>
+<span class="fn">double</span>()  <span class="comment">// </span><output class="value">{{ double() }}</output></code></pre>
+
+  <div class="actions">
+    <button type="button" (click)="increment()">count.update(n =&gt; n + 1)</button>
+    <button type="button" class="btn-ghost" (click)="reset()">count.set(0)</button>
+  </div>
+</div>
+
+<p class="caption">Click it. Two values change and nothing reloads. That's a signal.</p>

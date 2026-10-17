@@ -1,0 +1,53 @@
+<section class="hero">
+  <div class="hero-copy">
+    <h1 class="hero-title">Angular that finally clicks.</h1>
+    <p class="hero-text">
+      Angular 22 in 52 topics, from your first component to SSR. Every lesson is a live demo, the
+      code behind it, and an answer you can say out loud in an interview.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" [routerLink]="startUrl()">{{ startLabel() }}</a>
+      <a class="btn" routerLink="/about">How this app is built</a>
+    </div>
+    <p class="hero-status">
+      {{ catalog.lessonPath.length }} of {{ catalog.plannedLessonCount }} lessons are live. You have
+      finished {{ progress.doneCount() }}.
+    </p>
+  </div>
+
+  <app-signal-card class="hero-demo" />
+</section>
+
+<section class="map" aria-labelledby="map-title">
+  <div class="map-head">
+    <h2 id="map-title">The syllabus</h2>
+    <p class="map-hint">Lit tiles are ready to open. Dim tiles are coming next, in this order.</p>
+  </div>
+
+  @for (part of catalog.parts; track part.id) {
+    <div class="part">
+      <h3 class="part-title">{{ part.title }}</h3>
+      <ol class="tiles">
+        @for (topic of part.topics; track topic.id) {
+          <li class="tile-slot" [style.--i]="topic.id">
+            @if (isLive(topic)) {
+              <a class="tile is-live" [routerLink]="'/' + topic.slug">
+                <span class="tile-no">{{ topicNumber(topic) }}</span>
+                <span class="tile-title">{{ topic.title }}</span>
+                <span class="tile-meta">
+                  {{ topic.lessons.length }} of {{ topic.outline.length }} lessons
+                </span>
+              </a>
+            } @else {
+              <div class="tile">
+                <span class="tile-no">{{ topicNumber(topic) }}</span>
+                <span class="tile-title">{{ topic.title }}</span>
+                <span class="tile-meta">{{ topic.outline.length }} lessons planned</span>
+              </div>
+            }
+          </li>
+        }
+      </ol>
+    </div>
+  }
+</section>

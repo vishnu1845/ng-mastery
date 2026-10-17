@@ -1,0 +1,64 @@
+<header class="intro">
+  <h1>About this project</h1>
+  <p class="lead">
+    NgMastery is an open-source Angular 22 playground. It covers the framework in 52 topics, and
+    every lesson has a live demo, the real source code and a short spoken answer for interviews.
+  </p>
+</header>
+
+<section class="block" aria-labelledby="how-title">
+  <h2 id="how-title">How it is built</h2>
+  <dl class="highlights">
+    @for (item of highlights; track item.title) {
+      <div class="highlight">
+        <dt>{{ item.title }}</dt>
+        <dd>{{ item.text }}</dd>
+      </div>
+    }
+  </dl>
+</section>
+
+<section class="block" aria-labelledby="stack-title">
+  <h2 id="stack-title">Stack</h2>
+  <table class="data-table">
+    <tbody>
+      <tr>
+        <th scope="row">Framework</th>
+        <td>Angular 22 (standalone, signals, zoneless, SSR + prerender)</td>
+      </tr>
+      <tr>
+        <th scope="row">Language</th>
+        <td>TypeScript 6 in strict mode, strict templates</td>
+      </tr>
+      <tr>
+        <th scope="row">Styling</th>
+        <td>Our own design system in SCSS with CSS variables (dark, light, system)</td>
+      </tr>
+      <tr>
+        <th scope="row">Code highlighting</th>
+        <td>Shiki with the Angular template and TypeScript grammars</td>
+      </tr>
+      <tr>
+        <th scope="row">Testing</th>
+        <td>Vitest through the Angular CLI</td>
+      </tr>
+      <tr>
+        <th scope="row">Quality</th>
+        <td>angular-eslint and Prettier</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="block" aria-labelledby="author-title">
+  <h2 id="author-title">Author</h2>
+  <p>
+    Built by Vishnu Bandgar, an Angular developer who also teaches Angular. Find the source and more
+    work on
+    <a [href]="links.github" target="_blank" rel="noopener">GitHub</a>
+    or reach out on
+    <a [href]="links.linkedin" target="_blank" rel="noopener">LinkedIn</a>
+    .
+  </p>
+  <a class="btn btn-primary" routerLink="/">Open the syllabus</a>
+</section>
