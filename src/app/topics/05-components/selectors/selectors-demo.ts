@@ -7,7 +7,7 @@ import {
   signal,
   viewChild,
 } from '@angular/core';
-import { watchHtml } from '../dom-watch';
+import { watchHtml } from '@shared/utils/dom-watch';
 import { Chip, PrimaryButton, TagBadge } from './selector-kinds';
 
 /** The three selector types, with the real DOM each one produces. */

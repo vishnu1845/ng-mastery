@@ -51,7 +51,7 @@ export const componentsTopic: Topic = {
       title: 'Selector types',
       component: () => import('./selectors/selectors-demo'),
       notes: () => import('./selectors/notes.md'),
-      files: [`${FOLDER}/selectors/selector-kinds.ts`, `${FOLDER}/dom-watch.ts`],
+      files: [`${FOLDER}/selectors/selector-kinds.ts`, 'src/app/shared/utils/dom-watch.ts'],
     },
     {
       slug: 'view-encapsulation',
@@ -72,7 +72,7 @@ export const componentsTopic: Topic = {
       title: 'Host element & host bindings',
       component: () => import('./host-bindings/host-bindings-demo'),
       notes: () => import('./host-bindings/notes.md'),
-      files: [`${FOLDER}/host-bindings/toggle-switch.ts`, `${FOLDER}/dom-watch.ts`],
+      files: [`${FOLDER}/host-bindings/toggle-switch.ts`, 'src/app/shared/utils/dom-watch.ts'],
     },
   ],
 };

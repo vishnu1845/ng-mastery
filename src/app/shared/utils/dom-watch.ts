@@ -14,6 +14,16 @@ export function watchHtml(element: Element, onChange: (html: string) => void): (
   return () => observer.disconnect();
 }
 
+/** Just the opening tag, which is where bindings on the element itself show up. */
+export function openingTag(html: string): string {
+  return html.slice(0, html.indexOf('>') + 1);
+}
+
+/** Drops Angular's _ngcontent / _nghost style-scoping attributes when they aren't the point. */
+export function withoutScoping(html: string): string {
+  return html.replace(/ _ng(content|host)-[\w-]+=""/g, '');
+}
+
 /** Drops Angular's comment markers and extra whitespace, so the HTML is easy to read. */
 export function tidyHtml(html: string): string {
   return html

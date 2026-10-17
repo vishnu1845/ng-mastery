@@ -8,7 +8,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { CodeBlock } from '@shared/ui/code-block/code-block';
-import { watchHtml } from '../dom-watch';
+import { openingTag, watchHtml } from '@shared/utils/dom-watch';
 import { ToggleSwitch } from './toggle-switch';
 
 const OLD_WAY = `// Same result with decorators (still works, not the recommended style)
@@ -37,7 +37,7 @@ export default class HostBindingsDemo {
     afterNextRender(() => {
       // Only the opening tag: that's where host bindings land
       const stop = watchHtml(this.toggle().nativeElement, (html) =>
-        this.hostHtml.set(html.slice(0, html.indexOf('>') + 1)),
+        this.hostHtml.set(openingTag(html)),
       );
       destroyRef.onDestroy(stop);
     });
