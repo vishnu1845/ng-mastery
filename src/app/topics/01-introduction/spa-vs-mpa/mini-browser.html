@@ -1,0 +1,45 @@
+<div class="window">
+  <div class="address-bar">
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+    <span class="url">shop.dev/{{ page().toLowerCase() }}</span>
+  </div>
+
+  <nav class="links" [attr.aria-label]="mode() + ' navigation'">
+    @for (item of pages; track item) {
+      <button
+        type="button"
+        class="link"
+        [class.is-current]="item === page()"
+        [disabled]="loading()"
+        (click)="open(item)"
+      >
+        {{ item }}
+      </button>
+    }
+  </nav>
+
+  <div class="viewport" [class.is-loading]="loading()" aria-live="polite">
+    @if (loading()) {
+      <p class="loading-text">Reloading the whole page…</p>
+    } @else {
+      <h4>{{ page() }}</h4>
+      <p class="cart">Cart: {{ cart() }} {{ cart() === 1 ? 'item' : 'items' }}</p>
+      <button type="button" (click)="addToCart()">Add to cart</button>
+    }
+  </div>
+
+  <div class="stats">
+    <span>
+      Full reloads:
+      <strong>{{ reloads() }}</strong>
+    </span>
+  </div>
+
+  <ul class="requests" aria-label="Network requests">
+    @for (line of requests(); track $index) {
+      <li>{{ line }}</li>
+    }
+  </ul>
+</div>

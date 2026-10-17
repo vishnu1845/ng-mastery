@@ -1,0 +1,62 @@
+<div class="switch" role="radiogroup" aria-label="Build the app with">
+  <button
+    type="button"
+    role="radio"
+    [attr.aria-checked]="approach() === 'framework'"
+    (click)="approach.set('framework')"
+  >
+    Angular (framework)
+  </button>
+  <button
+    type="button"
+    role="radio"
+    [attr.aria-checked]="approach() === 'library'"
+    (click)="approach.set('library')"
+  >
+    React (UI library)
+  </button>
+</div>
+
+<!-- WHO CALLS WHOM -->
+<div class="control" aria-live="polite">
+  @if (approach() === 'framework') {
+    <span class="box is-strong">Angular</span>
+    <span class="arrow">calls</span>
+    <span class="box">your components</span>
+  } @else {
+    <span class="box">your code</span>
+    <span class="arrow">calls</span>
+    <span class="box is-strong">React</span>
+  }
+</div>
+
+<!-- WHERE EACH PIECE COMES FROM -->
+<table class="data-table">
+  <thead>
+    <tr>
+      <th scope="col">Your app needs</th>
+      <th scope="col">Comes from</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (item of needs; track item.need) {
+      <tr>
+        <th scope="row">{{ item.need }}</th>
+        <td>
+          @if (approach() === 'framework') {
+            <span class="badge badge-accent">Built in</span>
+            {{ item.framework }}
+          } @else {
+            <span class="badge">You choose</span>
+            {{ item.library }}
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<p class="summary">
+  Tooling decisions you make yourself:
+  <strong>{{ choicesToMake() }}</strong>
+</p>

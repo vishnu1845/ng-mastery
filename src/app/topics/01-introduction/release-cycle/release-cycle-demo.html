@@ -1,0 +1,39 @@
+<div class="versions" role="radiogroup" aria-label="Angular version">
+  @for (release of releases; track release.version) {
+    <button
+      type="button"
+      role="radio"
+      class="version"
+      [attr.data-status]="status(release)"
+      [attr.aria-checked]="release === selected()"
+      (click)="selected.set(release)"
+    >
+      v{{ release.version }}
+    </button>
+  }
+</div>
+
+<section class="detail" aria-live="polite">
+  <div class="detail-head">
+    <h3>Angular {{ selected().version }}</h3>
+    <span class="status" [attr.data-status]="selectedStatus()">{{ selectedStatus() }}</span>
+  </div>
+
+  <p class="released">Released {{ selected().released + '-01' | date: 'MMMM y' }}</p>
+  <p>{{ selected().highlights }}</p>
+
+  <!-- SUPPORT WINDOW -->
+  <div class="window" aria-label="Support window">
+    <div class="segment is-active" [style.flex-grow]="window().active">
+      Active, {{ window().active }} months
+    </div>
+    <div class="segment is-lts" [style.flex-grow]="window().lts">
+      LTS, {{ window().lts }} months
+    </div>
+  </div>
+  <p class="window-dates">Support ends {{ selected().ltsEnds + '-01' | date: 'MMMM y' }}.</p>
+</section>
+
+<p class="next">
+  Next major: Angular 23, expected in June 2027. From v22 on, a new major ships once a year.
+</p>

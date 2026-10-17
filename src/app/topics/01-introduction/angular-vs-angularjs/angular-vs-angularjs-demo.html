@@ -1,0 +1,30 @@
+<div class="switch" role="radiogroup" aria-label="Show the counter written in">
+  <button
+    type="button"
+    role="radio"
+    [attr.aria-checked]="era() === 'angularjs'"
+    (click)="era.set('angularjs')"
+  >
+    AngularJS (2010)
+  </button>
+  <button
+    type="button"
+    role="radio"
+    [attr.aria-checked]="era() === 'angular'"
+    (click)="era.set('angular')"
+  >
+    Angular (2016 to today)
+  </button>
+</div>
+
+<app-code-block
+  [code]="code[era()]"
+  [label]="era() === 'angular' ? 'counter.ts' : 'counter.controller.js'"
+/>
+
+<div class="live">
+  <p class="live-label">The Angular version, running</p>
+  <button type="button" class="btn-primary" (click)="increment()">
+    Clicked {{ count() }} {{ count() === 1 ? 'time' : 'times' }}
+  </button>
+</div>

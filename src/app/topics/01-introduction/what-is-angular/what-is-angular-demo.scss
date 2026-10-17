@@ -1,0 +1,31 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+  justify-items: start;
+}
+
+.widget {
+  display: grid;
+  gap: var(--space-4);
+  width: min(100%, 24rem);
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.greeting {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.hint {
+  max-width: 34rem;
+  color: var(--text-muted);
+}

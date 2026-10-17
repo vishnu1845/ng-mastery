@@ -1,0 +1,16 @@
+<div class="widget">
+  <p class="greeting">{{ greeting() }}</p>
+
+  <label class="field">
+    Your name
+    <input #nameInput type="text" [value]="name()" (input)="name.set(nameInput.value)" />
+  </label>
+
+  <button type="button" (click)="like()">Like this lesson ({{ likes() }})</button>
+</div>
+
+<p class="hint">
+  This widget is one Angular component: a class with two signals and a template. Type a name and
+  only the greeting changes. Nothing reloads, because Angular updates just the parts that depend on
+  the data you changed.
+</p>
