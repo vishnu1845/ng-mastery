@@ -46,6 +46,8 @@ samp {
   border-radius: var(--radius-sm);
   background: var(--raised);
   font-size: 0.86em;
+  // Long calls like provideHttpClient(withInterceptors([...])) may break, so phones never scroll sideways
+  overflow-wrap: anywhere;
 }
 
 kbd {
