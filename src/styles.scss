@@ -1,0 +1,9 @@
+// GLOBAL STYLES
+// Order matters: tokens first, then base elements, then shared classes.
+
+@use './styles/tokens';
+@use './styles/reset';
+@use './styles/typography';
+@use './styles/components';
+@use './styles/code';
+@use './styles/utilities';

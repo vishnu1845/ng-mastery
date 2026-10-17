@@ -1,0 +1,162 @@
+// SHARED COMPONENT CLASSES
+// Plain elements already look right (a <button> looks like a button).
+// Add a class only to change the variant.
+
+// BUTTONS
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--raised);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease),
+    transform var(--duration) var(--ease);
+
+  &:hover {
+    border-color: var(--text-faint);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none;
+  }
+}
+
+.btn-primary {
+  border-color: transparent;
+  background: var(--text);
+  color: var(--bg);
+
+  &:hover {
+    border-color: transparent;
+    background: color-mix(in oklab, var(--text) 86%, var(--accent));
+  }
+}
+
+.btn-ghost {
+  border-color: transparent;
+  background: transparent;
+
+  &:hover {
+    border-color: transparent;
+    background: var(--raised);
+  }
+}
+
+.icon-btn {
+  width: 2.25rem;
+  padding: 0;
+  font-size: 1.05rem;
+}
+
+// FORM FIELDS
+input:not([type='checkbox'], [type='radio'], [type='range'], [type='color']),
+select,
+textarea {
+  min-height: 2.25rem;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  transition: border-color var(--duration) var(--ease);
+
+  &::placeholder {
+    color: var(--text-faint);
+  }
+
+  &:focus-visible {
+    border-color: var(--focus);
+    outline: 1px solid var(--focus);
+    outline-offset: 0;
+  }
+}
+
+textarea {
+  min-height: 5rem;
+  padding: var(--space-2) var(--space-3);
+}
+
+input[type='checkbox'],
+input[type='radio'],
+input[type='range'] {
+  accent-color: var(--accent);
+}
+
+label {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+// SURFACES
+.panel {
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.callout {
+  padding: var(--space-4) var(--space-5);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background: var(--raised);
+}
+
+// BADGES
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.badge-accent {
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  color: var(--accent);
+}
+
+// TABLES
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+
+  th,
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+}

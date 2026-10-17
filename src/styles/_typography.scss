@@ -1,0 +1,142 @@
+// TYPOGRAPHY
+// Geist for everything you read, Geist Mono only for code.
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  line-height: var(--lh-tight);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-2xl);
+}
+
+h2 {
+  font-size: var(--fs-xl);
+}
+
+h3 {
+  font-size: var(--fs-lg);
+  letter-spacing: -0.01em;
+}
+
+h4 {
+  font-size: var(--fs-md);
+  letter-spacing: -0.01em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: var(--font-mono);
+}
+
+:not(pre) > code {
+  padding: 0.1em 0.38em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--raised);
+  font-size: 0.86em;
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  min-width: 1.5rem;
+  height: 1.375rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  justify-content: center;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+// PROSE (rendered markdown: lesson notes)
+.prose {
+  max-width: var(--prose-max);
+  font-size: var(--fs-md);
+  line-height: 1.65;
+
+  > * + * {
+    margin-top: var(--space-4);
+  }
+
+  h3 {
+    margin-top: var(--space-6);
+    font-size: var(--fs-md);
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  a {
+    color: var(--accent);
+    text-underline-offset: 0.2em;
+  }
+
+  ul,
+  ol {
+    padding-left: 1.25rem;
+  }
+
+  li + li {
+    margin-top: var(--space-2);
+  }
+
+  li::marker {
+    color: var(--text-faint);
+  }
+
+  blockquote {
+    padding: var(--space-4) var(--space-5);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    background: var(--raised);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--fs-sm);
+  }
+
+  th,
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  th {
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  pre {
+    padding: var(--space-4);
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--code-bg);
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+  }
+}

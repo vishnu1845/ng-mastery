@@ -1,0 +1,29 @@
+// CODE HIGHLIGHTING
+// Shiki output is injected as HTML, so its styles must be global (component styles can't reach it).
+// Shiki writes both theme colors as CSS variables; we pick one based on the active theme.
+
+.code-surface {
+  overflow: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--code-bg);
+
+  pre {
+    margin: 0;
+    padding: var(--space-4) var(--space-5);
+    background: transparent !important;
+    font-size: var(--fs-sm);
+    line-height: 1.7;
+    tab-size: 2;
+  }
+}
+
+.shiki,
+.shiki span {
+  color: var(--shiki-dark);
+}
+
+[data-theme='light'] .shiki,
+[data-theme='light'] .shiki span {
+  color: var(--shiki-light);
+}

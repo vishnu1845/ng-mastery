@@ -1,0 +1,124 @@
+// DESIGN TOKENS
+// Every color, size and radius lives here as a CSS variable.
+// Dark is the default theme. Light mode and the accent presets only swap variables.
+
+:root {
+  // TYPE
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Geist Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
+  --fs-xs: 0.75rem; // 12px
+  --fs-sm: 0.8125rem; // 13px
+  --fs-base: 0.9375rem; // 15px
+  --fs-md: 1.0625rem; // 17px
+  --fs-lg: 1.3125rem; // 21px
+  --fs-xl: 1.625rem; // 26px
+  --fs-2xl: 2.0625rem; // 33px
+  --fs-3xl: 2.75rem; // 44px
+  --lh-tight: 1.15;
+  --lh-snug: 1.35;
+  --lh-body: 1.6;
+
+  // SPACE
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  // SHAPE (bigger surfaces get a bigger radius)
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  // LAYOUT
+  --sidebar-width: 17.5rem;
+  --topbar-height: 3.5rem;
+  --content-max: 66rem;
+  --prose-max: 68ch;
+
+  // MOTION
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --duration: 160ms;
+
+  // ACCENT PRESET: ANGULAR (default)
+  --g1: #f0060b;
+  --g2: #cc26d5;
+  --g3: #7702ff;
+  --accent-on-dark: #d98bff;
+  --accent-on-light: #8a1fd6;
+  --gradient: linear-gradient(118deg, var(--g1), var(--g2) 52%, var(--g3));
+}
+
+// ACCENT PRESET: OCEAN
+[data-accent='ocean'] {
+  --g1: #22d3ee;
+  --g2: #3b82f6;
+  --g3: #6d5dfc;
+  --accent-on-dark: #7dd3fc;
+  --accent-on-light: #0b62b5;
+}
+
+// ACCENT PRESET: LIME
+[data-accent='lime'] {
+  --g1: #d9f99d;
+  --g2: #4ade80;
+  --g3: #0d9488;
+  --accent-on-dark: #a3e635;
+  --accent-on-light: #3b7a0f;
+}
+
+// DARK THEME (default)
+// Neutral warm grays, darkest at the edges and lighter as surfaces rise:
+// sidebar < page < field < card < button. Only the accent carries color.
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+  --sidebar-bg: #111111;
+  --bg: #151515;
+  --surface: #1d1d1d;
+  --raised: #262625;
+  --overlay: rgb(0 0 0 / 0.6);
+  --border: #292929;
+  --border-strong: #363635;
+  --text: #f0efec;
+  --text-muted: #c3c2b7;
+  --text-faint: #898781;
+  --accent: var(--accent-on-dark);
+  --focus: var(--accent-on-dark);
+  --success: #4ade80;
+  --warning: #fbbf24;
+  --danger: #fb7185;
+  --code-bg: #111111;
+  --stage-bg: #191918;
+  --stage-dot: rgb(255 255 255 / 0.06);
+  --shadow-lg: 0 24px 64px -24px rgb(0 0 0 / 0.75);
+}
+
+// LIGHT THEME
+// Same idea on warm paper: page off-white, sidebar a shade deeper, cards pure white.
+[data-theme='light'] {
+  color-scheme: light;
+  --sidebar-bg: #f5f4ed;
+  --bg: #faf9f5;
+  --surface: #ffffff;
+  --raised: #f0eee6;
+  --overlay: rgb(20 20 19 / 0.4);
+  --border: #e6e4dc;
+  --border-strong: #d6d3c9;
+  --text: #141413;
+  --text-muted: #55544f;
+  --text-faint: #7a786f;
+  --accent: var(--accent-on-light);
+  --focus: var(--accent-on-light);
+  --success: #15803d;
+  --warning: #b45309;
+  --danger: #be123c;
+  --code-bg: #f5f4ed;
+  --stage-bg: #fdfcf9;
+  --stage-dot: rgb(20 20 19 / 0.09);
+  --shadow-lg: 0 24px 64px -28px rgb(20 20 19 / 0.25);
+}
