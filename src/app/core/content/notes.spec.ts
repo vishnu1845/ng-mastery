@@ -1,4 +1,4 @@
-import { parseNotes, renderMarkdown } from './notes';
+import { parseNotes, renderMarkdown, splitBlocks } from './notes';
 
 describe('parseNotes', () => {
   const markdown = [
@@ -24,6 +24,26 @@ describe('parseNotes', () => {
 
   it('returns an empty definition when the heading is missing', () => {
     expect(parseNotes('## Key points\n- one').definition).toBe('');
+  });
+});
+
+describe('splitBlocks', () => {
+  it('separates prose from fenced code and keeps their order', () => {
+    const blocks = splitBlocks(
+      ['Before', '', '```ts', 'const a = 1;', '```', '', 'After'].join('\n'),
+    );
+
+    expect(blocks).toEqual([
+      { kind: 'text', markdown: 'Before' },
+      { kind: 'code', code: 'const a = 1;', lang: 'angular-ts', label: 'TypeScript' },
+      { kind: 'text', markdown: 'After' },
+    ]);
+  });
+
+  it('maps fence names to grammars', () => {
+    const [block] = splitBlocks('```json\n{ "strict": true }\n```');
+
+    expect(block).toMatchObject({ kind: 'code', lang: 'json', label: 'JSON' });
   });
 });
 

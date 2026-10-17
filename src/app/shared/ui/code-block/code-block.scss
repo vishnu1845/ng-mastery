@@ -1,5 +1,7 @@
 :host {
   display: block;
+  // Long lines scroll inside the block instead of stretching the layout
+  min-width: 0;
 }
 
 .code-head {

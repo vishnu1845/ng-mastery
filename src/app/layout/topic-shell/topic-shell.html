@@ -89,7 +89,13 @@
         @for (section of notes.value()?.sections; track section.title) {
           <section class="note" [class.say-it]="section.title === 'Say it like this'">
             <h3 class="note-title">{{ section.title }}</h3>
-            <app-markdown [content]="section.body" />
+            @for (block of section.blocks; track $index) {
+              @if (block.kind === 'code') {
+                <app-code-block [code]="block.code" [lang]="block.lang" [label]="block.label" />
+              } @else {
+                <app-markdown [content]="block.markdown" />
+              }
+            }
           </section>
         }
       } @else {

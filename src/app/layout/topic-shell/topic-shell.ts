@@ -4,6 +4,7 @@ import { NgIcon } from '@ng-icons/core';
 import { parseNotes } from '@core/content/notes';
 import { Lesson, Topic } from '@core/models/topic.model';
 import { ProgressStore } from '@core/progress/progress-store';
+import { CodeBlock } from '@shared/ui/code-block/code-block';
 import { Markdown } from '@shared/ui/markdown/markdown';
 import { CodeViewer } from '@shared/ui/code-viewer/code-viewer';
 import { Catalog, lessonUrl, topicNumber } from '@topics/catalog';
@@ -16,7 +17,7 @@ type LessonTab = 'notes' | 'code';
  * The demo itself is the routed child component, rendered in the <router-outlet>.
  */
 @Component({
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgIcon, Markdown, CodeViewer],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgIcon, Markdown, CodeBlock, CodeViewer],
   selector: 'app-topic-shell',
   styleUrl: './topic-shell.scss',
   templateUrl: './topic-shell.html',
