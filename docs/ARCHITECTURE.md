@@ -31,6 +31,7 @@ src/
     │   ├── mock-api/     # fake backend (interceptor + in-memory tables)
     │   ├── platform/     # SSR-safe localStorage
     │   ├── seo/          # page title strategy
+    │   ├── boot/         # performance marks at each startup step (read by Topic 04)
     │   ├── icons.ts      # icons used by the app frame
     │   └── app-links.ts  # GitHub / LinkedIn links
     ├── layout/           # the frame around pages
