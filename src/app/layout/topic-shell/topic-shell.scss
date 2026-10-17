@@ -4,6 +4,9 @@
 
 .topic {
   display: grid;
+  // minmax(0, …) lets the column shrink, so a long code line scrolls inside its box
+  // instead of stretching the whole page on phones
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
 }
 
@@ -140,6 +143,7 @@
 // NOTES / CODE
 .lesson-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-5);
 }
 
@@ -177,11 +181,13 @@
 
 .tab-panel {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-6);
 }
 
 .note {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-3);
 }
 
