@@ -1,0 +1,83 @@
+<div class="segmented" role="radiogroup" aria-label="Command">
+  @for (key of commands; track key) {
+    <button
+      type="button"
+      role="radio"
+      class="mono"
+      [attr.aria-checked]="command() === key"
+      (click)="command.set(key)"
+    >
+      {{ runs[key].command }}
+    </button>
+  }
+</div>
+
+<p class="uses">
+  Uses the
+  <code>"{{ run().configuration }}"</code>
+  configuration
+  <span class="muted">
+    ({{ command() === 'build-dev' ? 'asked for with -c' : 'its defaultConfiguration' }})
+  </span>
+</p>
+
+<div class="cols">
+  <section class="stack">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Option</th>
+          <th scope="col">Value</th>
+          <th scope="col">Means</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (setting of settings(); track setting.key) {
+          <tr>
+            <td>
+              <code>{{ setting.key }}</code>
+            </td>
+            <td class="mono">{{ setting.value }}</td>
+            <td class="muted">{{ setting.note }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+
+  <section class="stack">
+    <p class="muted">Output</p>
+    <ul class="files">
+      @for (file of run().output; track file) {
+        <li class="mono">{{ file }}</li>
+      }
+    </ul>
+  </section>
+</div>
+
+<section class="panel budget">
+  <label class="field">
+    Initial bundle size: {{ bundleKb() }} kB
+    <input
+      #size
+      type="range"
+      min="100"
+      max="1300"
+      step="10"
+      [value]="bundleKb()"
+      (input)="bundleKb.set(size.valueAsNumber)"
+    />
+  </label>
+  <div class="meter" aria-hidden="true">
+    <span
+      class="fill"
+      [style.width.%]="(bundleKb() / 1300) * 100"
+      [attr.data-tone]="budgetResult().tone"
+    ></span>
+    <span class="mark" [style.left.%]="(budget.warning / 1300) * 100"></span>
+    <span class="mark is-error" [style.left.%]="(budget.error / 1300) * 100"></span>
+  </div>
+  <p [attr.data-tone]="budgetResult().tone" class="budget-text" aria-live="polite">
+    {{ budgetResult().text }}
+  </p>
+</section>

@@ -1,0 +1,76 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+// COMPATIBILITY GRID
+.grid {
+  border-collapse: separate;
+  border-spacing: 3px;
+  font-size: var(--fs-xs);
+
+  th {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+}
+
+.node-head {
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.angular-head {
+  padding-right: var(--space-2);
+  color: var(--text-muted);
+  text-align: left;
+}
+
+.cell {
+  width: 100%;
+  min-width: 2.75rem;
+  min-height: 2rem;
+  padding: 0;
+  border-color: var(--border);
+  background: transparent;
+  color: var(--text);
+  font-size: var(--fs-sm);
+
+  &.is-ok {
+    border-color: color-mix(in oklab, var(--success) 40%, transparent);
+    background: color-mix(in oklab, var(--success) 14%, transparent);
+    color: var(--success);
+  }
+
+  &[aria-pressed='true'] {
+    outline: 2px solid var(--accent);
+    outline-offset: 1px;
+  }
+}
+
+// ANSWER
+.answer {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.answer code {
+  white-space: nowrap;
+}
+
+.verdict {
+  font-size: var(--fs-md);
+  font-weight: 600;
+}
+
+.command {
+  justify-self: start;
+  overflow-wrap: anywhere;
+}
+
+.range {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}

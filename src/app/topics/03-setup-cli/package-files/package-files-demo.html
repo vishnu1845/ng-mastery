@@ -1,0 +1,77 @@
+<div class="row controls">
+  <div class="field">
+    <span id="range-label" class="control-label">package.json</span>
+    <div class="segmented" role="radiogroup" aria-labelledby="range-label">
+      @for (option of ranges; track option) {
+        <button
+          type="button"
+          role="radio"
+          class="mono"
+          [attr.aria-checked]="range() === option"
+          (click)="range.set(option)"
+        >
+          "chart-kit": "{{ option }}"
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="field">
+    <span id="when-label" class="control-label">When</span>
+    <div class="segmented" role="radiogroup" aria-labelledby="when-label">
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="when() === 'today'"
+        (click)="when.set('today')"
+      >
+        Today
+      </button>
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="when() === 'later'"
+        (click)="when.set('later')"
+      >
+        A month later
+      </button>
+    </div>
+  </div>
+</div>
+
+<section class="stack">
+  <p class="muted">Versions of chart-kit on npm. Green ones match the range.</p>
+  <ul class="chips">
+    @for (chip of chips(); track chip.version) {
+      <li class="chip mono" [class.is-match]="chip.matches" [class.is-locked]="chip.isLocked">
+        {{ chip.version }}
+        @if (chip.isNew) {
+          <span class="tag">new</span>
+        }
+        @if (chip.isLocked) {
+          <span class="tag">locked</span>
+        }
+      </li>
+    }
+  </ul>
+</section>
+
+<div class="cols">
+  <section class="panel install">
+    <p class="muted">Your teammate runs</p>
+    <code>npm ci</code>
+    <p class="picked mono">chart-kit&#64;{{ locked() }}</p>
+    <p class="text-success">Exactly what's in package-lock.json.</p>
+  </section>
+
+  <section class="panel install">
+    <p class="muted">Without a lock file, your teammate runs</p>
+    <code>npm install</code>
+    <p class="picked mono">chart-kit&#64;{{ withoutLock() }}</p>
+    @if (withoutLock() === locked()) {
+      <p class="muted">Same as yours, for now.</p>
+    } @else {
+      <p class="text-danger">Different from yours: "works on my machine" bugs start here.</p>
+    }
+  </section>
+</div>

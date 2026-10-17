@@ -1,0 +1,64 @@
+<div class="segmented" role="radiogroup" aria-label="What to generate">
+  @for (item of schematics; track item.id) {
+    <button
+      type="button"
+      role="radio"
+      [attr.aria-checked]="schematic() === item"
+      (click)="choose(item.id)"
+    >
+      {{ item.id }}
+    </button>
+  }
+</div>
+
+<div class="form">
+  <label class="field path-field">
+    path / name
+    <input
+      #pathInput
+      type="text"
+      spellcheck="false"
+      [value]="path()"
+      (input)="path.set(pathInput.value)"
+    />
+  </label>
+
+  <fieldset class="flags">
+    <legend class="visually-hidden">Options</legend>
+    @for (flag of flags; track flag.key) {
+      @let disabled = flag.componentOnly && !isComponent();
+      <label class="flag" [class.is-disabled]="disabled">
+        <input
+          type="checkbox"
+          [checked]="options()[flag.key] && !disabled"
+          [disabled]="disabled"
+          (change)="toggle(flag.key)"
+        />
+        <span class="mono">{{ flag.label }}</span>
+      </label>
+    }
+  </fieldset>
+</div>
+
+@let run = result();
+<section class="terminal" aria-label="Terminal" aria-live="polite">
+  <p class="prompt">
+    <span class="dollar" aria-hidden="true">$</span>
+    {{ run.command }}
+  </p>
+  @for (line of run.output; track line) {
+    <p [class.create]="line.startsWith('CREATE')" [class.note]="line.startsWith('NOTE')">
+      {{ line }}
+    </p>
+  }
+</section>
+
+<p class="muted">
+  The new file exports
+  <code>{{ run.exportName }}</code>
+  @if (isComponent()) {
+    and gets its own folder.
+  } @else {
+    and is created flat in the folder you gave.
+  }
+</p>

@@ -1,0 +1,71 @@
+<div class="row controls">
+  <div class="segmented" role="radiogroup" aria-label="Command">
+    <button
+      type="button"
+      role="radio"
+      class="mono"
+      [attr.aria-checked]="command() === 'serve'"
+      (click)="command.set('serve')"
+    >
+      ng serve
+    </button>
+    <button
+      type="button"
+      role="radio"
+      class="mono"
+      [attr.aria-checked]="command() === 'build'"
+      (click)="command.set('build')"
+    >
+      ng build
+    </button>
+  </div>
+
+  <label class="secret-toggle">
+    <input type="checkbox" [checked]="withSecret()" (change)="withSecret.set(!withSecret())" />
+    Put an API key in the environment file
+  </label>
+</div>
+
+<!-- THE SWAP -->
+<div class="swap" aria-live="polite">
+  <code class="file" [class.is-used]="!isDev()">environment.ts</code>
+  <span class="arrow" [class.is-on]="isDev()">
+    {{ isDev() ? 'replaced with →' : 'no replacement' }}
+  </span>
+  <code class="file" [class.is-used]="isDev()">environment.development.ts</code>
+</div>
+<p class="muted">
+  Our code imports
+  <code>environment.ts</code>
+  everywhere.
+  @if (isDev()) {
+    In development, the
+    <code>fileReplacements</code>
+    setting makes the CLI swap in the development file while building.
+  } @else {
+    The production configuration has no replacement, so the base file is used as-is.
+  }
+</p>
+
+<div class="cols">
+  <section class="stack">
+    <app-code-block [code]="environmentCode()" [label]="'environment (' + active().file + ')'" />
+  </section>
+
+  <section class="stack">
+    <div class="panel result">
+      <p class="muted">A product service calls</p>
+      <code class="request">{{ request() }}</code>
+    </div>
+
+    <div class="panel result" [class.is-leak]="withSecret()">
+      <p class="muted">Inside the built main.js, readable by anyone</p>
+      <code class="bundle">{{ bundleLine() }}</code>
+      @if (withSecret()) {
+        <p class="text-danger">
+          The key ships to every browser. Keep secrets on the server, never in environment files.
+        </p>
+      }
+    </div>
+  </section>
+</div>

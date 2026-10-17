@@ -1,0 +1,31 @@
+<div class="explorer">
+  <nav class="tree" aria-label="my-app files">
+    <p class="root">my-app/</p>
+    <ul>
+      @for (entry of entries; track entry.path + entry.depth) {
+        <li [style.--depth]="entry.depth">
+          <button
+            type="button"
+            class="node"
+            [class.is-folder]="entry.isFolder"
+            [class.is-later]="entry.owner === 'later'"
+            [attr.aria-current]="selected() === entry ? 'true' : null"
+            (click)="selected.set(entry)"
+          >
+            {{ entry.path }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  @let file = selected();
+  <section class="details" aria-live="polite">
+    <h3 class="file-name mono">{{ file.path }}</h3>
+    <span class="badge owner" [attr.data-owner]="file.owner">{{ ownerLabels[file.owner] }}</span>
+    <p>{{ file.role }}</p>
+    @if (file.content && file.lang) {
+      <app-code-block [code]="file.content" [lang]="file.lang" [label]="file.path" />
+    }
+  </section>
+</div>

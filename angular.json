@@ -3,9 +3,7 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "schematicCollections": [
-      "angular-eslint"
-    ]
+    "schematicCollections": ["angular-eslint"]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -37,7 +35,7 @@
                 "output": "code/src"
               },
               {
-                "glob": "{angular.json,package.json,tsconfig.json,eslint.config.js}",
+                "glob": "{angular.json,package.json,tsconfig.json,tsconfig.app.json,tsconfig.spec.json,eslint.config.js}",
                 "input": ".",
                 "output": "code"
               }
@@ -50,10 +48,7 @@
             "server": "src/main.server.ts",
             "outputMode": "server",
             "security": {
-              "allowedHosts": [
-                "localhost",
-                "127.0.0.1"
-              ]
+              "allowedHosts": ["localhost", "127.0.0.1"]
             },
             "ssr": {
               "entry": "src/server.ts"
@@ -104,10 +99,7 @@
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
-            ]
+            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
           }
         }
       }

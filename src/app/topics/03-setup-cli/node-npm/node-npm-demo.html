@@ -1,0 +1,69 @@
+<p class="muted">Click a cell to check if that Angular version builds on that Node.js line.</p>
+
+<div class="table-wrap">
+  <table class="grid">
+    <thead>
+      <tr>
+        <th scope="col"><span class="visually-hidden">Angular version</span></th>
+        @for (major of nodeMajors; track major) {
+          <th scope="col" class="node-head">Node {{ major }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows; track row.angular) {
+        <tr>
+          <th scope="row" class="angular-head">Angular {{ row.angular }}</th>
+          @for (major of nodeMajors; track major) {
+            @let ok = row.runsOn(major);
+            <td>
+              <button
+                type="button"
+                class="cell"
+                [class.is-ok]="ok"
+                [attr.aria-pressed]="picked().angular === row.angular && picked().node === major"
+                [attr.aria-label]="
+                  'Angular ' +
+                  row.angular +
+                  ' on Node ' +
+                  major +
+                  (ok ? ': supported' : ': not supported')
+                "
+                (click)="pick(row.angular, major)"
+              >
+                {{ ok ? '✓' : '' }}
+              </button>
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+@let a = answer();
+<section class="panel answer" aria-live="polite">
+  @if (a.match) {
+    <p class="verdict text-success">✓ Angular {{ a.row.angular }} builds on Node {{ a.node }}</p>
+    <p class="muted">
+      It needs
+      <code>{{ a.match.minimum }}</code>
+      or newer on the Node {{ a.node }} line.
+    </p>
+    <p class="muted">
+      Check yours:
+      <code>node -v</code>
+    </p>
+  } @else {
+    <p class="verdict text-danger">
+      ✗ Angular {{ a.row.angular }} won't build on Node {{ a.node }}
+    </p>
+    <p class="muted">Switch Node for this project with nvm, then install again:</p>
+    <code class="command">nvm install {{ a.newest.minimum }}</code>
+    <code class="command">nvm use {{ a.newest.minimum }}</code>
+  }
+  <p class="range">
+    <span class="muted">angular.dev range:</span>
+    <code>{{ a.row.node }}</code>
+  </p>
+</section>

@@ -1,0 +1,70 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-4);
+}
+
+.path-field input {
+  width: min(100%, 16rem);
+  font-family: var(--font-mono);
+}
+
+.flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+
+  &.is-disabled {
+    color: var(--text-faint);
+  }
+}
+
+// TERMINAL
+.terminal {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-5);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--code-bg);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  // Long paths wrap on phones (any character can break, so nothing sticks out)
+  overflow-wrap: anywhere;
+}
+
+.prompt {
+  margin-bottom: var(--space-2);
+  color: var(--text);
+}
+
+.dollar {
+  margin-right: var(--space-2);
+  color: var(--accent);
+}
+
+.create {
+  color: var(--success);
+}
+
+.note {
+  margin-top: var(--space-2);
+  color: var(--warning);
+}

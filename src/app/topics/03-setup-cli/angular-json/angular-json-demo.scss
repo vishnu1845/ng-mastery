@@ -1,0 +1,88 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.uses {
+  font-size: var(--fs-sm);
+}
+
+.files {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: var(--space-3) var(--space-4);
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--code-bg);
+  font-size: var(--fs-xs);
+  list-style: none;
+  white-space: nowrap;
+}
+
+// BUDGET METER
+.budget {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.meter {
+  position: relative;
+  height: 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--raised);
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: var(--success);
+  transition: width var(--duration) var(--ease);
+
+  &[data-tone='muted'] {
+    background: var(--text-faint);
+  }
+
+  &[data-tone='warning'] {
+    background: var(--warning);
+  }
+
+  &[data-tone='danger'] {
+    background: var(--danger);
+  }
+}
+
+.mark {
+  position: absolute;
+  top: -0.25rem;
+  bottom: -0.25rem;
+  width: 2px;
+  background: var(--warning);
+
+  &.is-error {
+    background: var(--danger);
+  }
+}
+
+.budget-text {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+
+  &[data-tone='muted'] {
+    color: var(--text-muted);
+  }
+
+  &[data-tone='success'] {
+    color: var(--success);
+  }
+
+  &[data-tone='warning'] {
+    color: var(--warning);
+  }
+
+  &[data-tone='danger'] {
+    color: var(--danger);
+  }
+}
