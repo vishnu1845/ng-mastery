@@ -1,4 +1,8 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+} from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import {
@@ -8,6 +12,7 @@ import {
   withInMemoryScrolling,
 } from '@angular/router';
 import { provideIcons } from '@ng-icons/core';
+import { markBoot } from '@core/boot/boot-marks';
 import { APP_ICONS } from '@core/icons';
 import { mockApiInterceptor } from '@core/mock-api/mock-api-interceptor';
 import { PageTitle } from '@core/seo/page-title';
@@ -26,5 +31,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideIcons(APP_ICONS),
     { provide: TitleStrategy, useClass: PageTitle },
+    // Runs once during startup, before App renders (read by the Topic 04 timeline)
+    provideAppInitializer(() => markBoot('initializer')),
   ],
 };
