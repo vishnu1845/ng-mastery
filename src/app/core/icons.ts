@@ -1,0 +1,36 @@
+import {
+  lucideArrowLeft,
+  lucideArrowRight,
+  lucideBookOpen,
+  lucideCheck,
+  lucideChevronRight,
+  lucideCircleCheck,
+  lucideCode,
+  lucideCopy,
+  lucideMenu,
+  lucideMonitor,
+  lucideMoon,
+  lucidePalette,
+  lucideSearch,
+  lucideSun,
+  lucideX,
+} from '@ng-icons/lucide';
+
+/** Icons used by the app frame. Lessons register their own icons if they need more. */
+export const APP_ICONS = {
+  lucideArrowLeft,
+  lucideArrowRight,
+  lucideBookOpen,
+  lucideCheck,
+  lucideChevronRight,
+  lucideCircleCheck,
+  lucideCode,
+  lucideCopy,
+  lucideMenu,
+  lucideMonitor,
+  lucideMoon,
+  lucidePalette,
+  lucideSearch,
+  lucideSun,
+  lucideX,
+};
