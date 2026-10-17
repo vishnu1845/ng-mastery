@@ -1,0 +1,57 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: var(--space-4);
+}
+
+.delay {
+  min-width: min(100%, 14rem);
+}
+
+.fail {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+  color: var(--text);
+}
+
+// THE MINI APP'S SCREEN
+.screen {
+  display: grid;
+  min-height: 7.5rem;
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  align-content: center;
+
+  &[data-status='running'] {
+    border-style: solid;
+    border-color: var(--accent);
+  }
+
+  &[data-status='failed'] {
+    border-color: color-mix(in oklab, var(--danger) 55%, transparent);
+  }
+}
+
+.empty {
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+}
+
+.log {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding-left: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  white-space: pre-wrap;
+}

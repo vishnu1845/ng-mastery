@@ -1,0 +1,52 @@
+<div class="controls">
+  <label class="field delay">
+    Config takes {{ delayMs() }} ms
+    <input
+      #delay
+      type="range"
+      min="0"
+      max="3000"
+      step="250"
+      [value]="delayMs()"
+      (input)="delayMs.set(delay.valueAsNumber)"
+    />
+  </label>
+  <label class="fail">
+    <input type="checkbox" [checked]="fail()" (change)="fail.set(!fail())" />
+    The config server is down
+  </label>
+  <button type="button" class="btn-primary" [disabled]="status() === 'waiting'" (click)="start()">
+    Start the app
+  </button>
+</div>
+
+<div class="cols">
+  <section class="stack">
+    <p class="muted">The app's screen</p>
+    <div class="screen" [attr.data-status]="status()" aria-live="polite">
+      <div #host></div>
+      @switch (status()) {
+        @case ('idle') {
+          <p class="empty">Not started.</p>
+        }
+        @case ('waiting') {
+          <p class="empty">Blank screen… Angular is waiting for the initializer.</p>
+        }
+        @case ('failed') {
+          <p class="text-danger">The app never started.</p>
+        }
+      }
+    </div>
+  </section>
+
+  <section class="stack">
+    <p class="muted">Timeline</p>
+    <ol class="log">
+      @for (line of log(); track $index) {
+        <li>{{ line }}</li>
+      } @empty {
+        <li class="muted">Start the app to see each step.</li>
+      }
+    </ol>
+  </section>
+</div>

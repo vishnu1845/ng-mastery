@@ -1,0 +1,98 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+// TIMELINE
+.timeline {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  --actor: var(--text-faint);
+
+  display: grid;
+  grid-template-columns: 4.5rem 1rem minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+
+  &[data-actor='browser'] {
+    --actor: var(--success);
+  }
+
+  &[data-actor='angular'] {
+    --actor: var(--accent);
+  }
+}
+
+.time {
+  padding-top: 0.15rem;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: right;
+}
+
+// A dot per step, joined by a line
+.dot {
+  position: relative;
+  justify-self: center;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: 0.3rem;
+  border-radius: var(--radius-pill);
+  background: var(--actor);
+
+  .step:not(:last-child) &::after {
+    position: absolute;
+    top: 0.85rem;
+    left: 50%;
+    width: 1px;
+    height: 2.6rem;
+    background: var(--border-strong);
+    content: '';
+  }
+}
+
+.text {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.label {
+  font-weight: 500;
+}
+
+.actor {
+  margin-left: var(--space-2);
+  color: var(--actor);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+.detail {
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+.bar {
+  height: 3px;
+  min-width: 2px;
+  border-radius: var(--radius-pill);
+  background: var(--actor);
+  opacity: 0.6;
+}
+
+.note {
+  font-size: var(--fs-sm);
+}

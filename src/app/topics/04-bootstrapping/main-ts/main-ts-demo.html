@@ -1,0 +1,38 @@
+<p class="muted">
+  This page is one Angular app. Start a second one inside the box below, exactly the way
+  <code>main.ts</code>
+  starts ours.
+</p>
+
+<div class="row">
+  <button type="button" class="btn-primary" [disabled]="running()" (click)="bootstrap()">
+    Bootstrap a second app
+  </button>
+  <button type="button" class="btn-ghost" [disabled]="!running()" (click)="destroy()">
+    Destroy it
+  </button>
+</div>
+
+<div class="cols">
+  <section class="stack">
+    <p class="muted">The box (its own &lt;app-root&gt;)</p>
+    <div class="host-frame" [class.is-running]="running()">
+      <!-- The mini app renders in here. Our app never touches the inside of #host. -->
+      <div #host class="host"></div>
+      @if (!running()) {
+        <p class="empty">Empty. No Angular app running here yet.</p>
+      }
+    </div>
+  </section>
+
+  <section class="stack">
+    <p class="muted">What happened</p>
+    <ol class="log" aria-live="polite">
+      @for (line of log(); track $index) {
+        <li>{{ line }}</li>
+      } @empty {
+        <li class="muted">Click the button to start.</li>
+      }
+    </ol>
+  </section>
+</div>

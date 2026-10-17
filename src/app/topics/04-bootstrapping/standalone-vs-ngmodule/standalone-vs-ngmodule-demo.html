@@ -1,0 +1,41 @@
+<div class="cols">
+  <section class="side">
+    <h3 class="side-title">NgModule app</h3>
+    <app-code-block [code]="moduleCode" label="2 files, 3 things to wire up" />
+    <div class="row">
+      <button type="button" [disabled]="!!moduleStatus()" (click)="startModule()">
+        bootstrapModule(CounterModule)
+      </button>
+    </div>
+    <div class="box" [class.is-running]="moduleStatus()">
+      <div #moduleHost></div>
+      <p class="status">{{ moduleStatus() || 'Not started' }}</p>
+    </div>
+  </section>
+
+  <section class="side">
+    <h3 class="side-title">Standalone app</h3>
+    <app-code-block [code]="standaloneCode" label="1 line" />
+    <div class="row">
+      <button type="button" [disabled]="!!standaloneStatus()" (click)="startStandalone()">
+        bootstrapApplication(StandaloneCounter)
+      </button>
+    </div>
+    <div class="box" [class.is-running]="standaloneStatus()">
+      <div #standaloneHost></div>
+      <p class="status">{{ standaloneStatus() || 'Not started' }}</p>
+    </div>
+  </section>
+</div>
+
+<div class="row footer">
+  <button
+    type="button"
+    class="btn-ghost"
+    [disabled]="!moduleStatus() && !standaloneStatus()"
+    (click)="stopAll()"
+  >
+    Destroy both apps
+  </button>
+  <p class="muted">Same counter, same result on screen. The difference is all in the setup code.</p>
+</div>

@@ -1,0 +1,58 @@
+@if (comparison(); as c) {
+  <div class="cols">
+    <section class="panel side">
+      <h3 class="side-title">src/index.html</h3>
+      <p class="muted">What we wrote</p>
+      <dl class="facts">
+        <dt>&lt;script&gt; tags</dt>
+        <dd class="mono">{{ c.source.scripts.length }}</dd>
+        <dt>Stylesheets</dt>
+        <dd class="mono">{{ c.source.stylesheets }}</dd>
+        <dt>&lt;base href&gt;</dt>
+        <dd class="mono">{{ c.source.baseHref }}</dd>
+        <dt>Inside &lt;app-root&gt;</dt>
+        <dd class="mono">{{ c.source.appRootElements }} elements</dd>
+      </dl>
+      <p class="muted small">
+        The one script here is our theme bootstrap. No bundles: we never write those.
+      </p>
+    </section>
+
+    <section class="panel side is-served">
+      <h3 class="side-title">Served for this page</h3>
+      <p class="muted">What the browser received</p>
+      <dl class="facts">
+        <dt>&lt;script&gt; tags</dt>
+        <dd class="mono">{{ c.served.scripts.length }}</dd>
+        <dt>Stylesheets</dt>
+        <dd class="mono">{{ c.served.stylesheets }}</dd>
+        <dt>&lt;base href&gt;</dt>
+        <dd class="mono">{{ c.served.baseHref }}</dd>
+        <dt>Inside &lt;app-root&gt;</dt>
+        <dd class="mono">{{ c.served.appRootElements }} elements</dd>
+      </dl>
+      <p class="muted small">Prerendered text: "{{ c.served.appRootText }}…"</p>
+    </section>
+  </div>
+
+  <section class="stack">
+    <p class="muted">Scripts in the served page (the CLI and SSR added these)</p>
+    <ul class="scripts">
+      @for (script of c.served.scripts; track $index) {
+        <li class="mono">{{ script }}</li>
+      }
+    </ul>
+  </section>
+} @else if (failed()) {
+  <p class="text-danger">Couldn't fetch the HTML. Open the page from the dev server or a build.</p>
+} @else {
+  <p class="muted">Fetching both files…</p>
+}
+
+@if (ngVersion(); as version) {
+  <p class="live">
+    Right now in the DOM:
+    <code>&lt;app-root ng-version="{{ version }}"&gt;</code>
+    The tag is still there; Angular rendered inside it.
+  </p>
+}

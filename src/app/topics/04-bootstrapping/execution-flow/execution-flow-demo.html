@@ -1,0 +1,37 @@
+<div class="head">
+  <p class="muted">
+    Real timings from when this tab loaded
+    @if (loadedPath()) {
+      <code>{{ loadedPath() }}</code>
+    }
+  </p>
+  <button type="button" class="btn-ghost" (click)="reload()">Reload and measure again</button>
+</div>
+
+@if (steps().length) {
+  <ol class="timeline">
+    @for (step of steps(); track step.label) {
+      <li class="step" [attr.data-actor]="step.actor">
+        <span class="time mono">{{ step.at | number: '1.0-0' }} ms</span>
+        <span class="dot" aria-hidden="true"></span>
+        <div class="text">
+          <p class="label">
+            {{ step.label }}
+            <span class="actor">{{ actorLabels[step.actor] }}</span>
+          </p>
+          <p class="detail">{{ step.detail }}</p>
+          <span class="bar" [style.width.%]="(step.at / total()) * 100" aria-hidden="true"></span>
+        </div>
+      </li>
+    }
+  </ol>
+} @else {
+  <p class="muted">Measuring…</p>
+}
+
+<p class="muted note">
+  Notice the order: the page is painted first, then Angular boots behind it. That's prerendering +
+  hydration. A plain client-side app shows a blank
+  <code>&lt;app-root&gt;</code>
+  until main.js finishes.
+</p>

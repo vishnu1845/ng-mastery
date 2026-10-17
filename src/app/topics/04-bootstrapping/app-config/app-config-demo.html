@@ -1,0 +1,34 @@
+<div class="cols">
+  <section class="stack">
+    <fieldset class="features">
+      <legend class="muted">Providers in the new app</legend>
+      @for (feature of features; track feature.id) {
+        <label class="feature">
+          <input type="checkbox" [checked]="picked()[feature.id]" (change)="toggle(feature.id)" />
+          <span class="mono">{{ feature.code }}</span>
+        </label>
+      }
+    </fieldset>
+    <app-code-block [code]="code()" label="app.config.ts" />
+    <button type="button" class="btn-primary run" [disabled]="busy()" (click)="run()">
+      Create the app and inject
+    </button>
+  </section>
+
+  <section class="stack">
+    <p class="muted">What its injector gives back</p>
+    @for (result of results(); track result.ask) {
+      <div class="panel result" [class.is-error]="!result.ok">
+        <code>{{ result.ask }}</code>
+        <p [class.text-success]="result.ok" [class.text-danger]="!result.ok">
+          {{ result.ok ? '✓ ' : '✗ ' }}{{ result.text }}
+        </p>
+      </div>
+    } @empty {
+      <p class="muted empty">Pick providers, then create the app.</p>
+    }
+    @for (insight of insights(); track $index) {
+      <p class="callout insight">{{ insight }}</p>
+    }
+  </section>
+</div>

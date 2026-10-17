@@ -1,0 +1,56 @@
+:host {
+  display: block;
+}
+
+.features {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: var(--space-2);
+    padding: 0;
+    font-size: var(--fs-sm);
+  }
+}
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+}
+
+.run {
+  justify-self: start;
+}
+
+// RESULTS
+.result {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-4);
+
+  > code {
+    justify-self: start;
+  }
+
+  p {
+    font-size: var(--fs-sm);
+    overflow-wrap: anywhere;
+  }
+
+  &.is-error {
+    border-color: color-mix(in oklab, var(--danger) 45%, transparent);
+  }
+}
+
+.empty {
+  font-size: var(--fs-sm);
+}
+
+.insight {
+  font-size: var(--fs-sm);
+}

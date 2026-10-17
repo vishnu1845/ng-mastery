@@ -1,0 +1,44 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.side {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.side-title {
+  font-size: var(--fs-base);
+}
+
+.side button {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+// EACH APP'S BOX
+.box {
+  display: grid;
+  gap: var(--space-2);
+  min-height: 5.5rem;
+  padding: var(--space-4);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-md);
+  align-content: center;
+
+  &.is-running {
+    border-style: solid;
+    border-color: var(--accent);
+  }
+}
+
+.status {
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+}
+
+.footer {
+  gap: var(--space-4);
+}
