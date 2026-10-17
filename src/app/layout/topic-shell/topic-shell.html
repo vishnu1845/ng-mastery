@@ -1,0 +1,122 @@
+<article class="topic">
+  <!-- TOPIC HEADER -->
+  <header class="topic-head">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a routerLink="/">Roadmap</a>
+      <ng-icon name="lucideChevronRight" aria-hidden="true" />
+      <span>{{ part().title }}</span>
+    </nav>
+
+    <h1 class="topic-title">
+      <span class="topic-no" aria-hidden="true">{{ number() }}</span>
+      <span>{{ topic().title }}</span>
+    </h1>
+
+    <nav class="lesson-links" aria-label="Lessons in this topic">
+      @for (item of topic().lessons; track item.slug; let i = $index) {
+        <a
+          class="lesson-link"
+          [routerLink]="item.slug"
+          routerLinkActive="is-active"
+          ariaCurrentWhenActive="page"
+        >
+          <span class="lesson-index">{{ i + 1 }}</span>
+          {{ item.title }}
+          @if (progress.isDone(topic().slug, item.slug)) {
+            <ng-icon class="lesson-done" name="lucideCircleCheck" aria-label="Done" />
+          }
+        </a>
+      }
+    </nav>
+  </header>
+
+  <!-- LESSON INTRO -->
+  @if (lesson(); as current) {
+    <section class="lesson-intro" aria-labelledby="lesson-title">
+      <div class="lesson-title-row">
+        <h2 id="lesson-title">{{ current.title }}</h2>
+        <button
+          class="done-toggle"
+          type="button"
+          [class.is-done]="isDone()"
+          [attr.aria-pressed]="isDone()"
+          (click)="toggleDone()"
+        >
+          <ng-icon [name]="isDone() ? 'lucideCircleCheck' : 'lucideCheck'" aria-hidden="true" />
+          {{ isDone() ? 'Done' : 'Mark as done' }}
+        </button>
+      </div>
+
+      @if (notes.value(); as lessonNotes) {
+        <app-markdown class="definition" [content]="lessonNotes.definition" />
+      }
+    </section>
+  }
+
+  <!-- LIVE DEMO -->
+  <section class="stage" [class.is-theory]="!lesson()?.component" aria-label="Live demo">
+    <router-outlet #outlet="outlet" (activate)="onLessonOpen(outlet.activatedRouteData)" />
+  </section>
+
+  <!-- NOTES / CODE -->
+  <section class="lesson-panel">
+    <div class="tabs" role="tablist" aria-label="Lesson details">
+      <button
+        class="tab"
+        type="button"
+        role="tab"
+        [attr.aria-selected]="tab() === 'notes'"
+        (click)="tab.set('notes')"
+      >
+        <ng-icon name="lucideBookOpen" aria-hidden="true" />
+        Notes
+      </button>
+      <button
+        class="tab"
+        type="button"
+        role="tab"
+        [attr.aria-selected]="tab() === 'code'"
+        (click)="tab.set('code')"
+      >
+        <ng-icon name="lucideCode" aria-hidden="true" />
+        Code
+        <span class="tab-count">{{ files().length }}</span>
+      </button>
+    </div>
+
+    <div class="tab-panel" role="tabpanel">
+      @if (tab() === 'notes') {
+        @for (section of notes.value()?.sections; track section.title) {
+          <section class="note" [class.say-it]="section.title === 'Say it like this'">
+            <h3 class="note-title">{{ section.title }}</h3>
+            <app-markdown [content]="section.body" />
+          </section>
+        }
+      } @else {
+        <app-code-viewer [files]="files()" />
+      }
+    </div>
+  </section>
+
+  <!-- PREVIOUS / NEXT -->
+  <nav class="pager" aria-label="Lesson navigation">
+    @if (neighbours().previous; as previous) {
+      <a class="pager-link" [routerLink]="previous.url">
+        <ng-icon name="lucideArrowLeft" aria-hidden="true" />
+        <span>
+          <span class="pager-label">Previous</span>
+          <span class="pager-title">{{ previous.lesson.title }}</span>
+        </span>
+      </a>
+    }
+    @if (neighbours().next; as next) {
+      <a class="pager-link is-next" [routerLink]="next.url">
+        <span>
+          <span class="pager-label">Next</span>
+          <span class="pager-title">{{ next.lesson.title }}</span>
+        </span>
+        <ng-icon name="lucideArrowRight" aria-hidden="true" />
+      </a>
+    }
+  </nav>
+</article>

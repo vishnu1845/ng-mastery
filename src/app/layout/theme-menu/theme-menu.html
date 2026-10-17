@@ -1,0 +1,44 @@
+<button
+  class="btn-ghost icon-btn"
+  type="button"
+  popovertarget="theme-menu"
+  aria-label="Change theme"
+  title="Change theme"
+>
+  <ng-icon [name]="triggerIcon()" aria-hidden="true" />
+</button>
+
+<div id="theme-menu" class="menu" popover>
+  <p class="menu-title" id="theme-mode-label">Theme</p>
+  <div class="modes" role="radiogroup" aria-labelledby="theme-mode-label">
+    @for (item of modes; track item.mode) {
+      <button
+        class="mode"
+        type="button"
+        role="radio"
+        [attr.aria-checked]="theme.mode() === item.mode"
+        (click)="theme.setMode(item.mode)"
+      >
+        <ng-icon [name]="item.icon" aria-hidden="true" />
+        {{ item.label }}
+      </button>
+    }
+  </div>
+
+  <p class="menu-title" id="theme-accent-label">Accent</p>
+  <div class="accents" role="radiogroup" aria-labelledby="theme-accent-label">
+    @for (item of accents; track item.accent) {
+      <button
+        class="accent"
+        type="button"
+        role="radio"
+        [attr.data-swatch]="item.accent"
+        [attr.aria-checked]="theme.accent() === item.accent"
+        (click)="theme.setAccent(item.accent)"
+      >
+        <span class="swatch" aria-hidden="true"></span>
+        {{ item.label }}
+      </button>
+    }
+  </div>
+</div>

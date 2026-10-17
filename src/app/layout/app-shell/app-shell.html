@@ -1,0 +1,22 @@
+<a class="skip-link" href="#main-content">Skip to content</a>
+
+<app-sidebar class="sidebar" [class.is-open]="navOpen()" />
+
+@if (navOpen()) {
+  <button
+    class="scrim"
+    type="button"
+    aria-label="Close topics menu"
+    (click)="navOpen.set(false)"
+  ></button>
+}
+
+<div class="main-column">
+  <app-topbar (menuClick)="navOpen.set(true)" (searchClick)="openSearch()" />
+
+  <main id="main-content" class="content" tabindex="-1">
+    <router-outlet />
+  </main>
+</div>
+
+<app-command-palette />

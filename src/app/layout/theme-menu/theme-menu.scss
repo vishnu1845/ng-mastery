@@ -1,0 +1,96 @@
+// The popover sits under the top-right corner of the top bar.
+.menu {
+  inset: auto;
+  top: calc(var(--topbar-height) + var(--space-1));
+  right: var(--space-4);
+  width: 17rem;
+  margin: 0;
+  padding: var(--space-4);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  color: var(--text);
+}
+
+.menu-title {
+  margin-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+
+  &:not(:first-child) {
+    margin-top: var(--space-4);
+  }
+}
+
+.modes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-sm);
+  background: var(--raised);
+}
+
+.mode {
+  flex-direction: column;
+  gap: var(--space-1);
+  min-height: 3.25rem;
+  padding: var(--space-2) 0;
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+
+  &:hover {
+    border-color: transparent;
+    color: var(--text);
+  }
+
+  &[aria-checked='true'] {
+    border-color: var(--border-strong);
+    background: var(--surface);
+    color: var(--text);
+  }
+}
+
+.accents {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.accent {
+  justify-content: flex-start;
+  border-color: transparent;
+  background: transparent;
+  color: var(--text-muted);
+
+  &:hover {
+    border-color: var(--border);
+  }
+
+  &[aria-checked='true'] {
+    border-color: var(--border-strong);
+    color: var(--text);
+  }
+}
+
+// Each swatch previews its own gradient, whatever accent is active.
+.swatch {
+  width: 1.75rem;
+  height: 0.875rem;
+  border-radius: var(--radius-pill);
+}
+
+[data-swatch='angular'] .swatch {
+  background: linear-gradient(118deg, #f0060b, #cc26d5 52%, #7702ff);
+}
+
+[data-swatch='ocean'] .swatch {
+  background: linear-gradient(118deg, #22d3ee, #3b82f6 52%, #6d5dfc);
+}
+
+[data-swatch='lime'] .swatch {
+  background: linear-gradient(118deg, #d9f99d, #4ade80 52%, #0d9488);
+}

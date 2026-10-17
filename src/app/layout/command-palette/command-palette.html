@@ -1,0 +1,45 @@
+<dialog #dialog class="palette" closedby="any" aria-label="Search lessons" (close)="onClosed()">
+  <div class="search-row">
+    <ng-icon name="lucideSearch" aria-hidden="true" />
+    <input
+      #input
+      class="search-input"
+      type="text"
+      placeholder="Search topics and lessons"
+      autocomplete="off"
+      autofocus
+      role="combobox"
+      aria-expanded="true"
+      aria-controls="palette-results"
+      [attr.aria-activedescendant]="results().length ? 'palette-option-' + activeIndex() : null"
+      [value]="query()"
+      (input)="onInput(input.value)"
+      (keydown)="onKeydown($event)"
+    />
+    <kbd>Esc</kbd>
+  </div>
+
+  <ul id="palette-results" class="results" role="listbox" aria-label="Results">
+    @for (result of results(); track result.url; let i = $index) {
+      <li role="none">
+        <a
+          class="result"
+          role="option"
+          tabindex="-1"
+          [id]="'palette-option-' + i"
+          [attr.aria-selected]="i === activeIndex()"
+          [routerLink]="result.url"
+          (click)="close()"
+          (mouseenter)="activeIndex.set(i)"
+        >
+          <span class="result-label">{{ result.label }}</span>
+          <span class="result-context">{{ result.context }}</span>
+        </a>
+      </li>
+    } @empty {
+      <li class="empty" role="none">
+        Nothing matches "{{ query() }}". Try a topic name such as signals, forms or routing.
+      </li>
+    }
+  </ul>
+</dialog>

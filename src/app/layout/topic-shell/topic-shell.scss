@@ -1,0 +1,255 @@
+:host {
+  display: block;
+}
+
+.topic {
+  display: grid;
+  gap: var(--space-6);
+}
+
+// TOPIC HEADER
+.topic-head {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.crumbs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+}
+
+.topic-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  font-size: clamp(var(--fs-xl), 4vw, var(--fs-3xl));
+}
+
+.topic-no {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+}
+
+.lesson-links {
+  display: flex;
+  gap: var(--space-1);
+  margin-inline: calc(var(--space-1) * -1);
+  padding: var(--space-1);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.lesson-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.4rem 0.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &.is-active {
+    border-color: var(--border-strong);
+    background: var(--raised);
+    color: var(--text);
+  }
+}
+
+.lesson-index {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.lesson-done {
+  color: var(--success);
+}
+
+// LESSON INTRO
+.lesson-intro {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lesson-title-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.done-toggle {
+  min-height: 2rem;
+  border-radius: var(--radius-pill);
+  color: var(--text-muted);
+
+  &.is-done {
+    border-color: color-mix(in oklab, var(--success) 50%, transparent);
+    color: var(--success);
+  }
+}
+
+.definition {
+  font-size: var(--fs-md);
+}
+
+// LIVE DEMO STAGE (the one place the brand gradient lives on a lesson page)
+.stage {
+  position: relative;
+  padding: var(--space-6) var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background-color: var(--stage-bg);
+  background-image: radial-gradient(var(--stage-dot) 1px, transparent 1px);
+  background-size: 18px 18px;
+
+  &::before {
+    position: absolute;
+    inset: -1px -1px auto;
+    height: 2px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    background: var(--gradient);
+    content: '';
+  }
+
+  &.is-theory {
+    display: none;
+  }
+}
+
+// NOTES / CODE
+.lesson-panel {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.tabs {
+  display: flex;
+  gap: var(--space-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.tab {
+  min-height: 2.5rem;
+  margin-bottom: -1px;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+
+  &:hover {
+    color: var(--text);
+  }
+
+  &[aria-selected='true'] {
+    border-bottom-color: var(--accent);
+    color: var(--text);
+  }
+}
+
+.tab-count {
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.tab-panel {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.note {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.note-title {
+  font-size: var(--fs-md);
+}
+
+// "Say it like this" is the answer you speak in an interview, so it reads like a quote.
+.say-it {
+  max-width: calc(var(--prose-max) + 3rem);
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+
+  .note-title {
+    color: var(--accent);
+  }
+}
+
+// PREVIOUS / NEXT
+.pager {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border);
+}
+
+.pager-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+
+  &:hover {
+    border-color: var(--border-strong);
+    background: var(--surface);
+  }
+
+  &.is-next {
+    justify-content: flex-end;
+    grid-column: -2;
+    text-align: right;
+  }
+}
+
+.pager-label {
+  display: block;
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+}
+
+.pager-title {
+  display: block;
+  font-weight: 500;
+}
+
+@media (max-width: 40rem) {
+  .stage {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  .pager-link.is-next {
+    grid-column: auto;
+  }
+}

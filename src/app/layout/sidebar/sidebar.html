@@ -1,0 +1,38 @@
+<div class="brand-row">
+  <a class="brand" routerLink="/" aria-label="NgMastery home">
+    <app-logo />
+    <span class="brand-name">NgMastery</span>
+    <span class="brand-version">v22</span>
+  </a>
+</div>
+
+<nav class="nav" aria-label="Topics">
+  <a
+    class="nav-link"
+    routerLink="/"
+    routerLinkActive="is-active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    ariaCurrentWhenActive="page"
+  >
+    <ng-icon name="lucideBookOpen" aria-hidden="true" />
+    Roadmap
+  </a>
+
+  @for (part of catalog.liveParts; track part.id) {
+    <section class="part" [attr.aria-labelledby]="'part-' + part.id">
+      <h2 class="part-title" [id]="'part-' + part.id">{{ part.title }}</h2>
+      <ul class="topics">
+        @for (topic of part.topics; track topic.id) {
+          <li>
+            <a class="topic-link" [routerLink]="'/' + topic.slug" routerLinkActive="is-active">
+              <span class="topic-no">{{ topicNumber(topic) }}</span>
+              <span class="topic-name">{{ topic.title }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+</nav>
+
+<p class="sidebar-foot">{{ liveTopicCount }} of {{ catalog.topics.length }} topics live</p>
