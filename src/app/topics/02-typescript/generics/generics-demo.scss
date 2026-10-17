@@ -1,0 +1,32 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.id-field {
+  justify-self: start;
+
+  input {
+    width: 8rem;
+  }
+}
+
+.result {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.call {
+  justify-self: start;
+}
+
+.returns {
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+}
+
+.title {
+  font-size: var(--fs-md);
+  font-weight: 600;
+}

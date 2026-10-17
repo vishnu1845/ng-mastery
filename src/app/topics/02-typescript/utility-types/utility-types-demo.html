@@ -1,0 +1,62 @@
+<div class="form">
+  <label class="field">
+    name
+    <input #nameInput type="text" [value]="name()" (input)="name.set(nameInput.value)" />
+  </label>
+  <label class="field">
+    email
+    <input #emailInput type="email" [value]="email()" (input)="email.set(emailInput.value)" />
+  </label>
+  <div class="field">
+    <span id="role-label" class="role-label">role</span>
+    <div class="segmented" role="radiogroup" aria-labelledby="role-label">
+      @for (option of roles; track option) {
+        <button
+          type="button"
+          role="radio"
+          class="mono"
+          [attr.aria-checked]="role() === option"
+          (click)="role.set(option)"
+        >
+          '{{ option }}'
+        </button>
+      }
+    </div>
+  </div>
+  <button type="button" class="btn-ghost reset" (click)="reset()">Reset</button>
+</div>
+
+<div class="shapes">
+  <section class="panel shape">
+    <p class="shape-type">
+      <code>Omit&lt;User, 'id'&gt;</code>
+      POST body
+    </p>
+    <pre class="json">{{ postBody() | json }}</pre>
+  </section>
+
+  <section class="panel shape">
+    <p class="shape-type">
+      <code>Partial&lt;User&gt;</code>
+      PATCH body
+    </p>
+    <pre class="json">{{ patchBody() | json }}</pre>
+    <p class="muted hint">Only the fields you changed. Edit the name to see it fill in.</p>
+  </section>
+
+  <section class="panel shape">
+    <p class="shape-type">
+      <code>Pick&lt;User, 'id' | 'name'&gt;</code>
+      card
+    </p>
+    <pre class="json">{{ preview() | json }}</pre>
+  </section>
+
+  <section class="panel shape">
+    <p class="shape-type">
+      <code>Record&lt;Role, string[]&gt;</code>
+      lookup
+    </p>
+    <pre class="json">PERMISSIONS['{{ role() }}'] = {{ permissions() | json }}</pre>
+  </section>
+</div>

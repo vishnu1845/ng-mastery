@@ -1,0 +1,35 @@
+<div class="toolbar">
+  <fieldset class="flags">
+    <legend class="visually-hidden">Compiler flags</legend>
+    @for (check of checks; track check.flag) {
+      <label class="flag">
+        <input type="checkbox" [checked]="flags()[check.flag]" (change)="toggle(check.flag)" />
+        <span class="mono">{{ check.flag }}</span>
+      </label>
+    }
+  </fieldset>
+  <div class="row">
+    <button type="button" (click)="setAll(true)">strict: true</button>
+    <button type="button" class="btn-ghost" (click)="setAll(false)">All off</button>
+  </div>
+</div>
+
+<p class="score">
+  Caught while coding:
+  <strong>{{ caught() }} of {{ checks.length }}</strong>
+  bugs
+</p>
+
+<div class="checks">
+  @for (check of checks; track check.flag) {
+    @let on = flags()[check.flag];
+    <section class="panel check" [class.is-caught]="on">
+      <app-code-block [code]="check.code" [lang]="check.lang" [label]="check.flag" />
+      @if (on) {
+        <p class="text-success">Caught while coding: {{ check.error }}</p>
+      } @else {
+        <p class="text-danger">Compiles fine. At runtime: {{ check.bug }}</p>
+      }
+    </section>
+  }
+</div>

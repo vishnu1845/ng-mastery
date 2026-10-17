@@ -1,0 +1,53 @@
+<label class="field id-field">
+  id (try 5, which doesn't exist)
+  <input
+    #idInput
+    type="number"
+    min="1"
+    max="5"
+    [value]="id()"
+    (input)="id.set(idInput.valueAsNumber)"
+  />
+</label>
+
+<div class="cols">
+  <section class="panel result">
+    <code class="call">findById(users, {{ id() }})</code>
+    <p class="returns">
+      returns
+      <code>User | undefined</code>
+    </p>
+    @if (user(); as found) {
+      <p class="title">{{ found.name }}</p>
+      <p class="muted">{{ found.email }}</p>
+    } @else {
+      <p class="muted mono">undefined</p>
+    }
+  </section>
+
+  <section class="panel result">
+    <code class="call">findById(products, {{ id() }})</code>
+    <p class="returns">
+      returns
+      <code>Product | undefined</code>
+    </p>
+    @if (product(); as found) {
+      <p class="title">{{ found.name }}</p>
+      <p class="muted">₹{{ found.price }}</p>
+    } @else {
+      <p class="muted mono">undefined</p>
+    }
+  </section>
+</div>
+
+<p class="muted">
+  We wrote
+  <code>findById</code>
+  once. TypeScript fills in
+  <code>T</code>
+  from the list we pass, so
+  <code>found.email</code>
+  only exists on users and
+  <code>found.price</code>
+  only on products.
+</p>

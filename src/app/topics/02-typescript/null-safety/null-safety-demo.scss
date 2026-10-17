@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.control {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.control-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}

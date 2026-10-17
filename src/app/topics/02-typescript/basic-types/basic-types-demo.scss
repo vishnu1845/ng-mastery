@@ -1,0 +1,13 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.ts-type {
+  border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+  color: var(--accent);
+}

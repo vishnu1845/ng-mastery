@@ -1,0 +1,57 @@
+<div class="segmented" role="radiogroup" aria-label="Declare the values with">
+  <button
+    type="button"
+    role="radio"
+    class="mono"
+    [attr.aria-checked]="keyword() === 'let'"
+    (click)="keyword.set('let')"
+  >
+    let
+  </button>
+  <button
+    type="button"
+    role="radio"
+    class="mono"
+    [attr.aria-checked]="keyword() === 'const'"
+    (click)="keyword.set('const')"
+  >
+    const
+  </button>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Code (no type written)</th>
+        <th scope="col">TypeScript infers</th>
+        <th scope="col">JavaScript typeof at runtime</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track $index) {
+        <tr>
+          <td>
+            <code>{{ row.code }}</code>
+          </td>
+          <td>
+            <code class="ts-type">{{ row.tsType }}</code>
+          </td>
+          <td>
+            <code>'{{ row.runtimeType }}'</code>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<p class="muted">
+  Switch to
+  <code>const</code>
+  and simple values keep their exact value as the type. Arrays work differently: TypeScript knows
+  <code>number[]</code>
+  but JavaScript only sees
+  <code>'object'</code>
+  at runtime, because types exist only while we write code.
+</p>

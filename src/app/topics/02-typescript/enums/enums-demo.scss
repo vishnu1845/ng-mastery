@@ -1,0 +1,47 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+// STATUS STEPPER
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  color: var(--text-faint);
+  font-weight: 500;
+
+  &.is-reached {
+    border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    color: var(--text);
+  }
+}
+
+.step-no {
+  display: grid;
+  place-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--raised);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+
+  .is-reached & {
+    background: var(--gradient);
+    color: #fff;
+  }
+}

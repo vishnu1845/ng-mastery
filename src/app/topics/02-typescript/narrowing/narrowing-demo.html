@@ -1,0 +1,48 @@
+<div class="row">
+  <button type="button" class="btn-primary" (click)="load()">Load users</button>
+  <button type="button" (click)="load(true)">Load with an error</button>
+</div>
+
+@let current = state();
+
+<section class="panel result" aria-live="polite">
+  <p class="status">
+    state().status is
+    <code>'{{ current.status }}'</code>
+  </p>
+
+  @switch (current.status) {
+    @case ('idle') {
+      <p class="muted">Click a button to call the API.</p>
+    }
+    @case ('loading') {
+      <p class="muted">Loading users...</p>
+    }
+    @case ('success') {
+      <!-- Only here does TypeScript let us read current.users -->
+      <ul class="users">
+        @for (user of current.users; track user.id) {
+          <li>
+            <span class="name">{{ user.name }}</span>
+            <span class="muted">{{ user.email }}</span>
+          </li>
+        }
+      </ul>
+    }
+    @case ('error') {
+      <!-- ...and only here current.message exists -->
+      <p class="text-danger">{{ current.message }}</p>
+    }
+  }
+</section>
+
+<p class="muted">
+  Try reading
+  <code>current.users</code>
+  inside the
+  <code>'error'</code>
+  case and the template won't compile:
+  <span class="text-danger">
+    Property 'users' does not exist on type '{{ '{' }} status: "error"; message: string; {{ '}' }}'.
+  </span>
+</p>

@@ -1,0 +1,47 @@
+<ol class="steps">
+  @for (step of steps; track step) {
+    <li
+      class="step"
+      [class.is-reached]="step <= status()"
+      [attr.aria-current]="step === status() ? 'step' : null"
+    >
+      <span class="step-no">{{ step }}</span>
+      {{ OrderStatus[step] }}
+    </li>
+  }
+</ol>
+
+<div class="row">
+  <button
+    type="button"
+    class="btn-primary"
+    [disabled]="status() === OrderStatus.Delivered"
+    (click)="next()"
+  >
+    Move to next status
+  </button>
+  <button type="button" class="btn-ghost" (click)="status.set(OrderStatus.Pending)">Reset</button>
+  <span class="muted">
+    status() is
+    <code>{{ status() }}</code>
+    which means
+    <code>OrderStatus.{{ OrderStatus[status()] }}</code>
+  </span>
+</div>
+
+<div class="cols">
+  <div class="stack">
+    <p class="muted">
+      <code>enum OrderStatus</code>
+      becomes a real JavaScript object:
+    </p>
+    <app-code-block [code]="enumAtRuntime" lang="json" label="OrderStatus at runtime" />
+  </div>
+  <div class="stack">
+    <p class="muted">
+      <code>type OrderState = 'pending' | 'shipped'</code>
+      becomes:
+    </p>
+    <app-code-block code="// nothing at all: types are erased" label="OrderState at runtime" />
+  </div>
+</div>

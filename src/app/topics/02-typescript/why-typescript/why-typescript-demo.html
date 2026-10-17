@@ -1,0 +1,35 @@
+<p class="muted">Type two numbers. These are normal text inputs, just like a real form.</p>
+
+<div class="row inputs">
+  <label class="field">
+    a
+    <input #first type="text" inputmode="numeric" [value]="a()" (input)="a.set(first.value)" />
+  </label>
+  <span class="plus" aria-hidden="true">+</span>
+  <label class="field">
+    b
+    <input #second type="text" inputmode="numeric" [value]="b()" (input)="b.set(second.value)" />
+  </label>
+</div>
+
+<div class="cols">
+  <section class="panel result">
+    <h3 class="result-title">JavaScript</h3>
+    <code>add(a, b)</code>
+    <p class="value text-danger">'{{ jsResult() }}'</p>
+    <p class="muted">
+      Runs without a single warning and gives the wrong answer. We find out from users.
+    </p>
+  </section>
+
+  <section class="panel result">
+    <h3 class="result-title">TypeScript</h3>
+    <p class="compile-error">
+      <code>add(a, b)</code>
+      Argument of type 'string' is not assignable to parameter of type 'number'.
+    </p>
+    <code>add(Number(a), Number(b))</code>
+    <p class="value text-success">{{ tsResult() }}</p>
+    <p class="muted">The editor stops us while coding, so the fix happens before anyone sees it.</p>
+  </section>
+</div>

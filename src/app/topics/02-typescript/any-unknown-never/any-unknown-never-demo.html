@@ -1,0 +1,39 @@
+<p class="muted">
+  Pick what the API sends back. Both sides run the same idea: read the user's name.
+</p>
+
+<div class="segmented" role="radiogroup" aria-label="API response">
+  @for (payload of payloads; track payload.label) {
+    <button
+      type="button"
+      role="radio"
+      class="mono"
+      [attr.aria-checked]="selected() === payload"
+      (click)="selected.set(payload)"
+    >
+      {{ payload.label }}
+    </button>
+  }
+</div>
+
+<div class="cols">
+  <section class="panel result">
+    <h3 class="result-title"><code>data: any</code></h3>
+    <code class="call">data.name.toUpperCase()</code>
+    <p class="output" [class.text-danger]="withAny().crashed">
+      {{ withAny().crashed ? '💥 ' : '' }}{{ withAny().text }}
+    </p>
+    <p class="muted">
+      No errors while coding. It crashes at runtime for every value except a user.
+    </p>
+  </section>
+
+  <section class="panel result">
+    <h3 class="result-title"><code>data: unknown</code></h3>
+    <code class="call">if (hasName(data)) data.name.toUpperCase()</code>
+    <p class="output text-success">{{ withUnknown() }}</p>
+    <p class="muted">
+      TypeScript makes us check first, so bad data is skipped instead of crashing.
+    </p>
+  </section>
+</div>

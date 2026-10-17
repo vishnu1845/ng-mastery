@@ -1,0 +1,61 @@
+<div class="cols">
+  <section class="stack">
+    <label class="field price-field">
+      price
+      <input
+        #priceInput
+        type="number"
+        min="0"
+        step="100"
+        [value]="price()"
+        (input)="price.set(priceInput.valueAsNumber)"
+      />
+    </label>
+
+    <div class="row">
+      <button type="button" class="mono" (click)="withTax()">withTax({{ price() }})</button>
+      <button type="button" class="mono" (click)="withDiscount()">
+        withDiscount({{ price() }})
+      </button>
+    </div>
+
+    <div class="panel log">
+      <div class="log-head">
+        <p class="muted">
+          Written by
+          <code>&#64;logCall</code>
+        </p>
+        <button type="button" class="btn-ghost" (click)="clearLog()">Clear</button>
+      </div>
+      @for (entry of log(); track $index) {
+        <code class="entry">{{ entry }}</code>
+      } @empty {
+        <p class="muted">Call a method. The decorator logs it, the method itself never does.</p>
+      }
+    </div>
+  </section>
+
+  <section class="stack">
+    <p class="muted">Decorators in Angular today</p>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Decorator style</th>
+          <th scope="col">Modern Angular</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (swap of swaps; track swap.decorator) {
+          <tr>
+            <td>
+              <code>{{ swap.decorator }}</code>
+            </td>
+            <td>
+              <code>{{ swap.today }}</code>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>

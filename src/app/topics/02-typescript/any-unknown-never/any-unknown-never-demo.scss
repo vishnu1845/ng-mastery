@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.result {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.result-title {
+  font-size: var(--fs-base);
+}
+
+.call {
+  justify-self: start;
+}
+
+.output {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}

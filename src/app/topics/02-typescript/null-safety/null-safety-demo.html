@@ -1,0 +1,98 @@
+<div class="controls">
+  <div class="control">
+    <span class="control-label">address</span>
+    <div class="segmented" role="radiogroup" aria-label="address">
+      <button
+        type="button"
+        role="radio"
+        class="mono"
+        [attr.aria-checked]="hasAddress()"
+        (click)="hasAddress.set(true)"
+      >
+        {{ '{' }} city: 'Pune' {{ '}' }}
+      </button>
+      <button
+        type="button"
+        role="radio"
+        class="mono"
+        [attr.aria-checked]="!hasAddress()"
+        (click)="hasAddress.set(false)"
+      >
+        missing
+      </button>
+    </div>
+  </div>
+
+  <div class="control">
+    <span class="control-label">nickname</span>
+    <div class="segmented" role="radiogroup" aria-label="nickname">
+      @for (option of nicknames; track $index) {
+        <button
+          type="button"
+          role="radio"
+          class="mono"
+          [attr.aria-checked]="nickname() === option"
+          (click)="nickname.set(option)"
+        >
+          {{ option === undefined ? 'missing' : show(option) }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="control">
+    <span class="control-label">qty</span>
+    <div class="segmented" role="radiogroup" aria-label="qty">
+      @for (option of quantities; track $index) {
+        <button
+          type="button"
+          role="radio"
+          class="mono"
+          [attr.aria-checked]="qty() === option"
+          (click)="qty.set(option)"
+        >
+          {{ show(option) }}
+        </button>
+      }
+    </div>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Expression</th>
+        <th scope="col">Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (row of rows(); track row.code) {
+        <tr>
+          <td>
+            <code>{{ row.code }}</code>
+          </td>
+          <td class="mono" [class.text-danger]="row.crashed">
+            {{ row.crashed ? '💥 ' : '' }}{{ row.result }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<p class="muted">
+  Set
+  <strong>nickname</strong>
+  to
+  <code>''</code>
+  and
+  <strong>qty</strong>
+  to
+  <code>0</code>
+  and only
+  <code>||</code>
+  throws those real values away. Then remove the address to see that
+  <code>!</code>
+  does nothing at runtime.
+</p>

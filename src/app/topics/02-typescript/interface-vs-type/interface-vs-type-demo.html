@@ -1,0 +1,34 @@
+<div class="layout">
+  <div class="segmented choices" role="radiogroup" aria-label="I need to describe">
+    @for (need of needs; track need.label) {
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="selected() === need"
+        (click)="selected.set(need)"
+      >
+        {{ need.label }}
+      </button>
+    }
+  </div>
+
+  <section class="answer" aria-live="polite">
+    <p class="verdict">
+      Use
+      @switch (selected().answer) {
+        @case ('both') {
+          <strong><code>interface</code></strong>
+          or
+          <strong><code>type</code></strong>
+        }
+        @default {
+          <strong>
+            <code>{{ selected().answer }}</code>
+          </strong>
+        }
+      }
+    </p>
+    <p class="muted">{{ selected().why }}</p>
+    <app-code-block [code]="selected().code" label="example.ts" />
+  </section>
+</div>

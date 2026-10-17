@@ -1,0 +1,46 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.inputs {
+  align-items: end;
+  gap: var(--space-3);
+
+  input {
+    width: 6rem;
+  }
+}
+
+.plus {
+  padding-bottom: var(--space-2);
+  color: var(--text-faint);
+  font-size: var(--fs-lg);
+}
+
+.result {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  > code {
+    justify-self: start;
+  }
+}
+
+.result-title {
+  font-size: var(--fs-base);
+}
+
+.value {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+}
+
+.compile-error {
+  padding: var(--space-2) var(--space-3);
+  border-left: 2px solid var(--danger);
+  color: var(--danger);
+  font-size: var(--fs-sm);
+}

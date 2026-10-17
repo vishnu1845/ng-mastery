@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.result {
+  display: grid;
+  gap: var(--space-3);
+  min-height: 11rem;
+  align-content: start;
+}
+
+.users {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1) var(--space-3);
+  }
+}
+
+.name {
+  font-weight: 500;
+}

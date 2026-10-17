@@ -1,0 +1,48 @@
+<div class="row controls">
+  <div class="segmented" role="radiogroup" aria-label="size">
+    @for (option of sizes; track option) {
+      <button
+        type="button"
+        role="radio"
+        class="mono"
+        [attr.aria-checked]="size() === option"
+        (click)="size.set(option)"
+      >
+        '{{ option }}'
+      </button>
+    }
+  </div>
+
+  <div class="segmented" role="radiogroup" aria-label="tone">
+    @for (option of tones; track option) {
+      <button
+        type="button"
+        role="radio"
+        class="mono"
+        [attr.aria-checked]="tone() === option"
+        (click)="tone.set(option)"
+      >
+        '{{ option }}'
+      </button>
+    }
+  </div>
+</div>
+
+<div class="preview">
+  <app-sized-button [size]="size()" [tone]="tone()">Buy now</app-sized-button>
+</div>
+
+<div class="cols">
+  <div class="panel usage">
+    <p class="muted">The template we wrote</p>
+    <code>&lt;app-sized-button size="{{ size() }}" tone="{{ tone() }}" /&gt;</code>
+  </div>
+
+  <div class="panel usage">
+    <p class="muted">
+      If someone writes
+      <code>size="xl"</code>
+    </p>
+    <p class="text-danger compile-error">Type '"xl"' is not assignable to type 'ButtonSize'.</p>
+  </div>
+</div>

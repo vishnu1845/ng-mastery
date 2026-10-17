@@ -1,0 +1,54 @@
+<label class="field size-field">
+  Size: {{ size() }}
+  <input
+    #sizeInput
+    type="range"
+    min="1"
+    max="10"
+    [value]="size()"
+    (input)="size.set(sizeInput.valueAsNumber)"
+  />
+</label>
+
+<ul class="shapes">
+  @for (shape of shapes(); track shape.name) {
+    <li class="panel shape">
+      <span
+        class="shape-icon"
+        [class.is-circle]="shape.name === 'Circle'"
+        aria-hidden="true"
+      ></span>
+      <code>{{ shape.describe() }}</code>
+    </li>
+  }
+  <li class="panel shape is-blocked">
+    <code>new Shape()</code>
+    <span class="text-danger">Cannot create an instance of an abstract class.</span>
+  </li>
+</ul>
+
+<section class="trap">
+  <h3 class="trap-title">The private trap: what the object looks like at runtime</h3>
+  <div class="cols">
+    <div class="panel trap-case">
+      <p class="muted">
+        TypeScript
+        <code>private readonly radius</code>
+      </p>
+      <code class="json">{{ tsPrivate() }}</code>
+      <p class="text-danger">
+        Still there.
+        <code>private</code>
+        is only checked while coding.
+      </p>
+    </div>
+    <div class="panel trap-case">
+      <p class="muted">
+        JavaScript
+        <code>#radius</code>
+      </p>
+      <code class="json">{{ jsPrivate() }}</code>
+      <p class="text-success">Really hidden, even at runtime.</p>
+    </div>
+  </div>
+</section>

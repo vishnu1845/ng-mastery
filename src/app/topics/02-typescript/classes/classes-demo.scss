@@ -1,0 +1,65 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.size-field {
+  justify-self: start;
+  width: min(100%, 18rem);
+}
+
+// SHAPES
+.shapes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+
+  &.is-blocked {
+    border-style: dashed;
+    font-size: var(--fs-sm);
+  }
+}
+
+.shape-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--gradient);
+
+  &.is-circle {
+    border-radius: 50%;
+  }
+}
+
+// THE PRIVATE TRAP
+.trap {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.trap-title {
+  font-size: var(--fs-base);
+}
+
+.trap-case {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+  font-size: var(--fs-sm);
+}
+
+.json {
+  justify-self: start;
+  overflow-wrap: anywhere;
+}

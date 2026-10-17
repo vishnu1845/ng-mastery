@@ -1,0 +1,51 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.flags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.flag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--text);
+}
+
+.score strong {
+  font-size: var(--fs-lg);
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-3);
+}
+
+.check {
+  display: grid;
+  min-width: 0;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-4);
+  font-size: var(--fs-sm);
+
+  &.is-caught {
+    border-color: color-mix(in oklab, var(--success) 35%, var(--border));
+  }
+}
