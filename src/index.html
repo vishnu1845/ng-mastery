@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="angular">
+  <head>
+    <meta charset="utf-8" />
+    <title>NgMastery · Angular 22 by live demo</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Learn Angular 22 topic by topic. Every lesson pairs a live demo with the exact code behind it and an interview-ready answer."
+    />
+    <meta name="theme-color" content="#151515" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script>
+      // THEME BOOTSTRAP
+      // Runs before Angular starts so a saved light theme never flashes dark.
+      (function () {
+        try {
+          var root = document.documentElement;
+          var mode = localStorage.getItem('ngm-theme') || 'dark';
+          var accent = localStorage.getItem('ngm-accent') || 'angular';
+          if (mode === 'system') {
+            mode = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+          }
+          root.setAttribute('data-theme', mode === 'light' ? 'light' : 'dark');
+          root.setAttribute('data-accent', accent);
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+</html>
