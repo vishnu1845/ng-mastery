@@ -65,7 +65,7 @@ TOPICS ──► topicRoutes() ──► /rxjs-flattening/switch-map
              (lazy demo)       (notes.md)       (real source files from /code)
 ```
 
-- **Notes**: `notes.md` is imported as text (`"loader": { ".md": "text" }` in `angular.json`), so it is part of the prerendered HTML. Fenced code (```` ```ts ````, ```` ```html ````, ```` ```json ````) is pulled out of the markdown and shown as a highlighted, copyable code block.
+- **Notes**: `notes.md` is imported as text (`"loader": { ".md": "text" }` in `angular.json`), so it is part of the prerendered HTML. Fenced code (` ```ts `, ` ```html `, ` ```json `, ` ```bash `, ` ```text ` for folder trees) is pulled out of the markdown and shown as a highlighted, copyable code block. Tables are wrapped in `.table-wrap`, so wide ones scroll on phones.
 - **Code**: `angular.json` copies `src/**` and the root config files into `/code` as static assets. The Code tab fetches them, and Shiki highlights them in the browser. What you read is exactly what runs.
 
 ## How to add a lesson
@@ -105,21 +105,21 @@ Optional lesson fields: `children` (child routes for routing demos), `providers`
 - Every color, size and radius is a CSS variable in `src/styles/_tokens.scss`.
 - Dark is the default theme. Light mode and the accent presets (Angular, Ocean, Lime) only swap variables.
 - Backgrounds are neutral warm grays that get lighter as a surface rises: `--sidebar-bg` < `--bg` < `--surface` < `--raised`. Only the accent carries color, so text stays easy to read.
-- Plain elements already look right: a `<button>` looks like a button. Variants are `.btn-primary`, `.btn-ghost` and `.icon-btn`. Surfaces are `.panel` and `.callout`, plus `.badge`, `.data-table` and `.segmented` (a `role="radiogroup"` of buttons). Layout helpers for demos: `.stack`, `.row`, `.cols` (responsive columns) and `.field` (label above input).
+- Plain elements already look right: a `<button>` looks like a button. Variants are `.btn-primary`, `.btn-ghost` and `.icon-btn`. Surfaces are `.panel` and `.callout`, plus `.badge`, `.data-table` and `.segmented` (a `role="radiogroup"` of buttons). Layout helpers for demos: `.stack`, `.row`, `.cols` (responsive columns), `.field` (label above input) and `.table-wrap` (a table that scrolls sideways on small screens).
 - The brand gradient appears only where it means something: the logo, live topics, the active topic and the demo stage.
 
 ## Mock API
 
 `core/mock-api/mock-api-interceptor.ts` answers every `api/...` request, so API demos work without a server, including on the deployed site.
 
-| Request | Result |
-|---|---|
-| `GET api/users` | List (supports `?q=`, `?page=`, `?limit=`) |
-| `GET api/users/3` | One row |
-| `POST api/users` | Create |
-| `PUT` / `PATCH api/users/3` | Replace / merge |
-| `DELETE api/users/3` | Delete |
-| `POST api/auth/login` | Fake JWT (the password is `angular`) |
+| Request                     | Result                                     |
+| --------------------------- | ------------------------------------------ |
+| `GET api/users`             | List (supports `?q=`, `?page=`, `?limit=`) |
+| `GET api/users/3`           | One row                                    |
+| `POST api/users`            | Create                                     |
+| `PUT` / `PATCH api/users/3` | Replace / merge                            |
+| `DELETE api/users/3`        | Delete                                     |
+| `POST api/auth/login`       | Fake JWT (the password is `angular`)       |
 
 Collections: `users`, `products`, `posts`, `todos`. Add `?delay=2000` to any URL to simulate a slow network, or `?fail=500` to force an error.
 
@@ -132,19 +132,19 @@ Collections: `users`, `products`, `posts`, `todos`. Add `?delay=2000` to any URL
 
 ## Quality gates
 
-| Command | Checks |
-|---|---|
-| `npm run lint` | angular-eslint (TypeScript + template accessibility) |
-| `npm run test:ci` | Vitest unit tests, including the registry structure test |
-| `npm run build` | Production build, budgets and prerendering |
-| `npm run format:check` | Prettier formatting |
+| Command                | Checks                                                   |
+| ---------------------- | -------------------------------------------------------- |
+| `npm run lint`         | angular-eslint (TypeScript + template accessibility)     |
+| `npm run test:ci`      | Vitest unit tests, including the registry structure test |
+| `npm run build`        | Production build, budgets and prerendering               |
+| `npm run format:check` | Prettier formatting                                      |
 
 CI (`.github/workflows/ci.yml`) runs all four on every push.
 
 ## Packages added later, when their topics arrive
 
-| Topic | Package |
-|---|---|
-| 38 State management | `@ngrx/store`, `@ngrx/effects`, `@ngrx/entity`, `@ngrx/signals`, `@ngrx/store-devtools` |
-| 39 / 49 Performance, Material & CDK | `@angular/material`, `@angular/cdk` |
-| 44 Testing (E2E) | `@playwright/test` |
+| Topic                               | Package                                                                                 |
+| ----------------------------------- | --------------------------------------------------------------------------------------- |
+| 38 State management                 | `@ngrx/store`, `@ngrx/effects`, `@ngrx/entity`, `@ngrx/signals`, `@ngrx/store-devtools` |
+| 39 / 49 Performance, Material & CDK | `@angular/material`, `@angular/cdk`                                                     |
+| 44 Testing (E2E)                    | `@playwright/test`                                                                      |
