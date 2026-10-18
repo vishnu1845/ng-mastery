@@ -1,0 +1,42 @@
+<div class="cols">
+  <section class="panel card">
+    <h3 class="title">An array</h3>
+    <app-item-list [items]="items()" />
+
+    <div class="buttons">
+      <button type="button" class="wrong" (click)="pushInPlace()">
+        ❌ items().push(x); items.set(items())
+      </button>
+      <button type="button" class="right" (click)="addImmutably()">
+        ✅ items.update(list =&gt; [...list, x])
+      </button>
+    </div>
+
+    @if (itemsMessage(); as message) {
+      <p class="message" [class.ok]="message.ok" aria-live="polite">{{ message.text }}</p>
+    }
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">A nested object</h3>
+    <app-city-card [user]="user()" />
+
+    <div class="buttons">
+      <button type="button" class="wrong" (click)="moveInPlace()">
+        ❌ user().address.city = x; user.set(user())
+      </button>
+      <button type="button" class="right" (click)="moveImmutably()">✅ {{ objectUpdate }}</button>
+    </div>
+
+    @if (userMessage(); as message) {
+      <p class="message" [class.ok]="message.ok" aria-live="polite">{{ message.text }}</p>
+    }
+  </section>
+</div>
+
+<div class="row">
+  <button type="button" class="btn-ghost" (click)="reset()">Reset both</button>
+  <span class="muted small">
+    Try ❌ twice, then ✅ once: the items you pushed in place suddenly appear together.
+  </span>
+</div>

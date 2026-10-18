@@ -1,0 +1,75 @@
+<div class="cols">
+  <section class="panel card">
+    <h3 class="title">Where effect() works</h3>
+    <ul class="places">
+      <li>
+        <span class="text-success">✓</span>
+        Field initializer (this demo has one)
+      </li>
+      <li>
+        <span class="text-success">✓</span>
+        Constructor (the child below)
+      </li>
+      <li>
+        <span class="text-danger">✗</span>
+        Click handler, ngOnInit, setTimeout
+      </li>
+    </ul>
+
+    <div class="buttons">
+      <button type="button" (click)="createInHandler()">effect() in a click handler</button>
+      <button type="button" (click)="createWithInjector()">{{ withInjectorLabel }}</button>
+    </div>
+
+    @if (attempt(); as attempt) {
+      <div class="result" [class.is-error]="!attempt.ok" aria-live="polite">
+        <strong>{{ attempt.text }}</strong>
+        @if (!attempt.ok) {
+          <span class="small">{{ ng0203Message }}</span>
+        }
+      </div>
+    }
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">Cleanup and leaks</h3>
+
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="showChild()"
+        (change)="showChild.set($event.target.checked)"
+      />
+      Show the child component
+    </label>
+
+    @if (showChild()) {
+      <app-beat-child />
+    } @else {
+      <p class="gone small muted">Child destroyed.</p>
+    }
+
+    <div class="buttons">
+      <button type="button" class="btn-primary" (click)="lab.beat()">
+        Beat ({{ lab.beats() }})
+      </button>
+      <button type="button" [disabled]="!lab.leaks()" (click)="lab.destroyLeaks()">
+        Destroy leaked EffectRefs ({{ lab.leaks() }})
+      </button>
+    </div>
+
+    <ol class="log" aria-live="polite">
+      @for (line of lab.log(); track line.id) {
+        <li [class.leak]="line.tone === 'leak'">
+          <span class="source">{{ line.source }}</span>
+          {{ line.text }}
+        </li>
+      }
+    </ol>
+  </section>
+</div>
+
+<p class="muted small">
+  Untick the child, then press Beat: the child effect is gone with its component, but the leaky
+  effect keeps running. Destroying its EffectRef is the only way to stop it.
+</p>

@@ -1,0 +1,53 @@
+<div class="cols">
+  <section class="panel card">
+    <h3 class="title">Autosave a draft</h3>
+    <code>effect(() =&gt; localStorage.setItem(KEY, draft()))</code>
+
+    <label class="field">
+      Your note
+      <textarea
+        #box
+        rows="3"
+        placeholder="Type something, then reload the page"
+        [value]="draft()"
+        (input)="draft.set(box.value)"
+      ></textarea>
+    </label>
+
+    <div class="row">
+      <button type="button" class="btn-ghost" (click)="draft.set('')">Clear</button>
+      <span class="small muted">
+        @if (savedAt()) {
+          Saved {{ saves() }} {{ saves() === 1 ? 'time' : 'times' }}, last at {{ savedAt() }}
+        } @else {
+          Not saved yet
+        }
+      </span>
+    </div>
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">Effects are batched</h3>
+    <code>effect(() =&gt; log(count()))</code>
+
+    <p class="big">count() = {{ count() }}</p>
+
+    <div class="buttons">
+      <button type="button" (click)="addOne()">count.update(c =&gt; c + 1)</button>
+      <button type="button" class="btn-primary" (click)="addThreeInARow()">
+        Update it 3 times in a row
+      </button>
+    </div>
+
+    <ol class="runs" aria-live="polite">
+      @for (run of runs(); track run.id; let first = $first) {
+        <li class="mono" [class.latest]="first">{{ run.text }}</li>
+      }
+    </ol>
+  </section>
+</div>
+
+<p class="muted small">
+  Press "Update it 3 times in a row": count() jumps by 3, but only one new line appears. The effect
+  ran once, after our code finished, with the final value.
+</p>

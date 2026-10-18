@@ -1,0 +1,55 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  > code {
+    justify-self: start;
+    font-size: var(--fs-xs);
+  }
+}
+
+.big {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xl);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+
+  button:not(.btn-primary) {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+  }
+}
+
+.runs {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  padding: 0;
+  color: var(--text-faint);
+  font-size: var(--fs-xs);
+  list-style: none;
+
+  .latest {
+    color: var(--accent);
+  }
+}

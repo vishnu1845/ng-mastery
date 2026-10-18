@@ -1,0 +1,67 @@
+<div class="cols">
+  <section class="panel card">
+    <h3 class="title">Lazy and cached</h3>
+    <code>total = computed(() =&gt; price() * qty())</code>
+
+    <label class="check">
+      <input
+        type="checkbox"
+        [checked]="showTotal()"
+        (change)="showTotal.set($event.target.checked)"
+      />
+      Show total() in the template
+    </label>
+
+    @if (showTotal()) {
+      <p class="big">₹{{ total() }}</p>
+    } @else {
+      <p class="big muted">Hidden: nobody reads total()</p>
+    }
+
+    <div class="buttons">
+      <button type="button" (click)="addOne()">qty.update(q =&gt; q + 1)</button>
+      <button type="button" (click)="readThreeTimes()">Read total() 3 times in TS</button>
+    </div>
+
+    <p class="small" [class.muted]="!readResult()">
+      {{
+        readResult() || 'Hide the total, add one a few times: the log stays quiet. That is lazy.'
+      }}
+    </p>
+  </section>
+
+  <section class="panel card">
+    <h3 class="title">Only what it read last time</h3>
+    <code>{{ greetingCode }}</code>
+
+    <div class="row">
+      <label class="check">
+        <input type="checkbox" [checked]="vip()" (change)="vip.set($event.target.checked)" />
+        vip()
+      </label>
+      <label class="field grow">
+        name()
+        <input [value]="name()" (input)="name.set($event.target.value)" autocomplete="off" />
+      </label>
+    </div>
+
+    <p class="big">{{ greeting() }}</p>
+    <p class="small muted">
+      With vip() off, the last run never read name(), so typing a name doesn't re-run it.
+    </p>
+  </section>
+</div>
+
+<section class="stack">
+  <h3 class="title">Every time a computed actually ran</h3>
+  <ol class="runs">
+    @for (run of runs(); track run.id) {
+      <li class="run">
+        <span class="badge" [class.badge-accent]="run.name === 'total'">{{ run.name }}</span>
+        <span class="mono">{{ run.text }}</span>
+      </li>
+    } @empty {
+      <li class="muted small">Nothing yet.</li>
+    }
+  </ol>
+</section>

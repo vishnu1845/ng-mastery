@@ -1,0 +1,46 @@
+<div class="cols">
+  <app-plain-counter />
+  <app-signal-counter />
+</div>
+
+<section class="stack">
+  <h3 class="title">When the 1 second timer fired</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Counter</th>
+          <th scope="col">Value in TS</th>
+          <th scope="col">On screen</th>
+          <th scope="col">Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (check of timerChecks.checks(); track check.id) {
+          <tr>
+            <td class="mono">{{ check.kind }}</td>
+            <td class="mono">{{ check.inTs }}</td>
+            <td class="mono">{{ check.onScreen }}</td>
+            <td>
+              @if (isStale(check)) {
+                <span class="text-danger">Stale: nothing told Angular</span>
+              } @else {
+                <span class="text-success">Up to date</span>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="muted">Press "+1 in 1 second" on both counters.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<p class="muted small">
+  This app is zoneless, so a setTimeout doesn't refresh anything. "+1 now" works for both, because
+  the click itself refreshes that component. "Click to refresh" runs an empty handler, and the plain
+  value catches up.
+</p>

@@ -1,0 +1,67 @@
+<section class="panel hero">
+  <div class="value">
+    <span class="muted small">qty()</span>
+    <strong class="number">{{ qty() }}</strong>
+  </div>
+  <div class="value">
+    <span class="muted small">Effect runs (who got notified)</span>
+    <strong class="number">{{ notified() }}</strong>
+    <span class="muted small">Starts at 1: every effect runs once at the start.</span>
+  </div>
+</section>
+
+<div class="cols">
+  <section class="stack">
+    <h3 class="title">.set(): a fixed new value</h3>
+    <div class="buttons">
+      @for (action of setActions; track action.code) {
+        <button type="button" (click)="run(action)">{{ action.code }}</button>
+      }
+    </div>
+  </section>
+
+  <section class="stack">
+    <h3 class="title">.update(): from the current value</h3>
+    <div class="buttons">
+      @for (action of updateActions; track action.code) {
+        <button type="button" (click)="run(action)">{{ action.code }}</button>
+      }
+    </div>
+  </section>
+</div>
+
+<section class="stack">
+  <h3 class="title">Calls</h3>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Code</th>
+          <th scope="col">Before</th>
+          <th scope="col">After</th>
+          <th scope="col">Notified?</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (call of calls(); track call.id) {
+          <tr>
+            <td class="mono code">{{ call.code }}</td>
+            <td class="mono">{{ call.before }}</td>
+            <td class="mono">{{ call.after }}</td>
+            <td>
+              @if (call.before === call.after) {
+                <span class="badge">No, same value</span>
+              } @else {
+                <span class="badge badge-accent">Yes</span>
+              }
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="muted">Press any button above.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

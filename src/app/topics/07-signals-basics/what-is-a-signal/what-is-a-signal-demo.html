@@ -1,0 +1,124 @@
+<div class="layout">
+  <section class="panel graph-panel" aria-label="Signal graph">
+    <svg
+      class="graph"
+      viewBox="0 0 360 236"
+      role="img"
+      aria-label="price, qty and coupon feed subtotal and total, which feed the template"
+    >
+      <defs>
+        <marker
+          id="signal-arrow"
+          viewBox="0 0 8 8"
+          refX="7"
+          refY="4"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto"
+        >
+          <path d="M0 0 L8 4 L0 8 z" class="arrow-head" />
+        </marker>
+      </defs>
+
+      @for (edge of edges; track $index) {
+        <line
+          class="edge"
+          [class.lit]="lit().has(edge.to)"
+          [attr.x1]="edge.x1"
+          [attr.y1]="edge.y1"
+          [attr.x2]="edge.x2"
+          [attr.y2]="edge.y2"
+          marker-end="url(#signal-arrow)"
+        />
+      }
+
+      @for (node of nodes; track node.id) {
+        <g
+          class="node"
+          [class]="node.kind"
+          [class.lit]="lit().has(node.id)"
+          [attr.data-id]="node.id"
+        >
+          <rect [attr.x]="node.x" [attr.y]="node.y" [attr.width]="w" [attr.height]="h" rx="8" />
+          <text [attr.x]="node.x + w / 2" [attr.y]="node.y + h / 2">{{ node.label }}</text>
+        </g>
+      }
+    </svg>
+
+    <div class="legend">
+      <span class="key signal">signal()</span>
+      <span class="key computed">computed()</span>
+      <span class="key view">template</span>
+    </div>
+  </section>
+
+  <div class="side">
+    <section #cart class="panel cart" aria-label="The view">
+      <p class="line">
+        <span class="muted">Subtotal</span>
+        <strong data-node="viewSubtotal">₹{{ subtotal() }}</strong>
+      </p>
+      <p class="line">
+        <span class="muted">Total</span>
+        <strong data-node="viewTotal">₹{{ total() }}</strong>
+      </p>
+    </section>
+
+    <div class="controls">
+      <div class="control">
+        <code>price.set()</code>
+        <div class="segmented" role="radiogroup" aria-label="Price">
+          @for (option of [499, 999]; track option) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="price() === option"
+              (click)="setPrice(option)"
+            >
+              ₹{{ option }}
+            </button>
+          }
+        </div>
+      </div>
+
+      <div class="control">
+        <code>qty.update()</code>
+        <div class="row">
+          <button type="button" aria-label="One less" (click)="changeQty(-1)">−</button>
+          <span class="qty">{{ qty() }}</span>
+          <button type="button" aria-label="One more" (click)="changeQty(1)">+</button>
+        </div>
+      </div>
+
+      <div class="control">
+        <code>coupon.set()</code>
+        <div class="segmented" role="radiogroup" aria-label="Coupon">
+          @for (option of [0, 10, 20]; track option) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="coupon() === option"
+              (click)="setCoupon(option)"
+            >
+              {{ option }}%
+            </button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p class="wave callout" aria-live="polite">
+  @if (wave(); as wave) {
+    @if (wave.length) {
+      <span>Updated: {{ waveLabels().join(' ➝ ') }}.</span>
+      <span class="muted">Left alone: {{ untouched().join(', ') }}.</span>
+    } @else {
+      Same value as before, so nothing was notified and nothing updated.
+    }
+  } @else {
+    Change the coupon: only coupon, total and the total text light up. price, qty and subtotal stay
+    dark, because nothing they depend on changed.
+  }
+</p>

@@ -1,0 +1,55 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.buttons {
+  display: grid;
+  gap: var(--space-2);
+
+  button {
+    justify-content: flex-start;
+    min-height: 2.5rem;
+    padding-block: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .wrong:hover {
+    border-color: var(--danger);
+  }
+
+  .right:hover {
+    border-color: var(--success);
+  }
+}
+
+.message {
+  margin: 0;
+  padding: var(--space-3);
+  border-left: 3px solid var(--danger);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: var(--raised);
+  font-size: var(--fs-sm);
+
+  &.ok {
+    border-left-color: var(--success);
+  }
+}

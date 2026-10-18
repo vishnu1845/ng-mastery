@@ -1,0 +1,54 @@
+<div class="cols">
+  <article #card class="panel profile" aria-label="Profile card">
+    @let postCount = posts().length;
+
+    <div class="head">
+      <div class="avatar" aria-hidden="true">{{ name().charAt(0) }}</div>
+      <div class="who">
+        <h3 class="name">{{ name() }}</h3>
+        <span class="status" [class.online]="online()">{{ online() ? 'Online' : 'Away' }}</span>
+      </div>
+    </div>
+
+    <dl class="stats">
+      <div>
+        <dt>Followers</dt>
+        <dd>{{ followers() }}</dd>
+      </div>
+      <div>
+        <dt>Posts</dt>
+        <dd>{{ postCount }}</dd>
+      </div>
+    </dl>
+
+    @if (posts()[0]; as latest) {
+      <p class="latest">Latest: {{ latest }}</p>
+    }
+  </article>
+
+  <section class="stack">
+    <div class="buttons">
+      <button type="button" (click)="follow()">followers.update(n =&gt; n + 1)</button>
+      <button type="button" (click)="toggleOnline()">online.update(v =&gt; !v)</button>
+      <button type="button" (click)="rename()">name.set(…)</button>
+      <button type="button" (click)="addPost()">posts.update(list =&gt; [post, ...list])</button>
+    </div>
+
+    <div class="callout written" aria-live="polite">
+      @if (written(); as written) {
+        Angular wrote to {{ written.length }} DOM {{ written.length === 1 ? 'node' : 'nodes' }}:
+        <span class="mono">{{ written.join(' ') }}</span>
+      } @else {
+        Press a button. Every DOM node Angular writes to flashes on the card. Nothing else is
+        touched.
+      }
+    </div>
+  </section>
+</div>
+
+<div class="panel warning">
+  <p class="small muted">Forget the () and the build warns you (Angular 22):</p>
+  <pre class="mono">{{ forgotCall }}</pre>
+  <p class="warn">NG8109: followers is a function and should be invoked: followers()</p>
+  <p class="warn">NG8117: Function in text interpolation should be invoked: followers()</p>
+</div>

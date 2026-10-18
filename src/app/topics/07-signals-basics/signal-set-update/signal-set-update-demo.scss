@@ -1,0 +1,46 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+
+.value {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.number {
+  font-family: var(--font-mono);
+  font-size: var(--fs-2xl);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+
+  button {
+    font-family: var(--font-mono);
+    font-size: var(--fs-xs);
+  }
+}
+
+.code {
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}

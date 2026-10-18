@@ -1,0 +1,157 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: var(--space-4);
+}
+
+// GRAPH
+.graph-panel {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.graph {
+  width: 100%;
+  max-width: 30rem;
+  height: auto;
+  justify-self: center;
+  overflow: visible;
+}
+
+.edge {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+  transition: stroke 300ms var(--ease);
+
+  &.lit {
+    stroke: var(--accent);
+    stroke-width: 2;
+  }
+}
+
+.arrow-head {
+  fill: var(--text-faint);
+}
+
+.node {
+  rect {
+    fill: var(--surface);
+    stroke: var(--border-strong);
+    stroke-width: 1.5;
+    transition:
+      fill 300ms var(--ease),
+      stroke 300ms var(--ease);
+  }
+
+  text {
+    fill: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  &.computed rect {
+    stroke-dasharray: 5 4;
+  }
+
+  &.view text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+
+  &.lit {
+    rect {
+      fill: color-mix(in oklab, var(--accent) 22%, var(--surface));
+      stroke: var(--accent);
+    }
+
+    text {
+      fill: var(--text);
+    }
+  }
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  font-size: var(--fs-xs);
+}
+
+.key {
+  padding: 0.1rem 0.5rem;
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+
+  &.computed {
+    border-style: dashed;
+  }
+
+  &.view {
+    font-family: var(--font-mono);
+  }
+}
+
+// CART + CONTROLS
+.side {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.cart {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0;
+
+  strong {
+    padding: 0 var(--space-1);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-lg);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.controls {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.control {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+
+  code {
+    font-size: var(--fs-xs);
+  }
+}
+
+.qty {
+  min-width: 2ch;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.wave {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  font-size: var(--fs-sm);
+}

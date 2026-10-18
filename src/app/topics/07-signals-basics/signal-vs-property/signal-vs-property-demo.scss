@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
