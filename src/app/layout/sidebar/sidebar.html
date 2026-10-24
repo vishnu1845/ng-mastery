@@ -18,16 +18,6 @@
     Roadmap
   </a>
 
-  <a
-    class="nav-link"
-    routerLink="/glossary"
-    routerLinkActive="is-active"
-    ariaCurrentWhenActive="page"
-  >
-    <ng-icon name="lucideBookA" aria-hidden="true" />
-    Glossary
-  </a>
-
   @for (part of catalog.liveParts; track part.id) {
     <section class="part" [attr.aria-labelledby]="'part-' + part.id">
       <h2 class="part-title" [id]="'part-' + part.id">{{ part.title }}</h2>
@@ -45,4 +35,16 @@
   }
 </nav>
 
-<p class="sidebar-foot">{{ liveTopicCount }} of {{ catalog.topics.length }} topics live</p>
+<!-- Quiet on purpose: most people reach the glossary from a dotted word in the notes -->
+<div class="sidebar-foot">
+  <span>{{ liveTopicCount }} of {{ catalog.topics.length }} topics live</span>
+  <a
+    class="foot-link"
+    routerLink="/glossary"
+    routerLinkActive="is-active"
+    ariaCurrentWhenActive="page"
+  >
+    <ng-icon name="lucideBookA" aria-hidden="true" />
+    Glossary
+  </a>
+</div>
