@@ -20,3 +20,7 @@
 </div>
 
 <app-command-palette />
+<!-- Hover cards for glossary words: not needed for the first paint, so load when the browser is idle -->
+@defer (on idle) {
+  <app-term-preview />
+}

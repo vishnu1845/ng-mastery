@@ -1,4 +1,4 @@
-import { parseNotes, renderMarkdown, splitBlocks } from './notes';
+import { glossaryRefs, parseNotes, renderMarkdown, splitBlocks, termSlug } from './notes';
 
 describe('parseNotes', () => {
   const markdown = [
@@ -63,5 +63,44 @@ describe('renderMarkdown', () => {
 
     expect(html).toContain('<div class="table-wrap"><table>');
     expect(html).toContain('</table></div>');
+  });
+});
+
+describe('glossary links', () => {
+  it('turns [[term]] into a link to the glossary', () => {
+    expect(renderMarkdown('A [[signal]] holds state.')).toContain(
+      '<a class="term" href="/glossary/signal">signal</a>',
+    );
+  });
+
+  it('supports custom link text with [[slug|text]]', () => {
+    expect(renderMarkdown('New apps are [[zoneless|zoneless by default]].')).toContain(
+      '<a class="term" href="/glossary/zoneless">zoneless by default</a>',
+    );
+  });
+
+  it('keeps markdown inside the link text', () => {
+    expect(renderMarkdown('Use [[computed|`computed()`]].')).toContain(
+      '<a class="term" href="/glossary/computed"><code>computed()</code></a>',
+    );
+  });
+
+  it('works inside a table cell, where the pipe is escaped', () => {
+    const table = '| Old | New |\n| --- | --- |\n| Zone.js | [[zoneless\\|zoneless apps]] |';
+    const html = renderMarkdown(table);
+    expect(html).toContain('<a class="term" href="/glossary/zoneless">zoneless apps</a>');
+    expect(html.match(/<td>/g)).toHaveLength(2);
+    expect(glossaryRefs(table)).toEqual(['zoneless']);
+  });
+
+  it('leaves [[...]] alone inside inline code', () => {
+    expect(renderMarkdown('Write `[[signal]]` in notes.')).not.toContain('class="term"');
+  });
+
+  it('makes slugs from the visible text', () => {
+    expect(termSlug('Zone.js')).toBe('zone-js');
+    expect(termSlug('change detection')).toBe('change-detection');
+    expect(termSlug('computed()')).toBe('computed');
+    expect(glossaryRefs('[[OnPush]] and [[signal|signals]]')).toEqual(['onpush', 'signal']);
   });
 });

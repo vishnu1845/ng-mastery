@@ -31,7 +31,7 @@ user?.name; // ✅
 | `strictNullChecks`             | `null` / `undefined` must be handled                  |
 | `noImplicitAny`                | No silent `any` types                                 |
 | `strictPropertyInitialization` | Class properties need a value (that's why we see `!`) |
-| `strictTemplates` (Angular)    | Type-checks our HTML templates                        |
+| `strictTemplates` (Angular)    | Type-checks our HTML [[template\|templates]]          |
 | `paths`                        | Short import aliases like `@core/...`                 |
 
 This project's real `tsconfig.json` is in the **Code** tab.

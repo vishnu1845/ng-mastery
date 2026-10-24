@@ -1,19 +1,19 @@
 ## Definition
 
-**AngularJS** (1.x, 2010) was the first version, written in JavaScript and based on MVC with `$scope`. **Angular** (2+, 2016) is a **complete rewrite** in TypeScript with a component-based architecture.
+**AngularJS** (1.x, 2010) was the first version, written in JavaScript and based on MVC with `$scope`. **Angular** (2+, 2016) is a **complete rewrite** in [[typescript|TypeScript]] with a [[component|component]]-based architecture.
 
 ## Key distinctions
 
-|                      | AngularJS (1.x)                                 | Angular (2+)                    |
-| -------------------- | ----------------------------------------------- | ------------------------------- |
-| Released             | 2010                                            | 2016 (complete rewrite)         |
-| Language             | JavaScript                                      | TypeScript                      |
-| Architecture         | MVC with `$scope` and controllers               | Component-based                 |
-| Change detection     | Digest cycle (dirty checking), slow in big apps | Zone.js, now signals + zoneless |
-| Dependency injection | Basic                                           | Hierarchical                    |
-| Compilation          | In the browser at runtime                       | AOT at build time               |
-| CLI                  | No                                              | Yes, Angular CLI                |
-| Status               | Support ended (January 2022)                    | Actively developed              |
+|                                                | AngularJS (1.x)                                 | Angular (2+)                                                           |
+| ---------------------------------------------- | ----------------------------------------------- | ---------------------------------------------------------------------- |
+| Released                                       | 2010                                            | 2016 (complete rewrite)                                                |
+| Language                                       | JavaScript                                      | TypeScript                                                             |
+| Architecture                                   | MVC with `$scope` and controllers               | Component-based                                                        |
+| [[change-detection\|Change detection]]         | Digest cycle (dirty checking), slow in big apps | [[zone-js\|Zone.js]], now [[signal\|signals]] + [[zoneless\|zoneless]] |
+| [[dependency-injection\|Dependency injection]] | Basic                                           | Hierarchical                                                           |
+| Compilation                                    | In the browser at runtime                       | [[aot-compilation\|AOT]] at build time                                 |
+| CLI                                            | No                                              | Yes, [[angular-cli\|Angular CLI]]                                      |
+| Status                                         | Support ended (January 2022)                    | Actively developed                                                     |
 
 ## Say it like this
 

@@ -1,6 +1,6 @@
 ## Definition
 
-**Two-Way Binding** 🍌 "banana in a box" gives real-time sync input ⬌ component, using `[(ngModel)]="data"`.
+**Two-Way Binding** 🍌 "banana in a box" gives real-time sync input ⬌ [[component|component]], using `[(ngModel)]="data"`.
 
 ## Example
 
@@ -18,7 +18,7 @@ export class App {
 }
 ```
 
-⚠️ Requires **FormsModule**, in the component's `imports` (standalone) or in an NgModule (legacy). Without it, the template fails to compile: _Can't bind to 'ngModel' since it isn't a known property of 'input'_.
+⚠️ Requires **FormsModule**, in the component's `imports` (standalone) or in an [[ngmodule|NgModule]] (legacy). Without it, the [[template|template]] fails to compile: _Can't bind to 'ngModel' since it isn't a known property of 'input'_.
 
 ## How `[(ngModel)]` works internally
 

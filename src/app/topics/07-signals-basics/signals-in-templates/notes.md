@@ -1,6 +1,6 @@
 ## Definition
 
-In templates, we read a signal by **calling it**: `{{ count() }}`. The template becomes a reader of that signal, so when the signal changes, Angular refreshes **only that component** and writes **only the DOM nodes whose values changed**.
+In [[template|templates]], we read a signal by **calling it**: `{{ count() }}`. The template becomes a reader of that signal, so when the signal changes, Angular refreshes **only that [[component|component]]** and writes **only the [[dom|DOM]] nodes whose values changed**.
 
 ## Example
 
@@ -22,8 +22,8 @@ In templates, we read a signal by **calling it**: `{{ count() }}`. The template 
 
 ## Key points
 
-- Forgot the `()`? Angular 22 warns twice at build time: **NG8109** (_followers is a function and should be invoked: followers()_) and **NG8117** (_Function in text interpolation should be invoked: followers()_). In dev mode, the screen would show `[Signal: 12]` instead of `12`.
-- Reading a signal in the template is what tells Angular to refresh that component. With signals, we never call `markForCheck()` by hand, even with OnPush (the default in v22).
+- Forgot the `()`? Angular 22 warns twice at build time: **NG8109** (_followers is a function and should be invoked: followers()_) and **NG8117** (_Function in text [[interpolation|interpolation]] should be invoked: followers()_). In dev mode, the screen would show `[Signal: 12]` instead of `12`.
+- Reading a signal in the template is what tells Angular to refresh that component. With signals, we never call `markForCheck()` by hand, even with [[onpush|OnPush]] (the default in v22).
 - Angular patches only the text and attributes that actually changed. The demo flashes every DOM node that really changed.
 - `@let` (v18.1+) keeps a template value in a local variable. It's still recalculated on every refresh, so heavy logic belongs in a `computed()`.
 

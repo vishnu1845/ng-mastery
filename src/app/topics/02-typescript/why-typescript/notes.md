@@ -6,7 +6,7 @@
 
 - Catches errors **while coding (compile time)**, not in production
 - Rich **autocomplete & safe refactoring** in the editor
-- Angular is built around **decorators & metadata**, a TypeScript feature
+- Angular is built around **decorators & [[metadata|metadata]]**, a TypeScript feature
 - **Strict template type checking**: Angular even type-checks our HTML
 - Scales well for **big apps & big teams** (Angular 22 requires TypeScript 6)
 

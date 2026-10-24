@@ -1,6 +1,6 @@
 ## Definition
 
-A **Template Reference Variable** (`#var`) gives direct access to a DOM element or component in the template.
+A **Template Reference Variable** (`#var`) gives direct access to a DOM element or [[component|component]] in the [[template|template]].
 
 ## Example
 
@@ -18,12 +18,12 @@ It avoids two-way binding when we only need the value on demand.
 
 ## What a ref points to
 
-| We write                            | `#ref` gives us                       |
-| ----------------------------------- | ------------------------------------- |
-| `<input #box />`                    | the DOM element (`HTMLInputElement`)  |
-| `<app-stopwatch #sw />`             | the component instance: `sw.start()`  |
-| `<input ngModel #name="ngModel" />` | the directive, through its `exportAs` |
-| `<ng-template #tpl>`                | a `TemplateRef`                       |
+| We write                            | `#ref` gives us                                      |
+| ----------------------------------- | ---------------------------------------------------- |
+| `<input #box />`                    | the DOM element (`HTMLInputElement`)                 |
+| `<app-stopwatch #sw />`             | the component instance: `sw.start()`                 |
+| `<input ngModel #name="ngModel" />` | the [[directive\|directive]], through its `exportAs` |
+| `<ng-template #tpl>`                | a `TemplateRef`                                      |
 
 ## Reading it in TS
 

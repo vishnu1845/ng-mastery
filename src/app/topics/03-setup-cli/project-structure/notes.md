@@ -30,20 +30,20 @@ Also created: `node_modules/` (installed packages), `.angular/` (build cache, sa
 
 ## v20+ file naming
 
-|                | v20+ naming       | Older naming (v19 and below)        |
-| -------------- | ----------------- | ----------------------------------- |
-| Component file | `user-profile.ts` | `user-profile.component.ts`         |
-| Class name     | `UserProfile`     | `UserProfileComponent`              |
-| Root component | `app.ts` → `App`  | `app.component.ts` → `AppComponent` |
-| Static files   | `public/`         | `src/assets/`                       |
+|                               | v20+ naming       | Older naming (v19 and below)        |
+| ----------------------------- | ----------------- | ----------------------------------- |
+| Component file                | `user-profile.ts` | `user-profile.component.ts`         |
+| Class name                    | `UserProfile`     | `UserProfileComponent`              |
+| Root [[component\|component]] | `app.ts` → `App`  | `app.component.ts` → `AppComponent` |
+| Static files                  | `public/`         | `src/assets/`                       |
 
 ## tsconfig.json, tsconfig.app.json & tsconfig.spec.json
 
-| File                 | Role                                                                               |
-| -------------------- | ---------------------------------------------------------------------------------- |
-| `tsconfig.json`      | **Base config** shared by all: strict mode, path aliases, Angular compiler options |
-| `tsconfig.app.json`  | **Extends the base** for app code (excludes `*.spec.ts`)                           |
-| `tsconfig.spec.json` | **Extends the base** for tests (includes `*.spec.ts` & test types)                 |
+| File                 | Role                                                                                                |
+| -------------------- | --------------------------------------------------------------------------------------------------- |
+| `tsconfig.json`      | **Base config** shared by all: [[strict-mode\|strict mode]], path aliases, Angular compiler options |
+| `tsconfig.app.json`  | **Extends the base** for app code (excludes `*.spec.ts`)                                            |
+| `tsconfig.spec.json` | **Extends the base** for tests (includes `*.spec.ts` & test types)                                  |
 
 ```json
 // tsconfig.app.json

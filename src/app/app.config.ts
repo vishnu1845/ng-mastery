@@ -1,5 +1,7 @@
+import { ViewportScroller } from '@angular/common';
 import {
   ApplicationConfig,
+  inject,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
@@ -25,7 +27,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(
       routes,
       withComponentInputBinding(),
-      withInMemoryScrolling({ scrollPositionRestoration: 'top', anchorScrolling: 'enabled' }),
+      // 'enabled': new pages start at the top, and Back/Forward restore the old scroll position
+      withInMemoryScrolling({ scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled' }),
     ),
     provideHttpClient(withInterceptors([mockApiInterceptor])),
     provideClientHydration(),
@@ -33,5 +36,13 @@ export const appConfig: ApplicationConfig = {
     { provide: TitleStrategy, useClass: PageTitle },
     // Runs once during startup, before App renders (read by the Topic 04 timeline)
     provideAppInitializer(() => markBoot('initializer')),
+    // Anchor links (#letter-S) stop below the sticky top bar, not under it
+    provideAppInitializer(() => inject(ViewportScroller).setOffset(belowTopbar)),
   ],
 };
+
+// Angular scrolls to anchors with window.scrollTo, which ignores CSS scroll-margin
+function belowTopbar(): [number, number] {
+  const topbar = document.querySelector('app-topbar');
+  return [0, (topbar?.getBoundingClientRect().height ?? 0) + 16];
+}

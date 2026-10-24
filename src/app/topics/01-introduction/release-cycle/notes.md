@@ -1,6 +1,6 @@
 ## Definition
 
-Angular follows **semantic versioning** (`major.minor.patch`) and a fixed release schedule. Since **Angular 22**, a new **major version ships once a year**, and every major is supported for **24 months**: 12 months of active support plus 12 months of long-term support (LTS).
+Angular follows **[[semver|semantic versioning]]** (`major.minor.patch`) and a fixed release schedule. Since **Angular 22**, a new **major version ships once a year**, and every major is supported for **24 months**: 12 months of active support plus 12 months of long-term support (LTS).
 
 ## Key points
 
@@ -12,15 +12,15 @@ Angular follows **semantic versioning** (`major.minor.patch`) and a fixed releas
 
 ## Version highlights
 
-| Version | Must remember                                                                        |
-| ------- | ------------------------------------------------------------------------------------ |
-| 16      | Signals (developer preview), required inputs, `DestroyRef` / `takeUntilDestroyed()`  |
-| 17      | `@if` / `@for` / `@switch`, `@defer`, esbuild + Vite builder, angular.dev            |
-| 18      | Zoneless (experimental), Material 3, `@let` (developer preview)                      |
-| 19      | Standalone by default, `input()` / `output()` / `model()` stable                     |
-| 20      | Signal APIs stable, zoneless stable, `*ngIf` / `*ngFor` deprecated, new style guide  |
-| 21      | Zoneless by default, Signal Forms (experimental), Vitest by default, Angular Aria    |
-| 22      | OnPush by default, Signal Forms and resources stable, Fetch by default, `@Service()` |
+| Version | Must remember                                                                                    |
+| ------- | ------------------------------------------------------------------------------------------------ |
+| 16      | Signals (developer preview), required inputs, `DestroyRef` / `takeUntilDestroyed()`              |
+| 17      | `@if` / `@for` / `@switch`, `@defer`, esbuild + Vite builder, angular.dev                        |
+| 18      | [[zoneless\|Zoneless]] (experimental), Material 3, `@let` (developer preview)                    |
+| 19      | Standalone by default, `input()` / `output()` / `model()` stable                                 |
+| 20      | Signal APIs stable, zoneless stable, `*ngIf` / `*ngFor` deprecated, new style guide              |
+| 21      | Zoneless by default, Signal Forms (experimental), Vitest by default, Angular Aria                |
+| 22      | [[onpush\|OnPush]] by default, Signal Forms and resources stable, Fetch by default, `@Service()` |
 
 ## Say it like this
 

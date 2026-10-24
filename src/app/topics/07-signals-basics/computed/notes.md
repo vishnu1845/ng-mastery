@@ -28,7 +28,7 @@ total = computed(() => this.price() * this.qty());
 - **Read-only:** a computed has no `.set()` or `.update()`.
 - **Keep it pure:** no side effects, and no signal writes. Angular throws: _Writing to signals is not allowed in a `computed`_.
 - If the result is the same as before (by `Object.is`), the things that read it aren't notified.
-- Prefer `computed()` over a getter or a method in the template: a method runs on every check, a computed runs only when its inputs change.
+- Prefer `computed()` over a getter or a method in the [[template|template]]: a method runs on every check, a computed runs only when its inputs change.
 
 ## Say it like this
 

@@ -16,14 +16,14 @@ We call a library when we need it. A framework calls our code. This is called **
 
 ## Angular vs React
 
-|               | Angular                                     | React                                  |
-| ------------- | ------------------------------------------- | -------------------------------------- |
-| Type          | Full framework                              | UI library                             |
-| Language      | TypeScript by default                       | JavaScript / JSX (TypeScript optional) |
-| Built in      | Router, forms, HttpClient, DI, testing, CLI | Only the UI layer                      |
-| Data binding  | One-way and two-way                         | One-way                                |
-| Reactivity    | Signals                                     | State and hooks                        |
-| Maintained by | Google                                      | Meta                                   |
+|                                | Angular                                     | React                                  |
+| ------------------------------ | ------------------------------------------- | -------------------------------------- |
+| Type                           | Full framework                              | UI library                             |
+| Language                       | [[typescript\|TypeScript]] by default       | JavaScript / JSX (TypeScript optional) |
+| Built in                       | Router, forms, HttpClient, DI, testing, CLI | Only the UI layer                      |
+| [[data-binding\|Data binding]] | One-way and two-way                         | One-way                                |
+| Reactivity                     | Signals                                     | State and hooks                        |
+| Maintained by                  | Google                                      | Meta                                   |
 
 ## Say it like this
 

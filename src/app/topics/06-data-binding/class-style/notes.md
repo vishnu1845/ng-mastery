@@ -1,6 +1,6 @@
 ## Definition
 
-**Class and style binding** add or remove CSS classes and inline styles from component data. For a **single** class or style, Angular gives direct binding: **no directive, no import, better performance**.
+**Class and style binding** add or remove CSS classes and inline styles from [[component|component]] data. For a **single** class or style, Angular gives direct binding: **no [[directive|directive]], no import, better performance**.
 
 ## Example
 
@@ -26,11 +26,11 @@
 - `[class]="{ ... }"` handles **many** conditional classes natively, so we don't need `[ngClass]` for that anymore. Same for `[style]="{ ... }"` vs `[ngStyle]`.
 - `NgClass` and `NgStyle` still work in Angular 22 (not deprecated), but they need an import, and the Angular style guide prefers the plain bindings.
 
-| `[class.x]` / `[style.x]` | `[ngClass]` / `[ngStyle]` |
-| ------------------------- | ------------------------- |
-| Built into the template   | Directives, need import   |
-| No import                 | `NgClass` / `NgStyle`     |
-| Recommended ✅            | Fine in older code        |
+| `[class.x]` / `[style.x]`             | `[ngClass]` / `[ngStyle]` |
+| ------------------------------------- | ------------------------- |
+| Built into the [[template\|template]] | Directives, need import   |
+| No import                             | `NgClass` / `NgStyle`     |
+| Recommended ✅                        | Fine in older code        |
 
 ## Say it like this
 

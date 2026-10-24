@@ -1,6 +1,6 @@
 ## Definition
 
-A **Signal** is a reactive state variable. When its value changes, Angular knows exactly which parts of the UI depend on it and updates only those, instead of checking the whole component tree. We read a signal by calling it like a function, `count()`, and update it using `.set()` or `.update()`.
+A **Signal** is a reactive state variable. When its value changes, Angular knows exactly which parts of the UI depend on it and updates only those, instead of checking the whole [[component|component]] tree. We read a signal by calling it like a function, `count()`, and update it using `.set()` or `.update()`.
 
 ## Example
 
@@ -34,7 +34,7 @@ export class Cart {
 | How it knows  | It doesn't. It guesses, by patching browser APIs    | Each signal knows who reads it            |
 
 - Every signal keeps a list of who reads it. A `computed()` is both: it reads signals and gets read. Templates and effects are the readers at the end.
-- That graph is what made **zoneless** Angular possible (the default for new apps since v21) and **OnPush by default** in v22.
+- That graph is what made **[[zoneless|zoneless]]** Angular possible (the default for new apps since v21) and **[[onpush|OnPush]] by default** in v22.
 
 ## Say it like this
 

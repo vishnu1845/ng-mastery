@@ -18,6 +18,9 @@
       "@core/*": [
         "./src/app/core/*"
       ],
+      "@glossary/*": [
+        "./src/app/glossary/*"
+      ],
       "@layout/*": [
         "./src/app/layout/*"
       ],

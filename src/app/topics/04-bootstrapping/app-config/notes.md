@@ -1,6 +1,6 @@
 ## Definition
 
-`app.config.ts` exports an `ApplicationConfig` object whose **`providers` array sets up app-wide services and features** like routing, HTTP and hydration. It **replaced `AppModule`** in standalone apps.
+`app.config.ts` exports an `ApplicationConfig` object whose **`providers` array sets up app-wide [[service|services]] and features** like routing, HTTP and [[hydration|hydration]]. It **replaced `AppModule`** in standalone apps.
 
 ## Example (default in a new project)
 
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
 
 ## Root providers (provideXxx() functions)
 
-`provideXxx()` functions are **ready-made provider helpers** that **register an Angular feature for the whole app**. We customize them with `withXxx()` feature functions.
+`provideXxx()` functions are **ready-made [[provider|provider]] helpers** that **register an Angular feature for the whole app**. We customize them with `withXxx()` feature functions.
 
 ```ts
 // app.config.ts (a typical real app)
@@ -31,13 +31,13 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-| Provider                               | What it sets up                                                | Old NgModule way                |
-| -------------------------------------- | -------------------------------------------------------------- | ------------------------------- |
-| `provideRouter(routes)`                | Routing                                                        | `RouterModule.forRoot(routes)`  |
-| `provideHttpClient(...)`               | Configures `HttpClient`: interceptors, XSRF, `withXhr()`       | `HttpClientModule` (deprecated) |
-| `provideBrowserGlobalErrorListeners()` | Catches unhandled global errors (v20+)                         | —                               |
-| `provideClientHydration()`             | Hydration for SSR apps                                         | —                               |
-| `provideZoneChangeDetection()`         | Opt back into Zone.js (apps are zoneless by default since v21) | Zone.js was always on           |
+| Provider                               | What it sets up                                                                           | Old NgModule way                |
+| -------------------------------------- | ----------------------------------------------------------------------------------------- | ------------------------------- |
+| `provideRouter(routes)`                | Routing                                                                                   | `RouterModule.forRoot(routes)`  |
+| `provideHttpClient(...)`               | Configures `HttpClient`: interceptors, XSRF, `withXhr()`                                  | `HttpClientModule` (deprecated) |
+| `provideBrowserGlobalErrorListeners()` | Catches unhandled global errors (v20+)                                                    | —                               |
+| `provideClientHydration()`             | Hydration for [[ssr\|SSR]] apps                                                           | —                               |
+| `provideZoneChangeDetection()`         | Opt back into [[zone-js\|Zone.js]] (apps are [[zoneless\|zoneless]] by default since v21) | Zone.js was always on           |
 
 ## Key points
 

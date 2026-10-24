@@ -47,7 +47,7 @@
 | `browser`           | Entry file → `src/main.ts`                                        |
 | `assets` / `styles` | Static files & global CSS to include                              |
 | `configurations`    | `production` vs `development` settings                            |
-| `budgets`           | Warn / fail the build if bundles get too big                      |
+| `budgets`           | Warn / fail the build if [[bundle\|bundles]] get too big          |
 
 ## Key points
 

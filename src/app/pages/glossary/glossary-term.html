@@ -1,0 +1,73 @@
+<nav class="crumbs" aria-label="Breadcrumb">
+  <a routerLink="/glossary">Glossary</a>
+  <ng-icon name="lucideChevronRight" aria-hidden="true" />
+  <span>{{ entry()?.term ?? slug() }}</span>
+</nav>
+
+@if (entry(); as entry) {
+  <article class="term">
+    <h1>{{ entry.term }}</h1>
+
+    <p class="short">
+      @for (part of short(); track $index) {
+        @if (part.code) {
+          <code>{{ part.text }}</code>
+        } @else {
+          {{ part.text }}
+        }
+      }
+    </p>
+
+    @if (entry.body) {
+      <app-markdown [content]="entry.body" />
+    }
+
+    @if (entry.example; as example) {
+      <app-code-block [code]="example.code" [lang]="example.lang" label="Example" />
+    }
+
+    @if (lessons().length) {
+      <section class="block" aria-labelledby="learn-title">
+        <h2 id="learn-title">Learn it in</h2>
+        <ul class="lessons">
+          @for (lesson of lessons(); track lesson.url) {
+            <li>
+              <a class="lesson" [routerLink]="lesson.url">
+                <span class="lesson-topic">{{ lesson.topic }}</span>
+                <span class="lesson-title">{{ lesson.title }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+
+    @if (related().length) {
+      <section class="block" aria-labelledby="related-title">
+        <h2 id="related-title">Related terms</h2>
+        <ul class="related">
+          @for (term of related(); track term.slug) {
+            <li>
+              <a class="term chip" [routerLink]="['/glossary', term.slug]">{{ term.term }}</a>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+  </article>
+} @else {
+  <section class="missing">
+    <h1>No term called “{{ slug() }}”</h1>
+    <p>It may have been renamed. The full list is in the glossary.</p>
+  </section>
+}
+
+<nav class="footer-nav" aria-label="Glossary navigation">
+  @if (cameFrom(); as label) {
+    <button type="button" class="btn-primary" (click)="goBack()">
+      <ng-icon name="lucideArrowLeft" aria-hidden="true" />
+      {{ label }}
+    </button>
+  }
+  <a class="btn" routerLink="/glossary">All terms</a>
+</nav>

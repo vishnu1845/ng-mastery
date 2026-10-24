@@ -34,12 +34,12 @@ input.value; // 'Pune Camp' always current
 
 ## Rapid-fire (whole topic)
 
-- **What is data binding and its types?** ➝ Communication between the component class and the template. Four types: interpolation and property binding (TS ➝ View), event binding (View ➝ TS) and two-way binding (both ways, with `[(ngModel)]`).
+- **What is data binding and its types?** ➝ Communication between the [[component|component]] class and the [[template|template]]. Four types: interpolation and property binding (TS ➝ View), event binding (View ➝ TS) and two-way binding (both ways, with `[(ngModel)]`).
 - **One-way vs two-way binding?** ➝ One-way flows in a single direction, either showing data or handling events. Two-way keeps both in sync, and under the hood it's just `[ngModel]` plus `(ngModelChange)`.
 - **Interpolation vs property binding?** ➝ Interpolation always gives a string. Property binding keeps the real type, so `[disabled]="false"` works and `disabled="{{ false }}"` doesn't.
-- **Why does ngModel need FormsModule?** ➝ `ngModel` is a directive that lives in FormsModule. Without the import, Angular doesn't recognise it and the template fails to compile.
+- **Why does ngModel need FormsModule?** ➝ `ngModel` is a [[directive|directive]] that lives in FormsModule. Without the import, Angular doesn't recognise it and the template fails to compile.
 - **What is `$event`?** ➝ The event data. For DOM events it's the browser event, for a component `output()` it's the emitted value.
 - **When do we need `[attr.x]`?** ➝ When there's no DOM property, like `colspan`, `aria-*` or `data-*`. Binding `null` removes the attribute.
 - **Template reference variable vs `viewChild()`?** ➝ `#var` is used inside the template itself. `viewChild()` brings that same reference into the TS class.
-- **Is calling a method in a template bad?** ➝ A plain method runs again on every check. A signal or `computed()` is cheap to read because it only recalculates when its inputs change, so we prefer those.
-- **Signals vs traditional binding?** ➝ Traditional binding relied on zone.js checking the component tree. With signals, Angular knows exactly which binding changed and updates only that DOM node. New apps are zoneless by default since v21.
+- **Is calling a method in a template bad?** ➝ A plain method runs again on every check. A [[signal|signal]] or [[computed|`computed()`]] is cheap to read because it only recalculates when its inputs change, so we prefer those.
+- **Signals vs traditional binding?** ➝ Traditional binding relied on [[zone-js|zone.js]] checking the component tree. With signals, Angular knows exactly which binding changed and updates only that DOM node. New apps are [[zoneless|zoneless]] by default since v21.

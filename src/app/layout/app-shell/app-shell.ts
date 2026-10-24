@@ -4,12 +4,13 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs';
 import { CommandPalette } from '../command-palette/command-palette';
 import { Sidebar } from '../sidebar/sidebar';
+import { TermPreview } from '../term-preview/term-preview';
 import { Topbar } from '../topbar/topbar';
 
-/** The app frame: sidebar, top bar, page outlet and the search palette. */
+/** The app frame: sidebar, top bar, page outlet, the search palette and glossary previews. */
 @Component({
   host: { '(document:keydown)': 'onKeydown($event)' },
-  imports: [RouterOutlet, Sidebar, Topbar, CommandPalette],
+  imports: [RouterOutlet, Sidebar, Topbar, CommandPalette, TermPreview],
   selector: 'app-shell',
   styleUrl: './app-shell.scss',
   templateUrl: './app-shell.html',

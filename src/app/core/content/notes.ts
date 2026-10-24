@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { Marked, Tokens } from 'marked';
 import { CodeLang } from './code-highlighter';
 
 /** One piece of a notes section: prose (markdown) or a fenced code block. */
@@ -76,9 +76,54 @@ function addText(blocks: NoteBlock[], markdown: string): void {
   if (text) blocks.push({ kind: 'text', markdown: text });
 }
 
+// GLOSSARY LINKS: [[signal]] or [[zoneless|zoneless apps]] link a word to its glossary page.
+// Inside a table row the pipe is written \| so it doesn't split the cell: [[zoneless\|zoneless apps]]
+const TERM_LINK = /^\[\[([^\]|\\]+)(?:\\?\|([^\]]+))?\]\]/;
+const TERM_LINKS_ANYWHERE = /\[\[([^\]|\\]+)(?:\\?\|[^\]]+)?\]\]/g;
+
+/** "Zone.js" → "zone-js", "change detection" → "change-detection", "computed()" → "computed". */
+export function termSlug(text: string): string {
+  return text
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/** Every glossary slug a notes file links to (used by the tests to catch broken links). */
+export function glossaryRefs(markdown: string): string[] {
+  return [...markdown.matchAll(TERM_LINKS_ANYWHERE)].map((match) => termSlug(match[1]));
+}
+
+const markdown = new Marked({
+  gfm: true,
+  extensions: [
+    {
+      name: 'term',
+      level: 'inline',
+      start: (source) => source.indexOf('[['),
+      tokenizer(source) {
+        const match = TERM_LINK.exec(source);
+        if (!match) return undefined;
+        const [raw, target, text] = match;
+        return {
+          type: 'term',
+          raw,
+          slug: termSlug(target),
+          tokens: this.lexer.inlineTokens((text ?? target).trim()),
+        };
+      },
+      renderer(token) {
+        const text = this.parser.parseInline((token as Tokens.Generic).tokens ?? []);
+        return `<a class="term" href="/glossary/${token['slug']}">${text}</a>`;
+      },
+    },
+  ],
+});
+
 /** Markdown → HTML. Angular still sanitizes the result when it is bound to [innerHTML]. */
-export function renderMarkdown(markdown: string): string {
-  const html = marked.parse(markdown, { async: false, gfm: true });
+export function renderMarkdown(source: string): string {
+  const html = markdown.parse(source, { async: false });
 
   // Wide tables scroll inside their own box on phones (.table-wrap is a global utility)
   return html

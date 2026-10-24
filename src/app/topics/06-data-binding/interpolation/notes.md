@@ -1,6 +1,6 @@
 ## Definition
 
-**Interpolation** `{{ }}` displays component data in HTML. Angular evaluates the expression inside the braces, converts the result to a **string** and puts it in the page.
+**Interpolation** `{{ }}` displays [[component|component]] data in HTML. Angular evaluates the expression inside the braces, converts the result to a **string** and puts it in the page.
 
 ## Example
 
@@ -29,7 +29,7 @@ Checked against the Angular 22 compiler:
 | Template literals: `` `${qty()} items` `` | Globals: `Math`, `window`, `console` |
 | `typeof`, `in`, `**` and arrow functions  | Bitwise `\|` (it means a **pipe**)   |
 
-Keep template expressions short. When there's real logic, move it into a `computed()` signal and just read that in the template.
+Keep [[template|template]] expressions short. When there's real logic, move it into a [[computed|`computed()`]] [[signal|signal]] and just read that in the template.
 
 ## Always a string
 

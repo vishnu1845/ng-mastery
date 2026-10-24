@@ -34,7 +34,7 @@ Without the injector, Angular 22 throws **NG0203**: _effect() can only be used w
 
 ## Cleanup and leaks
 
-- Created the normal way, an effect is tied to the component's `DestroyRef`. When the component is destroyed, the effect is destroyed too. **No leak.**
+- Created the normal way, an effect is tied to the [[component|component]]'s `DestroyRef`. When the component is destroyed, the effect is destroyed too. **No leak.**
 - Calling `effect()` outside an injection context doesn't leak, it **throws NG0203**.
 - The real leak: passing an injector that **lives longer** than the component (like the root or environment injector), or `manualCleanup: true`. The effect keeps running after the component is gone.
 - **Fix:** use the component's own injector, or keep the `EffectRef` it returns and call `.destroy()` yourself.

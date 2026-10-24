@@ -1,0 +1,54 @@
+<header class="intro">
+  <h1>Glossary</h1>
+  <p class="lead">
+    {{ total }} words used across the lessons, each explained in a line or two. In the notes, a word
+    with a dotted underline links here.
+  </p>
+  <input
+    class="filter"
+    type="search"
+    aria-label="Filter terms"
+    placeholder="Filter terms"
+    autocomplete="off"
+    [value]="query()"
+    (input)="query.set($event.target.value)"
+  />
+</header>
+
+@if (groups().length) {
+  <nav class="letters" aria-label="Jump to a letter">
+    @for (group of groups(); track group.letter) {
+      <a routerLink="/glossary" [fragment]="'letter-' + group.letter">{{ group.letter }}</a>
+    }
+  </nav>
+
+  @for (group of groups(); track group.letter) {
+    <section
+      class="group"
+      [id]="'letter-' + group.letter"
+      [attr.aria-labelledby]="'h-' + group.letter"
+    >
+      <h2 class="letter" [id]="'h-' + group.letter">{{ group.letter }}</h2>
+      <ul class="entries">
+        @for (entry of group.entries; track entry.slug) {
+          <li>
+            <a class="entry" [routerLink]="['/glossary', entry.slug]">
+              <span class="name">{{ entry.term }}</span>
+              <span class="short">
+                @for (part of entry.short; track $index) {
+                  @if (part.code) {
+                    <code>{{ part.text }}</code>
+                  } @else {
+                    {{ part.text }}
+                  }
+                }
+              </span>
+            </a>
+          </li>
+        }
+      </ul>
+    </section>
+  }
+} @else {
+  <p class="empty">No term matches “{{ query() }}”. Try a shorter word.</p>
+}

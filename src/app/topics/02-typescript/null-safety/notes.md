@@ -28,7 +28,7 @@ const app = document.getElementById('app')!;
 
 ## Template note
 
-`?.` and `??` both work in Angular templates. `??` in templates needs **Angular 12+** (it won't compile in Angular 9 templates).
+`?.` and `??` both work in Angular [[template|templates]]. `??` in templates needs **Angular 12+** (it won't compile in Angular 9 templates).
 
 ## Say it like this
 

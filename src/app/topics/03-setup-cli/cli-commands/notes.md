@@ -16,7 +16,7 @@ npx @angular/cli@latest new my-app # create an app without a global install
 
 ## ng new & its options
 
-`ng new` creates a **new Angular workspace with a ready-to-run app**: folders, config files, dependencies and a root component.
+`ng new` creates a **new Angular workspace with a ready-to-run app**: folders, config files, dependencies and a root [[component|component]].
 
 ```bash
 ng new my-app                           # asks a few questions (styles, SSR…)
@@ -41,7 +41,7 @@ ng serve -o                             # run & open http://localhost:4200
 | ------------- | ------ | ------------------------------------------------------------------------- |
 | `ng new`      | —      | Create a new workspace + app                                              |
 | `ng serve`    | `ng s` | Dev server on `localhost:4200` with live reload                           |
-| `ng generate` | `ng g` | Create components, services, pipes, guards…                               |
+| `ng generate` | `ng g` | Create components, [[service\|services]], pipes, guards…                  |
 | `ng build`    | `ng b` | Build to `dist/` (production by default)                                  |
 | `ng test`     | `ng t` | Run unit tests (Vitest in new projects)                                   |
 | `ng add`      | —      | Install a package **and** run its setup (e.g. `ng add @angular/material`) |

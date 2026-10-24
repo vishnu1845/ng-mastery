@@ -1,6 +1,7 @@
 import {
   lucideArrowLeft,
   lucideArrowRight,
+  lucideBookA,
   lucideBookOpen,
   lucideCheck,
   lucideChevronRight,
@@ -20,6 +21,7 @@ import {
 export const APP_ICONS = {
   lucideArrowLeft,
   lucideArrowRight,
+  lucideBookA,
   lucideBookOpen,
   lucideCheck,
   lucideChevronRight,

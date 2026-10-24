@@ -1,6 +1,6 @@
 ## Definition
 
-**Property Binding** binds DOM element properties (`src`, `href`, `disabled`, `value`) to component data, using `[property]="data"`.
+**Property Binding** binds DOM element properties (`src`, `href`, `disabled`, `value`) to [[component|component]] data, using `[property]="data"`.
 
 ## Example
 

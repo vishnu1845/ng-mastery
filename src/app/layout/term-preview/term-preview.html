@@ -1,0 +1,22 @@
+@if (preview(); as card) {
+  <div
+    class="card"
+    role="tooltip"
+    [id]="cardId"
+    [style.left.px]="card.left"
+    [style.top.px]="card.top"
+    [style.bottom.px]="card.bottom"
+  >
+    <strong class="term">{{ card.term }}</strong>
+    <p class="short">
+      @for (part of card.short; track $index) {
+        @if (part.code) {
+          <code>{{ part.text }}</code>
+        } @else {
+          {{ part.text }}
+        }
+      }
+    </p>
+    <span class="hint">Click the word for the full entry</span>
+  </div>
+}

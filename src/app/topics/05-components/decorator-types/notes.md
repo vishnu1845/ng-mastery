@@ -1,15 +1,15 @@
 ## Definition
 
-A Decorator is a **TypeScript feature** (defined with the **@ symbol**) that tells Angular **how to process a class**. It adds metadata to modify or enhance the behavior of a class, property, method, or parameter — without changing its actual code.
+A Decorator is a **[[typescript|TypeScript]] feature** (defined with the **@ symbol**) that tells Angular **how to process a class**. It adds metadata to modify or enhance the behavior of a class, property, method, or parameter — without changing its actual code.
 
 ## The four types
 
-| Type          | Decorators                                                                   | Purpose                                         | Modern replacement                                                 |
-| ------------- | ---------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------ |
-| **Class**     | `@Component`, `@Directive`, `@Pipe`, `@Injectable`, `@NgModule`              | Tell Angular **what the class is**              | Stay (`@Service()` is new in v22)                                  |
-| **Property**  | `@Input`, `@Output`, `@ViewChild(ren)`, `@ContentChild(ren)`, `@HostBinding` | Data in/out, queries, host bindings             | `input()`, `output()`, `viewChild()`, `contentChild()`, `host: {}` |
-| **Method**    | `@HostListener`                                                              | Listen to host element events                   | `host: { '(click)': '...' }`                                       |
-| **Parameter** | `@Inject`, `@Optional`, `@Self`, `@SkipSelf`, `@Host`                        | Control dependency injection in the constructor | `inject(Token, { optional: true })`                                |
+| Type          | Decorators                                                                   | Purpose                                                                   | Modern replacement                                                 |
+| ------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Class**     | `@Component`, `@Directive`, `@Pipe`, `@Injectable`, `@NgModule`              | Tell Angular **what the class is**                                        | Stay (`@Service()` is new in v22)                                  |
+| **Property**  | `@Input`, `@Output`, `@ViewChild(ren)`, `@ContentChild(ren)`, `@HostBinding` | Data in/out, queries, host bindings                                       | `input()`, `output()`, `viewChild()`, `contentChild()`, `host: {}` |
+| **Method**    | `@HostListener`                                                              | Listen to host element events                                             | `host: { '(click)': '...' }`                                       |
+| **Parameter** | `@Inject`, `@Optional`, `@Self`, `@SkipSelf`, `@Host`                        | Control [[dependency-injection\|dependency injection]] in the constructor | `inject(Token, { optional: true })`                                |
 
 ## Example
 
@@ -30,7 +30,7 @@ export class Child {
 
 ## Key points
 
-- The demo has the same star rating written **both ways**. The old one uses all four decorator types; the new one uses none except `@Component`. Both behave the same, and their events go to the same log.
+- The demo has the same star rating written **both ways**. The old one uses all four [[decorator|decorator]] types; the new one uses none except `@Component`. Both behave the same, and their events go to the same log.
 - `@HostBinding` and `@HostListener` are **not deprecated**, but the Angular style guide prefers the `host` property.
 
 ## Say it like this

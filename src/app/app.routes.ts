@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Routes } from '@angular/router';
 import { AppShell } from '@layout/app-shell/app-shell';
 import { topicRoutes } from '@layout/topic-shell/topic-routes';
 import { TOPICS } from '@topics/topic-registry';
@@ -12,6 +12,16 @@ export const routes: Routes = [
         path: '',
         title: 'Angular 22 by live demo',
         loadComponent: () => import('./pages/home/home'),
+      },
+      {
+        path: 'glossary',
+        title: 'Glossary',
+        loadComponent: () => import('./pages/glossary/glossary-index'),
+      },
+      {
+        path: 'glossary/:slug',
+        title: glossaryTitle,
+        loadComponent: () => import('./pages/glossary/glossary-term'),
       },
       {
         path: 'about',
@@ -30,3 +40,11 @@ export const routes: Routes = [
     ],
   },
 ];
+
+/** "Signal | Glossary". The glossary data loads lazily, only for glossary pages. */
+function glossaryTitle(route: ActivatedRouteSnapshot): Promise<string> {
+  const slug = route.paramMap.get('slug') ?? '';
+  return import('@glossary/glossary-terms').then(
+    ({ findTerm }) => `${findTerm(slug)?.term ?? 'Unknown term'} | Glossary`,
+  );
+}

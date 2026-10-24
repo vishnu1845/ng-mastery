@@ -1,6 +1,6 @@
 ## Definition
 
-`index.html` is the **single HTML page** of our SPA. It holds the `<app-root>` tag, which is where Angular **renders the root component**.
+`index.html` is the **single HTML page** of our [[spa|SPA]]. It holds the `<app-root>` tag, which is where Angular **renders the root [[component|component]]**.
 
 ## Example
 

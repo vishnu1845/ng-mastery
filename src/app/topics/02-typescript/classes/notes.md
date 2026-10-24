@@ -4,12 +4,12 @@ TypeScript adds **access modifiers** to classes: `public` (default, everywhere),
 
 ## Access modifiers
 
-| Keyword            | Access                                                       |
-| ------------------ | ------------------------------------------------------------ |
-| `public` (default) | Everywhere                                                   |
-| `protected`        | Class + subclasses (and the component's template in Angular) |
-| `private`          | Only inside the class                                        |
-| `readonly`         | Set once, can't be reassigned                                |
+| Keyword            | Access                                                                                    |
+| ------------------ | ----------------------------------------------------------------------------------------- |
+| `public` (default) | Everywhere                                                                                |
+| `protected`        | Class + subclasses (and the [[component\|component]]'s [[template\|template]] in Angular) |
+| `private`          | Only inside the class                                                                     |
+| `readonly`         | Set once, can't be reassigned                                                             |
 
 ## Example
 

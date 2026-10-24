@@ -46,7 +46,7 @@ function isUser(obj: unknown): obj is User {
 
 ## In Angular templates
 
-Narrowing works in templates too. Save the signal value with `@let`, then `@if` or `@switch` on the discriminant:
+Narrowing works in [[template|templates]] too. Save the [[signal|signal]] value with `@let`, then `@if` or `@switch` on the discriminant:
 
 <!-- prettier-ignore -->
 ```html

@@ -37,9 +37,11 @@ src/
     ├── layout/           # the frame around pages
     │   ├── app-shell/    # sidebar + top bar + outlet, mobile drawer, keyboard shortcuts
     │   ├── sidebar/ · topbar/ · theme-menu/ · command-palette/ · logo/
-    │   └── topic-shell/  # renders every lesson page + builds the topic routes
+    │   ├── topic-shell/  # renders every lesson page + builds the topic routes
+    │   └── term-preview/ # hover card for glossary words (loaded when the browser is idle)
     ├── shared/           # reusable UI (markdown, code-block, code-viewer, and later demo helpers)
-    ├── pages/            # home, about, not-found
+    ├── glossary/         # glossary-terms.ts (every term, A–Z) + its tests
+    ├── pages/            # home, about, not-found, glossary (index + one page per term)
     └── topics/
         ├── parts.ts          # the 17 parts
         ├── topic-registry.ts # TOPICS: 01 → 52
@@ -92,11 +94,21 @@ TOPICS ──► topicRoutes() ──► /rxjs-flattening/switch-map
 
 Optional lesson fields: `children` (child routes for routing demos), `providers` (route-level providers, e.g. an NgRx store), and no `component` for a theory-only lesson.
 
+## Glossary links
+
+Like MDN, a word in the notes can link to a short definition, so a beginner can look it up and come straight back.
+
+- In `notes.md`, write `[[signal]]`, or `[[zoneless|zoneless apps]]` when the visible text differs from the slug. Inside a table row, escape the pipe: `[[zoneless\|zoneless apps]]`.
+- Link only the **first** mention in a lesson, never inside code, headings or "Say it like this", and never the term the lesson itself teaches.
+- Each term lives in `src/app/glossary/glossary-terms.ts` (`short`, optional `body`, `example`, `related`, `lessons`). Keep the list A–Z by slug.
+- The glossary test fails on a broken link, an unknown related term or a lesson URL that doesn't exist.
+- Hovering (mouse) or focusing (keyboard) a link shows a card with the one-line definition. Clicking opens `/glossary/<slug>`, whose "Back to <lesson>" button returns to the same scroll position.
+
 ## Coding conventions
 
 - **Modern Angular only:** standalone components, signals for state, `inject()`, `@if` / `@for` / `@switch`, `@Service()` for services, functional guards / interceptors / resolvers. OnPush and zoneless are the Angular 22 defaults.
 - **Naming:** kebab-case files with v20+ naming (`theme-store.ts` → `ThemeStore`). Demo components end in `Demo`.
-- **Imports:** use the path aliases `@core/*`, `@layout/*`, `@shared/*`, `@topics/*`.
+- **Imports:** use the path aliases `@core/*`, `@layout/*`, `@shared/*`, `@topics/*`, `@glossary/*`.
 - **Comments:** English, with section headers written as `// SECTION NAME`.
 - **No `any`.** Strict TypeScript and strict templates are on.
 - **Legacy syntax** (`*ngIf`, `@Input()`, class guards) appears only in lessons that compare old and new, because interviewers still ask about it.

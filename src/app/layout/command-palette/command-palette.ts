@@ -2,6 +2,7 @@ import { Component, computed, ElementRef, inject, signal, viewChild } from '@ang
 import { Router, RouterLink } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
 import { Catalog, SearchResult, topicNumber } from '@topics/catalog';
+import type { GlossaryTerm } from '@glossary/glossary-terms';
 
 /**
  * Quick search (Ctrl/Cmd + K or "/"), built on the native <dialog> element:
@@ -21,10 +22,14 @@ export class CommandPalette {
   protected readonly query = signal('');
   protected readonly activeIndex = signal(0);
 
+  /** Glossary terms, loaded the first time the palette opens. */
+  private readonly terms = signal<readonly GlossaryTerm[]>([]);
+
   /** Search results, or the first lessons as suggestions when the box is empty. */
   protected readonly results = computed<SearchResult[]>(() => {
     const query = this.query();
-    if (query.trim()) return this.catalog.search(query);
+    if (query.trim())
+      return [...this.catalog.search(query, 8), ...this.searchTerms(query)].slice(0, 10);
     return this.catalog.lessonPath.slice(0, 6).map(({ topic, lesson, url }) => ({
       label: lesson.title,
       context: `${topicNumber(topic)} ${topic.title}`,
@@ -35,6 +40,9 @@ export class CommandPalette {
   open(): void {
     const dialog = this.dialog().nativeElement;
     if (!dialog.open) dialog.showModal();
+    if (!this.terms().length) {
+      import('@glossary/glossary-terms').then(({ GLOSSARY }) => this.terms.set(GLOSSARY));
+    }
   }
 
   close(): void {
@@ -66,5 +74,12 @@ export class CommandPalette {
       this.router.navigateByUrl(this.results()[this.activeIndex()].url);
       this.close();
     }
+  }
+
+  private searchTerms(query: string): SearchResult[] {
+    const term = query.trim().toLowerCase();
+    return this.terms()
+      .filter((entry) => entry.term.toLowerCase().includes(term))
+      .map((entry) => ({ label: entry.term, context: 'Glossary', url: `/glossary/${entry.slug}` }));
   }
 }

@@ -18,6 +18,16 @@
     Roadmap
   </a>
 
+  <a
+    class="nav-link"
+    routerLink="/glossary"
+    routerLinkActive="is-active"
+    ariaCurrentWhenActive="page"
+  >
+    <ng-icon name="lucideBookA" aria-hidden="true" />
+    Glossary
+  </a>
+
   @for (part of catalog.liveParts; track part.id) {
     <section class="part" [attr.aria-labelledby]="'part-' + part.id">
       <h2 class="part-title" [id]="'part-' + part.id">{{ part.title }}</h2>

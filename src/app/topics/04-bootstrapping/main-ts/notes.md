@@ -1,6 +1,6 @@
 ## Definition
 
-`main.ts` is the **entry point** of the app. It calls `bootstrapApplication()`, which **starts Angular with the root component and the app config**.
+`main.ts` is the **entry point** of the app. It calls `bootstrapApplication()`, which **starts Angular with the root [[component|component]] and the app config**.
 
 ## Example
 
@@ -16,8 +16,8 @@ bootstrapApplication(App, appConfig).catch((err) => console.error(err));
 ## Key points
 
 - **1st argument** → the root component (`App`).
-- **2nd argument** → the `ApplicationConfig` with app-wide providers.
-- Returns a **Promise**; `.catch()` logs any startup error.
+- **2nd argument** → the `ApplicationConfig` with app-wide [[provider|providers]].
+- Returns a **[[promise|Promise]]**; `.catch()` logs any startup error.
 - **Under the hood** it does two steps, the same ones the demo runs by hand: create the app (injector, providers, initializers), then create the root component in the page.
 
 ```ts

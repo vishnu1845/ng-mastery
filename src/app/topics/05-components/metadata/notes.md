@@ -1,6 +1,6 @@
 ## Definition
 
-**Metadata** is **additional information about data**. In Angular, metadata is the configuration object passed **inside a decorator** that tells Angular how to process, render, and style the class.
+**Metadata** is **additional information about data**. In Angular, metadata is the configuration object passed **inside a [[decorator|decorator]]** that tells Angular how to process, render, and style the class.
 
 💬 **One-liner:** "Decorator is the function; metadata is the configuration object you pass into it."
 
@@ -20,23 +20,23 @@
 export class ProductCard {}
 ```
 
-| Property                   | What it does                                                        |
-| -------------------------- | ------------------------------------------------------------------- |
-| `selector`                 | The tag / attribute / class that places this component              |
-| `template` / `templateUrl` | Inline HTML / path to the HTML file                                 |
-| `styles` / `styleUrl`      | Inline CSS / path to the CSS file (`styleUrls` array in older code) |
-| `imports`                  | Components, directives & pipes this template uses                   |
-| `providers`                | Services scoped to this component & its children                    |
-| `changeDetection`          | `OnPush` (default in v22) or `Eager` (old default)                  |
-| `encapsulation`            | How styles are scoped (`Emulated`, `None`, `ShadowDom`)             |
-| `host`                     | Bindings & listeners on the component's own tag                     |
-| `standalone`               | Only written as `standalone: false` for NgModule components (v19+)  |
+| Property                   | What it does                                                                     |
+| -------------------------- | -------------------------------------------------------------------------------- |
+| `selector`                 | The tag / attribute / class that places this component                           |
+| `template` / `templateUrl` | Inline HTML / path to the HTML file                                              |
+| `styles` / `styleUrl`      | Inline CSS / path to the CSS file (`styleUrls` array in older code)              |
+| `imports`                  | Components, [[directive\|directives]] & pipes this [[template\|template]] uses   |
+| `providers`                | Services scoped to this component & its children                                 |
+| `changeDetection`          | [[onpush\|`OnPush`]] (default in v22) or `Eager` (old default)                   |
+| `encapsulation`            | How styles are scoped (`Emulated`, `None`, `ShadowDom`)                          |
+| `host`                     | Bindings & listeners on the component's own tag                                  |
+| `standalone`               | Only written as `standalone: false` for [[ngmodule\|NgModule]] components (v19+) |
 
 **v22 note:** the old default strategy is now called `ChangeDetectionStrategy.Eager`. `ChangeDetectionStrategy.Default` still works but is deprecated.
 
 ## Standalone (default since v19)
 
-A **standalone component** manages its own dependencies through its `imports` array and **doesn't need to be declared in an NgModule**. It has been the **default since v19**.
+A **[[standalone-component|standalone component]]** manages its own dependencies through its `imports` array and **doesn't need to be declared in an NgModule**. It has been the **default since v19**.
 
 | Angular version                | What we write                                                    |
 | ------------------------------ | ---------------------------------------------------------------- |
@@ -46,7 +46,7 @@ A **standalone component** manages its own dependencies through its `imports` ar
 
 ## Key points
 
-- The demo shows one metadata line in action: the **same service class** is shared app-wide from the root injector, but `providers: [CounterStore]` gives **every component its own instance**.
+- The demo shows one metadata line in action: the **same [[service|service]] class** is shared app-wide from the root injector, but `providers: [CounterStore]` gives **every component its own instance**.
 
 ## Say it like this
 

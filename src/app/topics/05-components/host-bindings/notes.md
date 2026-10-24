@@ -1,6 +1,6 @@
 ## Definition
 
-The **host element** is the **component's own tag** in the DOM (like `<app-toggle>`). **Host bindings** let us add attributes, classes, styles and event listeners **to that tag** from inside the component.
+The **host element** is the **component's own tag** in the [[dom|DOM]] (like `<app-toggle>`). **Host bindings** let us add attributes, classes, styles and event listeners **to that tag** from inside the component.
 
 ## Example
 
@@ -39,8 +39,8 @@ export class Toggle {
 
 ## Rapid-fire (whole topic)
 
-- **Component vs Module?** → A component controls a piece of UI (class + template + metadata). A module is just a **container** that groups components, pipes, directives and services. Standalone components removed the need for modules.
-- **What is metadata?** → The configuration object inside a decorator, like `selector`, `templateUrl` and `styleUrl` in `@Component`.
+- **Component vs Module?** → A component controls a piece of UI (class + [[template|template]] + metadata). A module is just a **container** that groups components, pipes, [[directive|directives]] and [[service|services]]. Standalone components removed the need for modules.
+- **What is metadata?** → The configuration object inside a [[decorator|decorator]], like `selector`, `templateUrl` and `styleUrl` in `@Component`.
 - **`@Component` vs `@Directive`?** → A component has a **template** and creates UI; a directive has **no template** and only adds behaviour. A component is a directive with a view.
 - **Default view encapsulation?** → `Emulated`
 - **Width/padding not working on my component?** → Add `:host { display: block; }`

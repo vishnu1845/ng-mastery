@@ -1,10 +1,10 @@
 ## Definition
 
-**Angular** is an **open-source framework** developed and maintained by **Google**, based on **TypeScript**, used to build static as well as dynamic **Single Page Applications (SPA)**.
+**Angular** is an **open-source framework** developed and maintained by **Google**, based on **[[typescript|TypeScript]]**, used to build static as well as dynamic **Single Page Applications (SPA)**.
 
 ## 2026 update
 
-Modern Angular (v22) is built with **standalone components** and **signals**. New apps run **without Zone.js**, and components use **OnPush** change detection by default.
+Modern Angular (v22) is built with **[[standalone-component|standalone components]]** and **[[signal|signals]]**. New apps run **without [[zone-js|Zone.js]]**, and [[component|components]] use **[[onpush|OnPush]]** [[change-detection|change detection]] by default.
 
 ## Key terms
 

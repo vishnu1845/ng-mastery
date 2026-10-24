@@ -54,4 +54,4 @@ private apiUrl = environment.apiUrl;
 - **Why is `node_modules` not committed?** → It's huge and can be rebuilt from `package-lock.json`
 - **What is the `.angular/` folder?** → CLI build cache; safe to delete, git-ignored
 - **`npm install` vs `npm ci`?** → `ci` installs exactly from the lock file, clean & fast, for CI
-- **`npm install` vs `ng add`?** → `ng add` installs **and** configures the library
+- **`npm install` vs `ng add`?** → `ng add` installs **and** configures the [[library|library]]

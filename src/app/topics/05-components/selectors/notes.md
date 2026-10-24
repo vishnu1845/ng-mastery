@@ -1,6 +1,6 @@
 ## Definition
 
-A component's **selector** tells Angular **where to create it**: wherever a template has a matching **element**, **attribute** or **class**.
+A component's **selector** tells Angular **where to create it**: wherever a [[template|template]] has a matching **element**, **attribute** or **class**.
 
 ## Selector types
 

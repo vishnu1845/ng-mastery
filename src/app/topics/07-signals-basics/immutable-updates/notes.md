@@ -22,7 +22,7 @@ this.user.update((u) => ({ ...u, address: { ...u.address, city: 'Mumbai' } }));
 
 ## Key points
 
-- The classic version of this bug: a child component gets the array through an `input()`. After a `push()`, the child receives the **same reference**, so Angular sees no new input and the child never updates. The demo shows exactly that.
+- The classic version of this bug: a child [[component|component]] gets the array through an `input()`. After a `push()`, the child receives the **same reference**, so Angular sees no new input and the child never updates. The demo shows exactly that.
 - Mutating in place is sneaky: the change is really there, so it **shows up later**, when something else causes an update.
 - Arrays: use spread, `map()`, `filter()`, `toSorted()`. Avoid `push()`, `splice()` and `sort()` on the signal's own array.
 - Objects: spread every level you change: `{ ...u, address: { ...u.address, city } }`.

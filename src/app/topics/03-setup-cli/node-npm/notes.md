@@ -29,7 +29,7 @@ Source: angular.dev → Reference → Versions.
 
 - **Angular 22** runs on **Node 22, 24 or 26**. Node 20 support was dropped in v22.
 - **Older projects need older Node** (an Angular 9 app won't build on Node 24), so we use **nvm** to switch Node versions per project.
-- **Key distinction:** Node is needed only for **development & building** (and for the server in SSR). The final app runs in the **browser** as plain JS, HTML and CSS.
+- **Key distinction:** Node is needed only for **development & building** (and for the server in [[ssr|SSR]]). The final app runs in the **browser** as plain JS, HTML and CSS.
 
 ## Say it like this
 

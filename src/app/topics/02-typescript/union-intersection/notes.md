@@ -23,7 +23,7 @@ size = input<'sm' | 'md' | 'lg'>('md');
 ## Key points
 
 - A literal union is the simplest way to say "only these values": button sizes, roles, statuses.
-- Angular checks inputs in templates too (`strictTemplates`), so `size="xl"` fails at build time.
+- Angular checks inputs in [[template|templates]] too (`strictTemplates`), so `size="xl"` fails at build time.
 - An intersection is how a `type` "extends" another shape.
 
 ## Say it like this

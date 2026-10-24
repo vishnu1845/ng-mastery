@@ -1,6 +1,6 @@
 ## Definition
 
-**Bootstrapping** is the process of **starting an Angular app**: loading the entry file, setting up the app-wide providers, and rendering the root component into `index.html`.
+**Bootstrapping** is the process of **starting an Angular app**: loading the entry file, setting up the app-wide [[provider|providers]], and rendering the root [[component|component]] into `index.html`.
 
 ## What happens when we run ng serve
 
@@ -30,8 +30,8 @@ Router            → loads the page for the current URL into <router-outlet>
 
 - Angular renders **inside** `<app-root>`; it does **not replace** the tag.
 - `ng serve` builds **in memory**; it doesn't write files to `dist/` (only `ng build` does).
-- **With SSR / prerendering** (like this site), the HTML already has the page in it, so the browser paints it **before** `main.ts` runs. Angular then **hydrates**: it reuses that DOM instead of drawing it again.
-- New apps are **zoneless**: no Zone.js is loaded, signals and events tell Angular when to update the screen.
+- **With [[ssr|SSR]] / [[prerendering|prerendering]]** (like this site), the HTML already has the page in it, so the browser paints it **before** `main.ts` runs. Angular then **hydrates**: it reuses that [[dom|DOM]] instead of drawing it again.
+- New apps are **[[zoneless|zoneless]]**: no [[zone-js|Zone.js]] is loaded, [[signal|signals]] and events tell Angular when to update the screen.
 
 ## Say it like this
 

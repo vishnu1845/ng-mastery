@@ -93,6 +93,19 @@ kbd {
     text-underline-offset: 0.2em;
   }
 
+  // Glossary links: a quiet dotted underline, so dense notes stay readable
+  a.term {
+    color: inherit;
+    text-decoration: underline dotted var(--accent);
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 0.25em;
+
+    &:hover,
+    &:focus-visible {
+      color: var(--accent);
+    }
+  }
+
   ul,
   ol {
     padding-left: 1.25rem;

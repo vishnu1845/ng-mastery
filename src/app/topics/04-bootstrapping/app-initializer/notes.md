@@ -1,6 +1,6 @@
 ## Definition
 
-`provideAppInitializer()` runs a function **during app startup, before the root component renders**. If it returns a Promise or Observable, Angular **waits for it to finish**. It replaced the `APP_INITIALIZER` token (deprecated in v19).
+`provideAppInitializer()` runs a function **during app startup, before the root [[component|component]] renders**. If it returns a [[promise|Promise]] or [[observable|Observable]], Angular **waits for it to finish**. It replaced the `APP_INITIALIZER` token (deprecated in v19).
 
 ## Example
 

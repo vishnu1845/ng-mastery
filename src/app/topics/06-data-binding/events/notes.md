@@ -2,7 +2,7 @@
 
 **Event Binding** handles user actions (click, input, keyup...) using `(event)="method()"`.
 
-**`$event`** is a built-in object that carries the **event data** from template to TS (event type, target element, value, key pressed...).
+**`$event`** is a built-in object that carries the **event data** from [[template|template]] to TS (event type, target element, value, key pressed...).
 
 ## Example
 
@@ -24,13 +24,13 @@ onSubmit(data: string) {
 
 With `strictTemplates` (on by default), the compiler knows the exact type. Checked against Angular 22:
 
-| Binding                   | `$event` type                    |
-| ------------------------- | -------------------------------- |
-| `(click)`                 | `PointerEvent`                   |
-| `(input)`                 | `InputEvent`                     |
-| `(keyup)` / `(keydown)`   | `KeyboardEvent`                  |
-| `(keydown.enter)`         | `Event` (key filters lose it)    |
-| `(picked)` on a component | whatever its `output<T>()` emits |
+| Binding                                  | `$event` type                    |
+| ---------------------------------------- | -------------------------------- |
+| `(click)`                                | `PointerEvent`                   |
+| `(input)`                                | `InputEvent`                     |
+| `(keyup)` / `(keydown)`                  | `KeyboardEvent`                  |
+| `(keydown.enter)`                        | `Event` (key filters lose it)    |
+| `(picked)` on a [[component\|component]] | whatever its `output<T>()` emits |
 
 Since v20.2, even `$event.target` is typed, but only on **void elements** like `<input>`, where the target can only be the element itself. So on an `<input>`, `$event.target.value` is a `string` with **no cast**.
 

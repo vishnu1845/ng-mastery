@@ -1,6 +1,6 @@
 ## Definition
 
-**Key event filters** listen to **one specific key** right in the template, like `(keyup.enter)`, so we don't have to check `event.key` in TypeScript.
+**Key event filters** listen to **one specific key** right in the [[template|template]], like `(keyup.enter)`, so we don't have to check `event.key` in [[typescript|TypeScript]].
 
 ## Example
 

@@ -1,10 +1,10 @@
 ## Definition
 
-A **Decorator** is a **TypeScript feature** (defined with the **@ symbol**) that tells Angular **how to process a class**. It adds metadata to modify or enhance the behavior of a class, property, method, or parameter — without changing its actual code.
+A **Decorator** is a **TypeScript feature** (defined with the **@ symbol**) that tells Angular **how to process a class**. It adds [[metadata|metadata]] to modify or enhance the behavior of a class, property, method, or parameter — without changing its actual code.
 
 ## Under the hood
 
-A decorator is just a **function** that runs on the thing it decorates. Angular's compiler reads them at build time (AOT).
+A decorator is just a **function** that runs on the thing it decorates. Angular's compiler reads them at build time ([[aot-compilation|AOT]]).
 
 ```ts
 @Component({ selector: 'app-user', template: '...' }) // CLASS decorator

@@ -1,6 +1,6 @@
 ## Definition
 
-An **NgModule** is a class marked with `@NgModule` that **groups related components, directives, pipes and services**, and tells Angular how to compile and bootstrap the app. Older apps start from a root `AppModule`.
+An **NgModule** is a class marked with `@NgModule` that **groups related [[component|components]], [[directive|directives]], pipes and [[service|services]]**, and tells Angular how to compile and bootstrap the app. Older apps start from a root `AppModule`.
 
 ## Legacy NgModule bootstrap
 
@@ -57,6 +57,6 @@ export class AppModule {}
 - **Who adds the `<script>` tags to `index.html`?** → The CLI, at build time
 - **Does Angular replace `<app-root>`?** → No, it renders **inside** it
 - **What runs first: an app initializer or the root component?** → The app initializer
-- **Can we bootstrap without `app.config.ts`?** → Yes, `bootstrapApplication(App)` works; providers are optional
+- **Can we bootstrap without `app.config.ts`?** → Yes, `bootstrapApplication(App)` works; [[provider|providers]] are optional
 - **Where do we add `HttpClient` in a standalone app?** → Since v21 we don't have to: `inject(HttpClient)` just works. We add `provideHttpClient(...)` in `app.config.ts` only to configure it (interceptors, XSRF)
 - **Are NgModules removed?** → No, still supported; standalone is just the default
