@@ -5,6 +5,12 @@ export const whatsNewTopic: Topic = {
   slug: 'whats-new',
   title: "What's New: Angular v16 → v22 & Migrations",
   part: 'architecture',
-  outline: ['version-timeline', 'migrations', 'standalone-migration', 'zoneless-migration'],
+  outline: [
+    'version-timeline',
+    'migrations',
+    'standalone-migration',
+    'zoneless-migration',
+    'ai-tooling',
+  ],
   lessons: [],
 };

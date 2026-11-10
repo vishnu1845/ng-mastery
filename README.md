@@ -20,20 +20,20 @@ An open-source Angular 22 playground that covers the framework in 52 topics, fro
 
 ## Syllabus
 
-| Part | Topics |
-|---|---|
-| Foundations | 01–04: Introduction, TypeScript, CLI, bootstrapping |
-| Components & Templates | 05–14: components, binding, signals, control flow, directives, pipes, communication, lifecycle, projection, dynamic components |
-| Services & DI | 15–16 |
-| Routing | 17–20: routing, params, lazy loading, guards & resolvers |
-| Forms | 21–24: template-driven, reactive, ControlValueAccessor, Signal Forms |
-| HTTP | 25–26: HttpClient, interceptors |
-| RxJS | 27–32: observables, subjects, basic / combination / flattening operators, errors & sharing |
-| Advanced reactivity | 33–35: advanced signals, resources, interop |
-| Rendering | 36–37: change detection, `@defer` |
-| State, performance, SSR | 38–40 |
-| Build, testing, security | 41–46 |
-| Extras & wrap-up | 47–52: animations, i18n, Material/CDK, architecture, what's new, machine-test scenarios |
+| Part                     | Topics                                                                                                                         |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Foundations              | 01–04: Introduction, TypeScript, CLI, bootstrapping                                                                            |
+| Components & Templates   | 05–14: components, binding, signals, control flow, directives, pipes, communication, lifecycle, projection, dynamic components |
+| Services & DI            | 15–16                                                                                                                          |
+| Routing                  | 17–20: routing, params, lazy loading, guards & resolvers                                                                       |
+| Forms                    | 21–24: template-driven, reactive, ControlValueAccessor, Signal Forms                                                           |
+| HTTP                     | 25–26: HttpClient, interceptors                                                                                                |
+| RxJS                     | 27–32: observables, subjects, basic / combination / flattening operators, errors & sharing                                     |
+| Advanced reactivity      | 33–35: advanced signals, resources, interop                                                                                    |
+| Rendering                | 36–37: change detection, `@defer`                                                                                              |
+| State, performance, SSR  | 38–40                                                                                                                          |
+| Build, testing, security | 41–46                                                                                                                          |
+| Extras & wrap-up         | 47–52: animations, i18n, Material/CDK, architecture, what's new, machine-test scenarios                                        |
 
 ## Getting started
 
@@ -46,15 +46,15 @@ npm install
 npm start          # http://localhost:4200
 ```
 
-| Script | What it does |
-|---|---|
-| `npm start` | Dev server with SSR and hot reload |
-| `npm run build` | Production build with prerendering |
+| Script              | What it does                                       |
+| ------------------- | -------------------------------------------------- |
+| `npm start`         | Dev server with SSR and hot reload                 |
+| `npm run build`     | Production build with prerendering                 |
 | `npm run serve:ssr` | Serve the production build (http://localhost:4000) |
-| `npm test` | Unit tests (Vitest) in watch mode |
-| `npm run test:ci` | Unit tests once |
-| `npm run lint` | angular-eslint |
-| `npm run format` | Prettier |
+| `npm test`          | Unit tests (Vitest) in watch mode                  |
+| `npm run test:ci`   | Unit tests once                                    |
+| `npm run lint`      | angular-eslint                                     |
+| `npm run format`    | Prettier                                           |
 
 ## Project structure
 
@@ -72,7 +72,7 @@ src/app/
             └── notes.md
 ```
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full structure, conventions and how to add a lesson.
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for the full structure, conventions and how to add a lesson. The build order and planned features are in [docs/ROADMAP.md](docs/ROADMAP.md).
 
 ## Author
 

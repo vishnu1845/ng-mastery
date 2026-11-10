@@ -8,11 +8,13 @@ export const reactiveFormsTopic: Topic = {
   outline: [
     'controls-groups',
     'form-builder',
+    'typed-forms',
     'validators',
     'custom-validators',
     'cross-field',
     'async-validators',
     'value-changes',
+    'update-on',
     'set-vs-patch',
     'form-array',
     'dynamic-json-form',

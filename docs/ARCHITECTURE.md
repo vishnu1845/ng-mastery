@@ -1,6 +1,6 @@
 # Architecture
 
-How NgMastery is organised, and the rules that keep it clean as it grows to 52 topics and ~350 lessons.
+How NgMastery is organised, and the rules that keep it clean as it grows to 52 topics and ~380 lessons. The build order and planned features are in [ROADMAP.md](./ROADMAP.md).
 
 ## The four rules
 

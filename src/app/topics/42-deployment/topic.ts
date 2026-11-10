@@ -5,6 +5,13 @@ export const deploymentTopic: Topic = {
   slug: 'deployment',
   title: 'Environments, Build Configs & Deployment',
   part: 'build',
-  outline: ['environments', 'build-configs', 'base-href', 'hosting-spa-fallback', 'ci-cd'],
+  outline: [
+    'environments',
+    'build-configs',
+    'base-href',
+    'hosting-spa-fallback',
+    'ci-cd',
+    'pwa-service-worker',
+  ],
   lessons: [],
 };

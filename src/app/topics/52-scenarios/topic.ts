@@ -18,6 +18,9 @@ export const scenariosTopic: Topic = {
     'polling',
     'unsaved-changes',
     'global-loader',
+    'data-table',
+    'multi-step-form',
+    'optimistic-update',
   ],
   lessons: [],
 };

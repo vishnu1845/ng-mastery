@@ -14,6 +14,7 @@ export const ssrHydrationTopic: Topic = {
     'transfer-cache',
     'browser-only-code',
     'skip-hydration',
+    'pending-tasks',
   ],
   lessons: [],
 };

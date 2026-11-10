@@ -14,6 +14,8 @@ export const routingBasicsTopic: Topic = {
     'named-outlets',
     'route-title',
     'router-events',
+    'location-strategies',
+    'scroll-fragments',
   ],
   lessons: [],
 };

@@ -11,6 +11,7 @@ export const dynamicComponentsTopic: Topic = {
     'ng-component-outlet',
     'lazy-component',
     'dialog-service',
+    'angular-elements',
   ],
   lessons: [],
 };

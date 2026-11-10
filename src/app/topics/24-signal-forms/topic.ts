@@ -13,6 +13,7 @@ export const signalFormsTopic: Topic = {
     'conditional-logic',
     'async-submit',
     'custom-control',
+    'reactive-interop',
     'forms-compared',
   ],
   lessons: [],

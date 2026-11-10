@@ -5,6 +5,12 @@ export const lazyLoadingTopic: Topic = {
   slug: 'lazy-loading',
   title: 'Lazy Loading & Preloading',
   part: 'routing',
-  outline: ['load-component', 'load-children', 'preloading', 'can-match-lazy'],
+  outline: [
+    'load-component',
+    'load-children',
+    'preloading',
+    'can-match-lazy',
+    'route-reuse-strategy',
+  ],
   lessons: [],
 };

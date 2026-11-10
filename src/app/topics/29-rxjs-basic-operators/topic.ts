@@ -13,6 +13,7 @@ export const rxjsBasicOperatorsTopic: Topic = {
     'debounce-throttle',
     'scan-reduce',
     'start-with',
+    'custom-operator',
   ],
   lessons: [],
 };
