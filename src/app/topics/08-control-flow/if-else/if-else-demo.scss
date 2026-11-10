@@ -1,0 +1,56 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+// ACCOUNT BOX
+.account {
+  min-height: 4.25rem;
+  align-content: center;
+
+  p {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    margin: 0;
+  }
+}
+
+// @IF vs [HIDDEN]
+.side {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  min-height: 10.5rem;
+}
+
+.how {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+// The label is display: grid, which would beat the hidden attribute
+.field[hidden] {
+  display: none;
+}
+
+.toggle {
+  justify-self: start;
+}

@@ -62,6 +62,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/data-binding/attribute', '/components/host-bindings'],
   },
   {
+    slug: 'async-pipe',
+    term: 'async pipe',
+    short:
+      'A pipe that subscribes to an Observable or Promise in the template, shows its latest value, and unsubscribes when the view is destroyed.',
+    body: 'Every `| async` in a template is its own subscription. To use one value in several places, save it once with [[let-declaration|@let]].',
+    example: {
+      lang: 'angular-html',
+      code: '@let user = user$ | async;\n<p>{{ user?.name }}</p>',
+    },
+    related: ['observable', 'let-declaration'],
+    lessons: ['/control-flow/let'],
+  },
+  {
     slug: 'attribute-binding',
     term: 'Attribute binding',
     short:
@@ -120,6 +133,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/signals-basics/computed'],
   },
   {
+    slug: 'control-flow',
+    term: 'Control flow',
+    short:
+      'The template blocks `@if`, `@for` and `@switch` that decide what is shown, hidden or repeated. Built into Angular since v17.',
+    body: 'They are part of the template syntax, so nothing is imported. They replaced the [[structural-directive|structural directives]] `*ngIf`, `*ngFor` and `ngSwitch`.',
+    example: {
+      lang: 'angular-html',
+      code: '@if (user(); as user) {\n  <p>Hi {{ user.name }}</p>\n} @else {\n  <p>Please log in</p>\n}',
+    },
+    related: ['template', 'track', 'structural-directive'],
+    lessons: ['/control-flow/if-else', '/control-flow/for-track', '/control-flow/switch'],
+  },
+  {
     slug: 'data-binding',
     term: 'Data binding',
     short:
@@ -159,7 +185,7 @@ export const GLOSSARY: GlossaryTerm[] = [
     short:
       'A class that adds behaviour to elements in a template. A component is a directive with a template; an attribute directive changes an existing element.',
     body: '`ngModel` is an attribute directive. The built-in `@if` and `@for` blocks replaced the old structural directives `*ngIf` and `*ngFor`. Topic 09 covers writing our own.',
-    related: ['component', 'template-reference-variable'],
+    related: ['component', 'structural-directive', 'template-reference-variable'],
     lessons: ['/data-binding/template-refs'],
   },
   {
@@ -300,6 +326,18 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/bootstrapping/standalone-vs-ngmodule'],
   },
   {
+    slug: 'let-declaration',
+    term: '@let',
+    short:
+      'A read-only variable declared inside a template, to compute a value once and reuse it below.',
+    example: {
+      lang: 'angular-html',
+      code: '@let total = price() * qty();\n<p>Total ₹{{ total }}</p>',
+    },
+    related: ['template', 'async-pipe', 'template-reference-variable'],
+    lessons: ['/control-flow/let'],
+  },
+  {
     slug: 'library',
     term: 'Library',
     short:
@@ -330,6 +368,35 @@ export const GLOSSARY: GlossaryTerm[] = [
       'A website that loads a brand-new HTML page from the server every time the user navigates.',
     related: ['spa', 'ssr'],
     lessons: ['/introduction/spa-vs-mpa'],
+  },
+  {
+    slug: 'mutation-observer',
+    term: 'MutationObserver',
+    short:
+      'A browser API that reports every change made to a part of the DOM: nodes added, nodes removed, text and attributes changed.',
+    body: 'The demos use it to count what Angular really did to the page, instead of guessing.',
+    related: ['dom'],
+    lessons: ['/control-flow/for-track'],
+  },
+  {
+    slug: 'ng-container',
+    term: '<ng-container>',
+    short: 'A grouping tag that creates no element in the DOM. Only its content is rendered.',
+    body: 'It is the right place for a directive when an extra `<div>` would break the layout.',
+    related: ['ng-template', 'directive'],
+    lessons: ['/control-flow/ng-template-container'],
+  },
+  {
+    slug: 'ng-template',
+    term: '<ng-template>',
+    short:
+      'A piece of template that Angular does not render by itself. It appears only when something stamps it, like `ngTemplateOutlet`.',
+    example: {
+      lang: 'angular-html',
+      code: '<ng-template #card let-name>\n  <strong>{{ name }}</strong>\n</ng-template>\n\n<ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: \'Asha\' }" />',
+    },
+    related: ['ng-container', 'structural-directive'],
+    lessons: ['/control-flow/ng-template-container'],
   },
   {
     slug: 'ngmodule',
@@ -490,10 +557,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/typescript/tsconfig-strict'],
   },
   {
+    slug: 'structural-directive',
+    term: 'Structural directive',
+    short:
+      'A directive that adds or removes elements in the DOM, written with a `*` like `*ngIf` and `*ngFor`.',
+    body: 'The `*` is short for wrapping the element in an [[ng-template|<ng-template>]]. The built-in ones are deprecated since v20 in favour of [[control-flow|control flow]] blocks. We can still write our own.',
+    related: ['directive', 'control-flow', 'ng-template'],
+    lessons: ['/control-flow/legacy-structural'],
+  },
+  {
     slug: 'template',
     term: 'Template',
     short: 'The HTML of a component, extended with Angular syntax like bindings, `@if` and `@for`.',
-    related: ['component', 'data-binding', 'interpolation'],
+    related: ['component', 'control-flow', 'data-binding', 'interpolation'],
     lessons: ['/components/anatomy'],
   },
   {
@@ -507,6 +583,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     },
     related: ['directive', 'dom'],
     lessons: ['/data-binding/template-refs'],
+  },
+  {
+    slug: 'track',
+    term: 'track',
+    short:
+      'The required part of `@for` that gives each item a unique key, so Angular can match items with their DOM rows when the list changes.',
+    body: 'Track by a unique id from the data. `track $index` keeps rows in place and only suits lists that never reorder.',
+    example: {
+      lang: 'angular-html',
+      code: '@for (user of users(); track user.id) {\n  <li>{{ user.name }}</li>\n}',
+    },
+    related: ['control-flow', 'dom'],
+    lessons: ['/control-flow/for-track'],
   },
   {
     slug: 'transpile',

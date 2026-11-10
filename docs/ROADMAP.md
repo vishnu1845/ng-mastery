@@ -1,6 +1,6 @@
 # Roadmap
 
-The plan for taking NgMastery from 7 live topics to a finished, public site.
+The plan for taking NgMastery from its first live topics to a finished, public site.
 
 ## Goal
 
@@ -19,9 +19,9 @@ Every feature and lesson below is judged against these four.
 
 |                | Done | Total                 |
 | -------------- | ---- | --------------------- |
-| Topics         | 7    | 52                    |
-| Lessons        | 55   | 378                   |
-| Glossary terms | 62   | grows with each topic |
+| Topics         | 8    | 52                    |
+| Lessons        | 62   | 378                   |
+| Glossary terms | 70   | grows with each topic |
 
 Already shipped: dark and light themes with accent presets, SSR with every page prerendered, Ctrl+K search, progress tracking ("Mark as done", continue where you left off), Notes and Code tabs with copy buttons, previous/next links, MDN-style glossary links with hover cards, phone layout, CI (lint, format, tests, build).
 

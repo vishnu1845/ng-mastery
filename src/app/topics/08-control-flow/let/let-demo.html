@@ -1,0 +1,95 @@
+<section class="stack">
+  <h3 class="title">Name a value once, use it everywhere</h3>
+
+  <!-- Each @let can use the ones above it -->
+  @let subtotal = price * qty();
+  @let discount = subtotal >= 2700 ? subtotal / 10 : 0;
+  @let total = subtotal - discount;
+
+  <div class="cart panel">
+    <div class="line">
+      <span>Angular course, ₹{{ price }} each</span>
+      <span class="stepper">
+        <button
+          type="button"
+          aria-label="One less"
+          [disabled]="qty() === 1"
+          (click)="changeQty(-1)"
+        >
+          −
+        </button>
+        <output class="mono" aria-label="Quantity">{{ qty() }}</output>
+        <button type="button" aria-label="One more" [disabled]="qty() === 5" (click)="changeQty(1)">
+          +
+        </button>
+      </span>
+    </div>
+    <div class="line muted">
+      <span>Subtotal</span>
+      <span class="mono">₹{{ subtotal }}</span>
+    </div>
+    <div class="line muted">
+      <span>Discount (10% from 3 seats)</span>
+      <span class="mono">−₹{{ discount }}</span>
+    </div>
+    <div class="line sum">
+      <span>Total</span>
+      <span class="mono">₹{{ total }}</span>
+    </div>
+    <button type="button" class="btn-primary pay">Pay ₹{{ total }}</button>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">One async pipe, not three</h3>
+
+  <button type="button" class="load" (click)="load()">Load the profile</button>
+
+  <div class="cols">
+    <div class="panel profile">
+      <p class="small muted">The async pipe written three times</p>
+      <dl>
+        <dt>Name</dt>
+        <dd>{{ (repeated$() | async)?.name ?? '…' }}</dd>
+        <dt>Email</dt>
+        <dd>{{ (repeated$() | async)?.email ?? '…' }}</dd>
+        <dt>City</dt>
+        <dd>{{ (repeated$() | async)?.city ?? '…' }}</dd>
+      </dl>
+      <p class="calls" aria-live="polite">
+        HTTP requests sent:
+        <strong>{{ repeatedCalls() }}</strong>
+      </p>
+    </div>
+
+    <div class="panel profile">
+      <p class="small muted">The async pipe once, saved with a let</p>
+      @let profile = withLet$() | async;
+      <dl>
+        <dt>Name</dt>
+        <dd>{{ profile?.name ?? '…' }}</dd>
+        <dt>Email</dt>
+        <dd>{{ profile?.email ?? '…' }}</dd>
+        <dt>City</dt>
+        <dd>{{ profile?.city ?? '…' }}</dd>
+      </dl>
+      <p class="calls" aria-live="polite">
+        HTTP requests sent:
+        <strong>{{ letCalls() }}</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Three rules the compiler enforces</h3>
+
+  <ul class="rules">
+    @for (error of errors; track error.code) {
+      <li class="panel">
+        <span class="badge">{{ error.code }}</span>
+        <span class="error">{{ error.text }}</span>
+      </li>
+    }
+  </ul>
+</section>

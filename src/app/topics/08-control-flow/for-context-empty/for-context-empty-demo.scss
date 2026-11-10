@@ -1,0 +1,104 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+// VARIABLES TABLE
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  td {
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: var(--fs-sm);
+  }
+
+  td.yes {
+    color: var(--success);
+  }
+}
+
+// Zebra rows, straight from $odd
+.striped {
+  background: var(--raised);
+}
+
+.empty {
+  padding-block: var(--space-5);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  text-align: center;
+
+  button {
+    margin-left: var(--space-2);
+  }
+}
+
+// EVERYDAY USES
+.uses {
+  display: grid;
+  gap: var(--space-4);
+
+  p {
+    margin: 0;
+  }
+}
+
+.steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    padding: 0.15rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-pill);
+    color: var(--text-muted);
+    font-size: var(--fs-xs);
+  }
+
+  .current {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+}
+
+// SEAT MAP
+.seats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 4.5rem));
+  gap: var(--space-2);
+}
+
+.seat {
+  display: grid;
+  padding: var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  font-size: var(--fs-sm);
+  text-align: center;
+
+  small {
+    color: var(--text-faint);
+  }
+}
+
+.aisle {
+  margin-left: var(--space-3);
+}

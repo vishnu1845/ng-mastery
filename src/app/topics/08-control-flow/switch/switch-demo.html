@@ -1,0 +1,94 @@
+<section class="stack">
+  <h3 class="title">One value, one matching block</h3>
+
+  <div class="segmented" role="radiogroup" aria-label="Order status">
+    @for (option of statuses; track option) {
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="status() === option"
+        (click)="status.set(option)"
+      >
+        {{ option }}
+      </button>
+    }
+  </div>
+
+  <!-- A variable, not a call, so @default never can check that every status has a case -->
+  @let current = status();
+
+  <div #tracker class="tracker panel" aria-live="polite">
+    @switch (current) {
+      @case ('placed') {
+        <p>🧾 Order placed. We will pack it soon.</p>
+      }
+      @case ('packed')
+      @case ('shipped') {
+        <p>🚚 On the way. Status: {{ current }}.</p>
+      }
+      @case ('delivered') {
+        <p>✅ Delivered. Enjoy!</p>
+      }
+      @case ('cancelled') {
+        <p>❌ Cancelled. Your refund is on its way.</p>
+      }
+      @default never;
+    }
+  </div>
+
+  <p class="muted small">The tracker's real HTML right now</p>
+  <code class="dom">{{ trackerHtml() || '…' }}</code>
+
+  <div class="panel check">
+    <p class="small muted">
+      Delete the cancelled case and
+      <code>{{ neverLine }}</code>
+      stops the build:
+    </p>
+    <p class="error">{{ neverError }}</p>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Cases compare with ===</h3>
+
+  <div class="row">
+    <label class="field">
+      Stars (1 to 3)
+      <input
+        #starsBox
+        type="text"
+        inputmode="numeric"
+        size="4"
+        [value]="typed()"
+        (input)="typed.set(starsBox.value)"
+      />
+    </label>
+    <label class="tick">
+      <input type="checkbox" [checked]="convert()" (change)="convert.set(!convert())" />
+      Convert with Number()
+    </label>
+  </div>
+
+  <div class="panel stars" aria-live="polite">
+    @switch (stars()) {
+      @case (1) {
+        <p>★☆☆ Needs work</p>
+      }
+      @case (2) {
+        <p>★★☆ Good</p>
+      }
+      @case (3) {
+        <p>★★★ Excellent</p>
+      }
+      @default {
+        <p class="muted">No case matched, so the default block shows.</p>
+      }
+    }
+    <p class="small muted">
+      The value is a
+      <strong>{{ starsType() }}</strong>
+      . Every case is a number.
+    </p>
+  </div>
+</section>

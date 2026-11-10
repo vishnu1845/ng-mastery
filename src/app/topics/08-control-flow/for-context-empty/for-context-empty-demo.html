@@ -1,0 +1,87 @@
+<section class="stack">
+  <h3 class="title">Every variable, for every row</h3>
+
+  <div class="row">
+    <button type="button" (click)="add()">Add a song</button>
+    <button type="button" [disabled]="!songs().length" (click)="removeLast()">Remove last</button>
+    <button type="button" class="btn-ghost" [disabled]="!songs().length" (click)="clear()">
+      Clear
+    </button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">song</th>
+          <th scope="col" class="mono">$index</th>
+          <th scope="col" class="mono">$count</th>
+          <th scope="col" class="mono">$first</th>
+          <th scope="col" class="mono">$last</th>
+          <th scope="col" class="mono">$even</th>
+          <th scope="col" class="mono">$odd</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (song of songs(); track song) {
+          <tr [class.striped]="$odd">
+            <th scope="row">{{ song }}</th>
+            <td>{{ $index }}</td>
+            <td>{{ $count }}</td>
+            <td [class.yes]="$first">{{ $first }}</td>
+            <td [class.yes]="$last">{{ $last }}</td>
+            <td [class.yes]="$even">{{ $even }}</td>
+            <td [class.yes]="$odd">{{ $odd }}</td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="empty">
+              The queue is empty, so the &#64;empty block shows.
+              <button type="button" (click)="reset()">Fill it again</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">What we use them for</h3>
+
+  <div class="panel uses">
+    <p>
+      <span class="muted">Commas with $last:</span>
+      @for (song of songs(); track song) {
+        {{ song }}{{ $last ? '.' : ', ' }}
+      } @empty {
+        nothing queued.
+      }
+    </p>
+
+    <ol class="steps" aria-label="Queue positions">
+      @for (song of songs(); track song) {
+        <li [class.current]="$first">{{ $index + 1 }} of {{ $count }}</li>
+      }
+    </ol>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Two loops: give each $index a name</h3>
+
+  <div class="seats" role="list" aria-label="Seats">
+    @for (row of rows; track row; let rowIndex = $index) {
+      @for (seat of seats; track seat; let seatIndex = $index) {
+        <span class="seat mono" role="listitem" [class.aisle]="seatIndex === 2">
+          {{ row }}{{ seat }}
+          <small>{{ rowIndex }},{{ seatIndex }}</small>
+        </span>
+      }
+    }
+  </div>
+  <p class="muted small">
+    Inside the inner loop, $index is the seat. The row's index is only reachable through its alias,
+    rowIndex.
+  </p>
+</section>

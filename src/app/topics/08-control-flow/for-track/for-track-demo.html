@@ -1,0 +1,79 @@
+<div class="segmented" role="radiogroup" aria-label="Track expression">
+  @for (option of modes; track option.id) {
+    <button
+      type="button"
+      role="radio"
+      class="mono"
+      [attr.aria-checked]="mode() === option.id"
+      (click)="setMode(option.id)"
+    >
+      {{ option.label }}
+    </button>
+  }
+</div>
+
+<p class="hint">{{ hint() }}</p>
+
+<div class="cols">
+  <div #list class="team" role="list" aria-label="Team">
+    @switch (mode()) {
+      @case ('id') {
+        @for (member of members(); track member.id) {
+          <app-member-row [member]="member" />
+        }
+      }
+      @case ('index') {
+        @for (member of members(); track $index) {
+          <app-member-row [member]="member" />
+        }
+      }
+      @case ('identity') {
+        @for (member of members(); track member) {
+          <app-member-row [member]="member" />
+        }
+      }
+    }
+  </div>
+
+  <div class="stack">
+    <div class="row">
+      <button type="button" (click)="reload()">Reload from server</button>
+      <button type="button" (click)="addFirst()">Add to top</button>
+      <button type="button" [disabled]="members().length < 2" (click)="removeFirst()">
+        Remove first
+      </button>
+      <button type="button" (click)="reverse()">Reverse</button>
+    </div>
+
+    <div class="panel result" aria-live="polite">
+      @if (result(); as result) {
+        <p class="small muted">
+          <strong>{{ result.action }}</strong>
+          did this to the DOM:
+        </p>
+        <dl class="stats">
+          <div>
+            <dt>Rows created</dt>
+            <dd>{{ result.created }}</dd>
+          </div>
+          <div>
+            <dt>Rows destroyed</dt>
+            <dd>{{ result.destroyed }}</dd>
+          </div>
+          <div>
+            <dt>Rows moved</dt>
+            <dd>{{ result.moved }}</dd>
+          </div>
+          <div>
+            <dt>Elements rewritten</dt>
+            <dd>{{ result.rewritten }}</dd>
+          </div>
+        </dl>
+      } @else {
+        <p class="small muted">
+          Press a button. The numbers here are counted from the real DOM with a MutationObserver.
+        </p>
+      }
+    </div>
+  </div>
+</div>

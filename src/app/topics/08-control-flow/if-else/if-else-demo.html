@@ -1,0 +1,78 @@
+<section class="stack">
+  <h3 class="title">One chain, one branch in the DOM</h3>
+
+  <div #account class="account panel" aria-live="polite">
+    @if (loading()) {
+      <p class="muted">Checking your account…</p>
+    } @else if (user(); as user) {
+      <p>
+        Hi
+        <strong>{{ user.name }}</strong>
+        @if (user.plan === 'pro') {
+          <span class="badge badge-accent">Pro</span>
+        }
+      </p>
+    } @else {
+      <p class="muted">You are not logged in.</p>
+    }
+  </div>
+
+  <div class="row">
+    @if (user(); as user) {
+      <button type="button" [disabled]="user.plan === 'pro'" (click)="upgrade()">
+        Upgrade to Pro
+      </button>
+      <button type="button" class="btn-ghost" (click)="logOut()">Log out</button>
+    } @else {
+      <button type="button" class="btn-primary" [disabled]="loading()" (click)="logIn()">
+        Log in
+      </button>
+    }
+  </div>
+
+  <p class="muted small">The account box's real HTML right now</p>
+  <code class="dom">{{ accountHtml() || '…' }}</code>
+</section>
+
+<section class="stack">
+  <h3 class="title">Removed from the DOM, or only hidden?</h3>
+  <p class="muted small">Type a note in both boxes, then hide and show them.</p>
+
+  <div class="cols">
+    <div #ifSide class="side panel">
+      <code class="how">{{ ifLabel }}</code>
+      @if (open()) {
+        <label class="field">
+          Delivery note
+          <input type="text" placeholder="Leave at the door" />
+        </label>
+      }
+      <p class="small" aria-live="polite">
+        In the DOM:
+        <strong>{{ open() ? 'yes' : 'no' }}</strong>
+        · built again
+        <strong>{{ ifRebuilt() }}</strong>
+        {{ ifRebuilt() === 1 ? 'time' : 'times' }}
+      </p>
+    </div>
+
+    <div #hiddenSide class="side panel">
+      <code class="how">{{ hiddenLabel }}</code>
+      <label class="field" [hidden]="!open()">
+        Delivery note
+        <input type="text" placeholder="Leave at the door" />
+      </label>
+      <p class="small" aria-live="polite">
+        In the DOM:
+        <strong>yes</strong>
+        · built again
+        <strong>{{ hiddenRebuilt() }}</strong>
+        {{ hiddenRebuilt() === 1 ? 'time' : 'times' }}
+      </p>
+    </div>
+  </div>
+
+  <button type="button" class="toggle" (click)="open.set(!open())">
+    {{ open() ? 'Hide both' : 'Show both' }}
+  </button>
+</section>

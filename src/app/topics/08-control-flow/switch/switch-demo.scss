@@ -1,0 +1,63 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.segmented button {
+  text-transform: capitalize;
+}
+
+// ORDER TRACKER
+.tracker,
+.stars {
+  display: grid;
+  gap: var(--space-2);
+  min-height: 4.25rem;
+  align-content: center;
+
+  p {
+    margin: 0;
+  }
+}
+
+.check {
+  display: grid;
+  gap: var(--space-2);
+  border-color: color-mix(in oklab, var(--danger) 45%, transparent);
+}
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+// STARS
+.row {
+  align-items: end;
+  gap: var(--space-4);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 2.25rem;
+}

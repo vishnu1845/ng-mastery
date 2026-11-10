@@ -1,0 +1,114 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow -->
+<section class="stack">
+  <h3 class="title">The same card, old syntax and new</h3>
+
+  <div class="row">
+    <button type="button" (click)="loggedIn.set(!loggedIn())">
+      {{ loggedIn() ? 'Log out' : 'Log in' }}
+    </button>
+    <div class="segmented" role="radiogroup" aria-label="Plan">
+      @for (option of plans; track option) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="plan() === option"
+          (click)="plan.set(option)"
+        >
+          {{ option }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="cols">
+    <div class="panel card">
+      <span class="badge">Legacy directives</span>
+
+      <p *ngIf="loggedIn(); else guest">Welcome back, Asha.</p>
+      <ng-template #guest><p class="muted">Please log in.</p></ng-template>
+
+      <div [ngSwitch]="plan()">
+        <p *ngSwitchCase="'pro'">Pro: 10 projects</p>
+        <p *ngSwitchCase="'team'">Team: unlimited projects</p>
+        <p *ngSwitchDefault>Free: 1 project</p>
+      </div>
+    </div>
+
+    <div class="panel card">
+      <span class="badge badge-accent">Built-in blocks</span>
+
+      @if (loggedIn()) {
+        <p>Welcome back, Asha.</p>
+      } @else {
+        <p class="muted">Please log in.</p>
+      }
+
+      <div>
+        @switch (plan()) {
+          @case ('pro') {
+            <p>Pro: 10 projects</p>
+          }
+          @case ('team') {
+            <p>Team: unlimited projects</p>
+          }
+          @default {
+            <p>Free: 1 project</p>
+          }
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Reload the list: why track became required</h3>
+
+  <div class="row">
+    <button type="button" class="btn-primary" (click)="reload()">Reload from server</button>
+    <span class="muted small">
+      Reloaded {{ reloads() }} {{ reloads() === 1 ? 'time' : 'times' }}
+    </span>
+  </div>
+
+  <div class="cols">
+    <div class="panel list">
+      <code class="how">*ngFor="let todo of todos()"</code>
+      <ul #plainList>
+        <li *ngFor="let todo of todos()">{{ todo.title }}</li>
+      </ul>
+      <p class="small" aria-live="polite">
+        Rows built again:
+        <strong>{{ plainRebuilt() }}</strong>
+      </p>
+    </div>
+
+    <div class="panel list">
+      <code class="how">*ngFor="…; trackBy: byId"</code>
+      <ul #trackByList>
+        <li *ngFor="let todo of todos(); trackBy: byId">{{ todo.title }}</li>
+      </ul>
+      <p class="small" aria-live="polite">
+        Rows built again:
+        <strong>{{ trackByRebuilt() }}</strong>
+      </p>
+    </div>
+
+    <div class="panel list">
+      <code class="how">&#64;for (…; track todo.id)</code>
+      <ul #forList>
+        @for (todo of todos(); track todo.id) {
+          <li>{{ todo.title }}</li>
+        }
+      </ul>
+      <p class="small" aria-live="polite">
+        Rows built again:
+        <strong>{{ forRebuilt() }}</strong>
+      </p>
+    </div>
+  </div>
+
+  <p class="muted small">
+    The old trackBy was optional, so most lists forgot it and rebuilt every row on each reload. The
+    new track is required, so that mistake can't be made silently.
+  </p>
+</section>

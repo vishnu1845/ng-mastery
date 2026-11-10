@@ -1,0 +1,56 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.segmented button {
+  text-transform: capitalize;
+}
+
+// SAME CARD, TWICE
+.card {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
+
+  p {
+    margin: 0;
+  }
+}
+
+// RELOAD
+.list {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  ul {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding-left: 1.1rem;
+    font-size: var(--fs-sm);
+  }
+
+  strong {
+    color: var(--accent);
+    font-size: var(--fs-md);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.how {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
