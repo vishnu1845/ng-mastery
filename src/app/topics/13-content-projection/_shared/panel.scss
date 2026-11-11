@@ -1,0 +1,30 @@
+:host {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--raised);
+  font-size: var(--fs-sm);
+}
+
+.slot {
+  display: grid;
+  gap: var(--space-1);
+  min-height: 2.5rem;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-sm);
+}
+
+.slot-name {
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+// This rule never reaches projected content: a <p> passed in belongs to the parent,
+// so only the parent's styles apply to it (the demo checks this)
+p {
+  color: var(--danger);
+}

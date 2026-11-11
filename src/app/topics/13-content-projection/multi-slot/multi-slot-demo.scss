@@ -1,0 +1,32 @@
+.panels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.caption {
+  margin: 0;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+// The projected pieces belong to this demo, so their styles live here
+h3,
+p {
+  margin: 0;
+}
+
+h3 {
+  font-size: var(--fs-md);
+}
+
+button {
+  justify-self: start;
+}

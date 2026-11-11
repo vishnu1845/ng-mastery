@@ -172,6 +172,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/lifecycle-hooks/content-vs-view'],
   },
   {
+    slug: 'content-query',
+    term: 'Content query',
+    short:
+      'A query (`contentChild()`, `contentChildren()`) that finds elements, directives or components in the content projected into a component.',
+    body: "It sees only what the parent put between the component's tags, never the component's own template. `contentChildren()` looks at direct children by default; `{ descendants: true }` looks deeper. A tabs component uses one to find its tabs.",
+    example: {
+      lang: 'angular-ts',
+      code: 'readonly tabs = contentChildren(Tab);',
+    },
+    related: ['content-projection', 'view-child', 'query-list'],
+    lessons: ['/content-projection/content-queries'],
+  },
+  {
     slug: 'control-flow',
     term: 'Control flow',
     short:
@@ -544,6 +557,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/control-flow/ng-template-container'],
   },
   {
+    slug: 'ng-template-outlet',
+    term: 'ngTemplateOutlet',
+    short:
+      'A directive that stamps an `<ng-template>` at a place in the view, with an optional context object for its `let-` variables.',
+    body: 'The component that stamps the template creates it, when and as often as it wants. That is the difference from `<ng-content>`, whose content the parent creates once. A template can arrive as an input or through `contentChild(TemplateRef)`.',
+    example: {
+      lang: 'angular-html',
+      code: '<ng-container\n  [ngTemplateOutlet]="row()"\n  [ngTemplateOutletContext]="{ $implicit: person, index: i }"\n/>',
+    },
+    related: ['ng-template', 'template-ref', 'content-projection'],
+    lessons: ['/content-projection/template-outlet'],
+  },
+  {
     slug: 'ngmodule',
     term: 'NgModule',
     short:
@@ -653,6 +679,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     body: 'An impure pipe runs on every change detection cycle. It notices changes inside an array or object, but it costs performance.',
     related: ['pipe', 'memoization', 'immutability'],
     lessons: ['/pipes/pure-vs-impure'],
+  },
+  {
+    slug: 'query-list',
+    term: 'QueryList',
+    short:
+      'What `@ViewChildren` and `@ContentChildren` return: a live list of matches with `toArray()`, `forEach()` and a `changes` Observable.',
+    body: 'It is filled once the view or content is ready and updated when `@for` adds or removes matches, emitting on `changes`. The signal queries `viewChildren()` and `contentChildren()` replace it with a signal of a readonly array.',
+    example: {
+      lang: 'angular-ts',
+      code: "@ViewChildren('field') fields!: QueryList<ElementRef>;\n\nngAfterViewInit() {\n  this.fields.changes.subscribe(() => console.log(this.fields.length));\n}",
+    },
+    related: ['view-child', 'content-query', 'observable'],
+    lessons: ['/content-projection/view-queries'],
   },
   {
     slug: 'renderer2',

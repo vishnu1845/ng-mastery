@@ -1,0 +1,30 @@
+<h3>The parent passes content in</h3>
+<div class="cards">
+  <app-info-card label="Card with content">
+    <p>Hello {{ name() }}</p>
+    <button type="button" (click)="likes.set(likes() + 1)">Like</button>
+  </app-info-card>
+  <app-info-card label="Card with nothing between its tags" />
+  <app-info-card label="Card with only a space"></app-info-card>
+</div>
+<p class="muted">
+  The parent's state:
+  <strong>{{ likes() }}</strong>
+  likes. The button lives in the card, but its click runs the parent's code.
+</p>
+
+<h3>Hidden with &#64;if inside the child</h3>
+<app-content-collapsible>
+  <app-chart-widget id="projected" label="projected" />
+</app-content-collapsible>
+<p class="counts">
+  Chart created
+  <app-run-count name="projected.created" />
+  · destroyed
+  <app-run-count name="projected.destroyed" />
+</p>
+
+<h3>&lt;ng-content&gt; inside &#64;for</h3>
+<app-content-repeat>
+  <strong>{{ name() }}</strong>
+</app-content-repeat>

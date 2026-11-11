@@ -14,5 +14,14 @@ export const contentProjectionTopic: Topic = {
     'content-queries',
     'query-options',
   ],
-  lessons: [],
+  lessons: [
+    { slug: 'ng-content', title: 'Content projection with <ng-content>' },
+    { slug: 'multi-slot', title: 'Multi-slot projection (select)' },
+    { slug: 'ng-project-as', title: 'ngProjectAs' },
+    { slug: 'template-outlet', title: 'ng-content vs ngTemplateOutlet' },
+    { slug: 'view-queries', title: 'View queries' },
+    { slug: 'content-queries', title: 'Content queries' },
+    { slug: 'query-options', title: 'Query options: read, required, static' },
+  ],
+  content: () => import('./lessons'),
 };

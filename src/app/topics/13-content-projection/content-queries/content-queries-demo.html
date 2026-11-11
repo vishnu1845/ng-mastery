@@ -1,0 +1,22 @@
+<div class="row">
+  <button type="button" (click)="addTab()">Add a tab</button>
+  <button type="button" (click)="removeTab()" [disabled]="profiles().length === 0">
+    Remove a tab
+  </button>
+</div>
+
+<div class="cols">
+  @for (deep of [false, true]; track deep) {
+    <div class="stack">
+      <p class="caption">contentChildren(Tab{{ deep ? ', { descendants: true }' : '' }})</p>
+      <app-tabs [deep]="deep">
+        @for (profile of profiles(); track profile.name) {
+          <app-tab [label]="profile.name">{{ profile.about }}</app-tab>
+        }
+        <div class="wrapper">
+          <app-tab label="Sakura (in a div)">Wrapped in a &lt;div&gt; by the parent.</app-tab>
+        </div>
+      </app-tabs>
+    </div>
+  }
+</div>

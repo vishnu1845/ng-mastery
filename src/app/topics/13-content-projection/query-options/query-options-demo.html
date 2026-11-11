@@ -1,0 +1,34 @@
+<div class="targets">
+  <span #target appTint class="target">Hinata Hyuga</span>
+  <app-badge #badge />
+  <ng-template #greeting let-name>
+    <span class="stamp">Hello {{ name }}!</span>
+  </ng-template>
+</div>
+
+<div class="row">
+  <button type="button" (click)="stamp()">Stamp the template after the &lt;span&gt;</button>
+  <button type="button" class="btn-ghost" (click)="clear()" [disabled]="stamped() === 0">
+    Clear
+  </button>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>What each query returned, checked with instanceof after the first render</caption>
+    <tbody>
+      @for (row of rows(); track row.query) {
+        <tr>
+          <th scope="row" class="mono">{{ row.query }}</th>
+          <td [class.text-success]="row.result.ok" [class.text-danger]="!row.result.ok">
+            {{ row.result.ok ? '✓ ' : '✗ ' }}{{ row.result.text }}
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td class="muted">Waiting for the first render…</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

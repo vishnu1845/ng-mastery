@@ -1,0 +1,23 @@
+<div class="panels">
+  <div class="stack">
+    <p class="caption">&lt;app-panel&gt;: title, default and footer slots</p>
+    <app-panel>
+      <h3 panel-title>Mikasa Ackerman</h3>
+      <p>Survey Corps, best in her class.</p>
+      <button type="button" (click)="follows.set(follows() + 1)">Follow ({{ follows() }})</button>
+      <div><span panel-title>Nested title?</span></div>
+      Plain text
+    </app-panel>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&lt;app-strict-panel&gt;: the same content, no default slot</p>
+    <app-strict-panel>
+      <h3 panel-title>Mikasa Ackerman</h3>
+      <p>Survey Corps, best in her class.</p>
+      <button type="button" (click)="follows.set(follows() + 1)">Follow ({{ follows() }})</button>
+      <div><span panel-title>Nested title?</span></div>
+      Plain text
+    </app-strict-panel>
+  </div>
+</div>

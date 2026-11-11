@@ -1,0 +1,26 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-2);
+}
+
+// Set after each render: was this input found by viewChildren('field')?
+input[data-found='true'] {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+caption {
+  padding-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: left;
+}
+
+th {
+  white-space: nowrap;
+}

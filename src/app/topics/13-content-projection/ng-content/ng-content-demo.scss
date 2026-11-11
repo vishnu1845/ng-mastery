@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  gap: var(--space-3);
+}
+
+h3 {
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-sm);
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+// Styles for the projected content live here, in the parent that owns it
+p,
+button {
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-3);
+}
+
+.counts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+}

@@ -1,0 +1,36 @@
+<div class="panels">
+  <div class="stack">
+    <p class="caption">&lt;ng-container&gt; around the title</p>
+    <app-panel>
+      <ng-container>
+        <h3>Levi Ackerman</h3>
+        <small>Captain</small>
+      </ng-container>
+      <p>Humanity's strongest soldier.</p>
+    </app-panel>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&lt;ng-container ngProjectAs="[panel-title]"&gt;</p>
+    <app-panel>
+      <ng-container ngProjectAs="[panel-title]">
+        <h3>Levi Ackerman</h3>
+        <small>Captain</small>
+      </ng-container>
+      <p>Humanity's strongest soldier.</p>
+    </app-panel>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&#64;if with one root element</p>
+    <app-panel>
+      @if (showRank()) {
+        <h3 panel-title>Levi Ackerman, Captain</h3>
+      }
+      <p>Humanity's strongest soldier.</p>
+      <button type="button" (click)="showRank.set(!showRank())">
+        {{ showRank() ? 'Hide' : 'Show' }} the title
+      </button>
+    </app-panel>
+  </div>
+</div>

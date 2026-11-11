@@ -19,9 +19,9 @@ Every feature and lesson below is judged against these four.
 
 |                | Done | Total                 |
 | -------------- | ---- | --------------------- |
-| Topics         | 12   | 52                    |
-| Lessons        | 94   | 380                   |
-| Glossary terms | 91   | grows with each topic |
+| Topics         | 13   | 52                    |
+| Lessons        | 101  | 380                   |
+| Glossary terms | 94   | grows with each topic |
 
 Already shipped: dark and light themes with accent presets, SSR with every page prerendered, Ctrl+K search, progress tracking ("Mark as done", continue where you left off), Notes and Code tabs with copy buttons, previous/next links, MDN-style glossary links with hover cards, phone layout, CI (lint, format, tests, build).
 

@@ -1,0 +1,43 @@
+<div class="row">
+  <button type="button" (click)="add()">Add a field</button>
+  <button type="button" (click)="removeLast()" [disabled]="list().length === 0">
+    Remove a field
+  </button>
+  <button type="button" class="btn-ghost" (click)="focusLast()">Focus the last field</button>
+</div>
+
+<div class="form">
+  @for (field of list(); track field.id) {
+    <input #field [placeholder]="field.label" [attr.aria-label]="field.label" />
+  }
+
+  <app-info-card label="app-info-card, with an input this demo projects into it">
+    <input #field placeholder="Projected by this demo" aria-label="Projected field" />
+  </app-info-card>
+
+  <app-address-block />
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>Outlined inputs are the ones the query found</caption>
+    <tbody>
+      <tr>
+        <th scope="row" class="mono">viewChildren('field')</th>
+        <td>{{ fields().length }} found</td>
+      </tr>
+      <tr>
+        <th scope="row" class="mono">&#64;ViewChildren('field')</th>
+        <td>
+          {{ oldLength() }} found ·
+          <span class="mono">changes</span>
+          emitted {{ changesEmitted() }}×
+        </td>
+      </tr>
+      <tr>
+        <th scope="row" class="mono">viewChild(AddressBlock)</th>
+        <td>{{ address() ? 'found the component' : 'not found' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

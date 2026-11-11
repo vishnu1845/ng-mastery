@@ -1,0 +1,66 @@
+<div class="cols">
+  <div class="stack">
+    <p class="caption">&lt;ng-content&gt; inside &#64;if</p>
+    <app-content-collapsible>
+      <app-chart-widget id="content" label="projected" />
+    </app-content-collapsible>
+    <p class="counts">
+      Created
+      <app-run-count name="content.created" />
+      · destroyed
+      <app-run-count name="content.destroyed" />
+    </p>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&lt;ng-template&gt; stamped inside &#64;if</p>
+    <app-template-collapsible>
+      <ng-template>
+        <app-chart-widget id="template" label="from a template" />
+      </ng-template>
+    </app-template-collapsible>
+    <p class="counts">
+      Created
+      <app-run-count name="template.created" />
+      · destroyed
+      <app-run-count name="template.destroyed" />
+    </p>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&lt;ng-content&gt; inside &#64;for</p>
+    <app-content-repeat><strong>Levi</strong></app-content-repeat>
+  </div>
+
+  <div class="stack">
+    <p class="caption">&lt;ng-template&gt; stamped inside &#64;for</p>
+    <app-template-repeat>
+      <ng-template let-row>
+        <strong>Levi #{{ row }}</strong>
+      </ng-template>
+    </app-template-repeat>
+  </div>
+</div>
+
+<h3>A template passed in as an input</h3>
+<div class="row">
+  <button type="button" [class.btn-primary]="compact()" (click)="compact.set(true)">
+    Compact rows
+  </button>
+  <button type="button" [class.btn-primary]="!compact()" (click)="compact.set(false)">
+    Detailed rows
+  </button>
+</div>
+
+<ng-template #compactRow let-person>
+  <p class="person">{{ person.name }}</p>
+</ng-template>
+<ng-template #detailedRow let-person let-i="index">
+  <p class="person">
+    <span class="mono">#{{ i + 1 }}</span>
+    <strong>{{ person.name }}</strong>
+    · {{ person.team }}
+  </p>
+</ng-template>
+
+<app-people-list [people]="people" [row]="compact() ? compactRow : detailedRow" />
