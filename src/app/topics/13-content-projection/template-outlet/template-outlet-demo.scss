@@ -32,4 +32,9 @@ h3 {
 
 .person {
   margin: 0;
+
+  // Angular drops the whitespace between two tags on separate lines, so space them here
+  .mono {
+    margin-right: var(--space-2);
+  }
 }
