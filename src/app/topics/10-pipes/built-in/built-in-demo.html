@@ -1,0 +1,109 @@
+<div class="row controls">
+  <label class="field">
+    name
+    <input #nameBox type="text" [value]="name()" (input)="name.set(nameBox.value)" />
+  </label>
+  <label class="field">
+    amount
+    <input
+      #amountBox
+      type="text"
+      inputmode="decimal"
+      [value]="amount()"
+      (input)="setAmount(amountBox.value)"
+    />
+  </label>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">In the template</th>
+        <th scope="col">Shown on the page</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="group">
+        <th scope="row" colspan="2">Text</th>
+      </tr>
+      <tr>
+        <td class="mono">name | uppercase</td>
+        <td>{{ name() | uppercase }}</td>
+      </tr>
+      <tr>
+        <td class="mono">name | lowercase</td>
+        <td>{{ name() | lowercase }}</td>
+      </tr>
+      <tr>
+        <td class="mono">name | titlecase</td>
+        <td>{{ name() | titlecase }}</td>
+      </tr>
+
+      <tr class="group">
+        <th scope="row" colspan="2">Numbers</th>
+      </tr>
+      <tr>
+        <td class="mono">amount | number</td>
+        <td>{{ amount() | number }}</td>
+      </tr>
+      <tr>
+        <td class="mono">amount | number: '1.2-2'</td>
+        <td>{{ amount() | number: '1.2-2' }}</td>
+      </tr>
+      <tr>
+        <td class="mono">amount | currency: 'INR'</td>
+        <td>{{ amount() | currency: 'INR' }}</td>
+      </tr>
+      <tr>
+        <td class="mono">0.259 | percent</td>
+        <td>{{ 0.259 | percent }}</td>
+      </tr>
+
+      <tr class="group">
+        <th scope="row" colspan="2">Dates</th>
+      </tr>
+      <tr>
+        <td class="mono">joined | date</td>
+        <td>{{ joined | date }}</td>
+      </tr>
+      <tr>
+        <td class="mono">joined | date: 'dd/MM/yyyy'</td>
+        <td>{{ joined | date: 'dd/MM/yyyy' }}</td>
+      </tr>
+      <tr>
+        <td class="mono">joined | date: 'fullDate'</td>
+        <td>{{ joined | date: 'fullDate' }}</td>
+      </tr>
+
+      <tr class="group">
+        <th scope="row" colspan="2">Lists and objects</th>
+      </tr>
+      <tr>
+        <td class="mono">skills | slice: 0 : 3</td>
+        <td>
+          @for (skill of skills | slice: 0 : 3; track skill) {
+            <span class="badge">{{ skill }}</span>
+          }
+        </td>
+      </tr>
+      <tr>
+        <td class="mono">marks | json</td>
+        <td class="mono">{{ marks | json }}</td>
+      </tr>
+      <tr>
+        <td class="mono">marks | keyvalue</td>
+        <td>
+          @for (entry of marks | keyvalue; track entry.key) {
+            <span class="badge">{{ entry.key }}: {{ entry.value }}</span>
+          }
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="panel original" aria-live="polite">
+  <span class="muted small">The original values in the component, never changed by a pipe</span>
+  <span class="mono">name = "{{ name() }}" · amount = {{ amount() }}</span>
+</p>

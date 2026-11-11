@@ -72,7 +72,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       code: '@let user = user$ | async;\n<p>{{ user?.name }}</p>',
     },
     related: ['observable', 'let-declaration'],
-    lessons: ['/control-flow/let'],
+    lessons: ['/pipes/async-pipe', '/control-flow/let'],
   },
   {
     slug: 'attribute-binding',
@@ -396,6 +396,15 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/introduction/release-cycle'],
   },
   {
+    slug: 'memoization',
+    term: 'Memoization',
+    short:
+      'Remembering the result of a function for a given input, so the same input does not run the function again.',
+    body: 'A [[pure-pipe|pure pipe]] and a [[computed|computed()]] are both memoized. A method call in a template is not.',
+    related: ['pure-pipe', 'computed'],
+    lessons: ['/pipes/pipe-vs-method'],
+  },
+  {
     slug: 'metadata',
     term: 'Metadata',
     short:
@@ -481,6 +490,18 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/components/metadata', '/signals-basics/signal-vs-property'],
   },
   {
+    slug: 'pipe',
+    term: 'Pipe',
+    short:
+      'Transforms a value for display in a template, without changing the original. Written with the `|` symbol.',
+    example: {
+      lang: 'angular-html',
+      code: "<p>{{ price | currency: 'INR' }}</p>\n<p>{{ joined | date: 'dd/MM/yyyy' }}</p>",
+    },
+    related: ['pure-pipe', 'async-pipe', 'template'],
+    lessons: ['/pipes/built-in', '/pipes/custom-pipe'],
+  },
+  {
     slug: 'prerendering',
     term: 'Prerendering (SSG)',
     short:
@@ -517,6 +538,15 @@ export const GLOSSARY: GlossaryTerm[] = [
     },
     related: ['dependency-injection', 'service', 'injection-context'],
     lessons: ['/bootstrapping/app-config', '/components/metadata'],
+  },
+  {
+    slug: 'pure-pipe',
+    term: 'Pure pipe',
+    short:
+      'A pipe that runs again only when its input value or reference changes. Every pipe is pure unless it says `pure: false`.',
+    body: 'An impure pipe runs on every change detection cycle. It notices changes inside an array or object, but it costs performance.',
+    related: ['pipe', 'memoization', 'immutability'],
+    lessons: ['/pipes/pure-vs-impure'],
   },
   {
     slug: 'renderer2',

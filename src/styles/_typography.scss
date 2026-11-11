@@ -145,6 +145,12 @@ kbd {
     font-weight: 500;
   }
 
+  // Code in a table breaks only at spaces. A narrow screen scrolls the table instead of
+  // splitting a name letter by letter.
+  :is(th, td) code {
+    overflow-wrap: normal;
+  }
+
   pre {
     padding: var(--space-4);
     overflow-x: auto;

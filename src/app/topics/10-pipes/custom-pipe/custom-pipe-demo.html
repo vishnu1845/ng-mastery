@@ -1,0 +1,63 @@
+<section class="stack">
+  <h3 class="title">truncate: a value and two optional parameters</h3>
+
+  <label class="field">
+    Text
+    <input #textBox type="text" [value]="text()" (input)="text.set(textBox.value)" />
+  </label>
+  <label class="field">
+    <span>
+      Limit:
+      <span class="mono">{{ limit() }}</span>
+    </span>
+    <input
+      #limitBox
+      type="range"
+      min="5"
+      max="90"
+      [value]="limit()"
+      (input)="limit.set(+limitBox.value)"
+    />
+  </label>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <tbody>
+        <tr>
+          <td class="mono">text | truncate</td>
+          <td>{{ text() | truncate }}</td>
+        </tr>
+        <tr>
+          <td class="mono">text | truncate: limit</td>
+          <td>{{ text() | truncate: limit() }}</td>
+        </tr>
+        <tr>
+          <td class="mono">text | truncate: limit : ' [more]'</td>
+          <td>{{ text() | truncate: limit() : ' [more]' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">timeAgo: the clock is passed in</h3>
+
+  <ul class="posts">
+    @for (post of posts; track post.id) {
+      <li class="panel">
+        <span>{{ post.title }}</span>
+        <span class="muted">{{ post.createdAt | timeAgo: now() }}</span>
+      </li>
+    }
+  </ul>
+
+  <div class="row">
+    <button type="button" (click)="wait(10)">10 minutes later</button>
+    <button type="button" (click)="wait(60)">1 hour later</button>
+    <button type="button" class="btn-ghost" (click)="reset()">Back to the start</button>
+  </div>
+  <p class="muted small">
+    Each press changes now(), the pipe's second input, so the pure pipe runs again for every post.
+  </p>
+</section>

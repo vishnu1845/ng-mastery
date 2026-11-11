@@ -1,0 +1,37 @@
+<div class="row">
+  <button type="button" class="btn-primary" (click)="likes.set(likes() + 1)">
+    Like this page ({{ likes() }})
+  </button>
+  <button type="button" (click)="raiseFirstPrice()">Raise the first price</button>
+</div>
+<p class="muted small">
+  A like has nothing to do with the prices. It only makes Angular refresh this view.
+</p>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Course</th>
+        <th scope="col" class="mono">format(course.price)</th>
+        <th scope="col" class="mono">course.price | inr</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (course of courses(); track course.id) {
+        <tr>
+          <th scope="row">{{ course.title }}</th>
+          <td>{{ format(course.price) }}</td>
+          <td>{{ course.price | inr }}</td>
+        </tr>
+      }
+    </tbody>
+    <tfoot>
+      <tr>
+        <th scope="row">Times it really ran</th>
+        <td><app-run-count name="method" /></td>
+        <td><app-run-count name="pipe" /></td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

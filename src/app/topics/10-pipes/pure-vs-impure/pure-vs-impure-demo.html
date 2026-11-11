@@ -1,0 +1,54 @@
+<div class="row controls">
+  <label class="field">
+    Search
+    <input
+      #termBox
+      type="search"
+      placeholder="Type a name"
+      [value]="term()"
+      (input)="term.set(termBox.value)"
+    />
+  </label>
+  <button type="button" (click)="addByPush()">Add with push()</button>
+  <button type="button" (click)="addBySpread()">Add with a new array</button>
+  <button type="button" (click)="clicks.set(clicks() + 1)">Unrelated click ({{ clicks() }})</button>
+  <button type="button" class="btn-ghost" (click)="reset()">Reset</button>
+</div>
+
+<p class="muted small" aria-live="polite">
+  The array in the component really has
+  <strong>{{ people.length }}</strong>
+  people.
+</p>
+
+<div class="cols">
+  <div class="panel way">
+    <span class="badge badge-accent">Pure pipe (the default)</span>
+    <ul aria-label="People from the pure pipe">
+      @for (person of people | search: term(); track person.id) {
+        <li>{{ person.name }}</li>
+      } @empty {
+        <li class="muted">No match</li>
+      }
+    </ul>
+    <p class="small">
+      Times it ran:
+      <app-run-count name="search" />
+    </p>
+  </div>
+
+  <div class="panel way">
+    <span class="badge">Impure pipe (pure: false)</span>
+    <ul aria-label="People from the impure pipe">
+      @for (person of people | searchImpure: term(); track person.id) {
+        <li>{{ person.name }}</li>
+      } @empty {
+        <li class="muted">No match</li>
+      }
+    </ul>
+    <p class="small">
+      Times it ran:
+      <app-run-count name="searchImpure" />
+    </p>
+  </div>
+</div>

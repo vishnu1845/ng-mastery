@@ -1,0 +1,61 @@
+<section class="stack">
+  <h3 class="title">Subscribe in the template, unsubscribe automatically</h3>
+
+  <div class="row">
+    <button type="button" class="btn-primary" (click)="visible.set(!visible())">
+      {{ visible() ? 'Remove the price from the page' : 'Show the live price' }}
+    </button>
+    <div class="segmented" role="radiogroup" aria-label="Metal">
+      @for (option of metals; track option) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="metal() === option"
+          (click)="metal.set(option)"
+        >
+          {{ option }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="cols">
+    <div class="panel ticker">
+      @if (visible()) {
+        @if (price$() | async; as price) {
+          <span class="muted small metal">{{ metal() }}, per 10 g</span>
+          <output class="price">₹{{ price | number }}</output>
+        } @else {
+          <span class="muted">Waiting for the first value. Until then the pipe gives null.</span>
+        }
+      } @else {
+        <span class="muted">The price is not on the page, so nothing is subscribed.</span>
+      }
+    </div>
+
+    <dl class="panel stats" aria-live="polite">
+      <div>
+        <dt>Subscriptions alive now</dt>
+        <dd>{{ alive() }}</dd>
+      </div>
+      <div>
+        <dt>Subscriptions started so far</dt>
+        <dd>{{ started() }}</dd>
+      </div>
+    </dl>
+  </div>
+
+  <p class="muted small">
+    Remove the price and the live count drops to 0. Switch the metal and the pipe leaves the old
+    stream before it joins the new one.
+  </p>
+</section>
+
+<section class="stack">
+  <h3 class="title">A Promise works too</h3>
+
+  <div class="row">
+    <button type="button" (click)="askForTip()">Ask for a tip</button>
+    <span aria-live="polite">{{ (tip() | async) ?? (tip() ? 'Thinking…' : '') }}</span>
+  </div>
+</section>

@@ -1,0 +1,143 @@
+<section class="stack">
+  <h3 class="title">Parameters come after a colon</h3>
+
+  <div class="cols">
+    <div class="panel builder">
+      <div class="row">
+        <label class="field">
+          Min whole digits
+          <input
+            #minInt
+            type="number"
+            min="1"
+            max="6"
+            [value]="minInteger()"
+            (input)="minInteger.set(+minInt.value || 1)"
+          />
+        </label>
+        <label class="field">
+          Min decimals
+          <input
+            #minFrac
+            type="number"
+            min="0"
+            max="4"
+            [value]="minFraction()"
+            (input)="setMinFraction(+minFrac.value)"
+          />
+        </label>
+        <label class="field">
+          Max decimals
+          <input
+            #maxFrac
+            type="number"
+            min="0"
+            max="4"
+            [value]="maxFraction()"
+            (input)="setMaxFraction(+maxFrac.value)"
+          />
+        </label>
+      </div>
+      <p class="mono expression">{{ value }} | number: '{{ digits() }}'</p>
+      <output class="result" aria-live="polite">{{ value | number: digits() }}</output>
+    </div>
+
+    <div class="panel builder">
+      <div class="row">
+        <div class="segmented" role="radiogroup" aria-label="Currency code">
+          @for (option of codes; track option) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="code() === option"
+              (click)="code.set(option)"
+            >
+              {{ option }}
+            </button>
+          }
+        </div>
+        <div class="segmented" role="radiogroup" aria-label="Show the currency as">
+          @for (option of displays; track option) {
+            <button
+              type="button"
+              role="radio"
+              [attr.aria-checked]="display() === option"
+              (click)="display.set(option)"
+            >
+              {{ option }}
+            </button>
+          }
+        </div>
+      </div>
+      <p class="mono expression">
+        {{ value }} | currency: '{{ code() }}' : '{{ display() }}' : '{{ digits() }}'
+      </p>
+      <output class="result" aria-live="polite">
+        {{ value | currency: code() : display() : digits() }}
+      </output>
+    </div>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Chaining: each pipe gets the result of the one before</h3>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">In the template</th>
+          <th scope="col">Shown on the page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">released | date: 'MMMM y' | uppercase</td>
+          <td>{{ released | date: 'MMMM y' | uppercase }}</td>
+        </tr>
+        <tr>
+          <td class="mono">title | slice: 0 : 15 | uppercase</td>
+          <td>{{ title | slice: 0 : 15 | uppercase }}</td>
+        </tr>
+        <tr>
+          <td class="mono">title | uppercase | slice: 0 : 7</td>
+          <td>{{ title | uppercase | slice: 0 : 7 }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">A pipe binds tighter than ? :</h3>
+
+  <label class="tick">
+    <input type="checkbox" [checked]="isPro()" (change)="isPro.set(!isPro())" />
+    isPro
+  </label>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">In the template</th>
+          <th scope="col">Shown on the page</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="mono">isPro ? 'pro plan' : 'free plan' | uppercase</td>
+          <td>{{ isPro() ? 'pro plan' : ('free plan' | uppercase) }}</td>
+        </tr>
+        <tr>
+          <td class="mono">(isPro ? 'pro plan' : 'free plan') | uppercase</td>
+          <td>{{ (isPro() ? 'pro plan' : 'free plan') | uppercase }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="muted small">
+    Without brackets, the pipe belongs to the last value only. Tick the box and the first row is no
+    longer in capitals.
+  </p>
+</section>

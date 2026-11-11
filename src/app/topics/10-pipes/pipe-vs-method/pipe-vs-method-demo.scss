@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+  }
+
+  td {
+    font-variant-numeric: tabular-nums;
+  }
+
+  tfoot th,
+  tfoot td {
+    border-bottom: 0;
+    vertical-align: baseline;
+  }
+}

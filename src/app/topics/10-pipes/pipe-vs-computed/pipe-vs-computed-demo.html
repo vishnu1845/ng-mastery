@@ -1,0 +1,49 @@
+<label class="field search">
+  Search
+  <input
+    #termBox
+    type="search"
+    placeholder="Type a name"
+    [value]="term()"
+    (input)="term.set(termBox.value)"
+  />
+</label>
+
+<div class="cols">
+  <div class="panel way">
+    <span class="badge">Pipe, written in two places</span>
+    <p class="small muted">{{ (people() | search: term()).length }} found</p>
+    <ul aria-label="People from the pipe">
+      @for (person of people() | search: term(); track person.id) {
+        <li>{{ person.name }}</li>
+      } @empty {
+        <li class="muted">No match</li>
+      }
+    </ul>
+    <p class="small">
+      Times the filter ran:
+      <app-run-count name="search" />
+    </p>
+  </div>
+
+  <div class="panel way">
+    <span class="badge badge-accent">computed(), read in two places</span>
+    <p class="small muted">{{ matches().length }} found</p>
+    <ul aria-label="People from the computed">
+      @for (person of matches(); track person.id) {
+        <li>{{ person.name }}</li>
+      } @empty {
+        <li class="muted">No match</li>
+      }
+    </ul>
+    <p class="small">
+      Times the filter ran:
+      <app-run-count name="computed" />
+    </p>
+  </div>
+</div>
+
+<div class="row">
+  <button type="button" (click)="invite()">Invite the people found</button>
+  <span class="muted small" aria-live="polite">{{ invited() }}</span>
+</div>

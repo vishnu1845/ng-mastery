@@ -1,0 +1,57 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+// FORMAT BUILDERS
+.builder {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+
+  input[type='number'] {
+    width: 5.5rem;
+  }
+}
+
+.expression {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+.result {
+  color: var(--accent);
+  font-size: var(--fs-xl);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.segmented button {
+  text-transform: capitalize;
+}
+
+.data-table td {
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+
+  &:first-child {
+    color: var(--text-muted);
+  }
+}

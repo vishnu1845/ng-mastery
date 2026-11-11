@@ -1,0 +1,48 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.controls {
+  gap: var(--space-3) var(--space-4);
+}
+
+.data-table {
+  td {
+    font-size: var(--fs-sm);
+    overflow-wrap: anywhere;
+  }
+
+  td:first-child {
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  // Room for the result, so on a phone the table scrolls instead of cutting it
+  td:last-child {
+    min-width: 11rem;
+  }
+
+  // Section rows
+  .group th {
+    padding-top: var(--space-4);
+    color: var(--text-faint);
+    font-size: var(--fs-xs);
+    font-weight: 500;
+  }
+
+  .badge {
+    margin-right: var(--space-1);
+  }
+}
+
+.original {
+  display: grid;
+  gap: var(--space-1);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
