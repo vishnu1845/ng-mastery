@@ -1,0 +1,43 @@
+<div class="row">
+  <span class="muted">Create the card with</span>
+  @for (option of names; track option) {
+    <button type="button" [class.btn-primary]="option === name()" (click)="create(option)">
+      {{ option }}
+    </button>
+  }
+</div>
+
+<div class="card-slot">
+  @for (card of cards(); track card.id) {
+    <app-ready-check [name]="name()" city="Pune" />
+  } @empty {
+    <p class="muted">Creating the card…</p>
+  }
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>What each moment could use, measured in the card</caption>
+    <thead>
+      <tr>
+        <th scope="col">Check</th>
+        @for (moment of moments; track moment) {
+          <th scope="col" class="mono">{{ moment }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (check of checks; track check) {
+        <tr>
+          <th scope="row" class="mono">{{ check }}</th>
+          @for (moment of moments; track moment) {
+            @let result = report.results()[check + '.' + moment];
+            <td [class.text-success]="result?.ok" [class.text-danger]="result && !result.ok">
+              {{ result ? (result.ok ? '✓ ' : '✗ ') + result.text : '…' }}
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

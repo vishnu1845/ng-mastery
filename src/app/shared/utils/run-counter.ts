@@ -1,6 +1,6 @@
 import { Service, signal } from '@angular/core';
 
-/** DEMO ONLY: counts how many times a pipe, method or computed really ran. */
+/** DEMO ONLY: counts how many times a pipe, method, computed or hook really ran. */
 @Service()
 export class RunCounter {
   readonly runs = signal<Record<string, number>>({});

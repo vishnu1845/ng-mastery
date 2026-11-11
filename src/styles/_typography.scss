@@ -74,6 +74,9 @@ kbd {
   max-width: var(--prose-max);
   font-size: var(--fs-md);
   line-height: 1.65;
+  // A very long word, like ExpressionChangedAfterItHasBeenCheckedError, wraps instead of
+  // pushing a phone screen sideways
+  overflow-wrap: break-word;
 
   > * + * {
     margin-top: var(--space-4);

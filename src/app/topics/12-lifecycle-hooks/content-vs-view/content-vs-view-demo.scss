@@ -1,0 +1,37 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-3);
+}
+
+.projected {
+  margin: 0;
+  color: var(--warning);
+}
+
+caption {
+  padding-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: left;
+}
+
+td {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.again {
+  justify-self: start;
+}
+
+.trap {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-sm);
+}

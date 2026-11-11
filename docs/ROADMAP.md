@@ -19,9 +19,9 @@ Every feature and lesson below is judged against these four.
 
 |                | Done | Total                 |
 | -------------- | ---- | --------------------- |
-| Topics         | 11   | 52                    |
-| Lessons        | 85   | 379                   |
-| Glossary terms | 87   | grows with each topic |
+| Topics         | 12   | 52                    |
+| Lessons        | 94   | 380                   |
+| Glossary terms | 91   | grows with each topic |
 
 Already shipped: dark and light themes with accent presets, SSR with every page prerendered, Ctrl+K search, progress tracking ("Mark as done", continue where you left off), Notes and Code tabs with copy buttons, previous/next links, MDN-style glossary links with hover cards, phone layout, CI (lint, format, tests, build).
 
@@ -29,11 +29,12 @@ Already shipped: dark and light themes with accent presets, SSR with every page 
 
 **Resources, `@defer` and directives were already in the syllabus.** They are topics 34, 37 and 09. They look missing because the sidebar lists only finished topics. The home page shows all 52, with unfinished ones dimmed.
 
-The full syllabus was then compared with the Angular 22 APIs installed in this repo. These 22 lessons were missing and are now in the outlines. No topic was added or renumbered, so the 52 topics still match the Notion pages one to one.
+The full syllabus was then compared with the Angular 22 APIs installed in this repo. These 23 lessons were missing and are now in the outlines. No topic was added or renumbered, so the 52 topics still match the Notion pages one to one.
 
 | Topic                 | Added lessons                                              | Why                                                                            |
 | --------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | 08 Control Flow       | `for-context-empty`                                        | `$index`, `$first`, `$even` and `@empty` are asked with every `@for` question  |
+| 12 Lifecycle Hooks    | `hooks-with-signals`                                       | "Which hooks do we still need with signals?" is a standard modern question     |
 | 14 Dynamic Components | `angular-elements`                                         | "What are Angular Elements?" is a standard question                            |
 | 17 Routing Basics     | `location-strategies`, `scroll-fragments`                  | Hash vs path strategy; scroll restoring and `#anchor` links                    |
 | 19 Lazy Loading       | `route-reuse-strategy`                                     | Keeping a page alive between visits                                            |
@@ -111,7 +112,7 @@ The site runs only on localhost today. Nobody can choose it until it has a URL.
 
 No restructure is needed. The current layout is the modern Angular shape (feature folders, no `components/` or `services/` buckets, v20+ file names), and adding a lesson touches only its own folder.
 
-Rules that keep it clean as it grows to 378 lessons:
+Rules that keep it clean as it grows to 380 lessons:
 
 - **One lesson, one folder:** `lesson-slug-demo.ts/.html/.scss` plus `notes.md`. Helper files sit next to the demo and are named for what they are (`stopwatch.ts`, `effect-lab.ts`).
 - **Used by one topic:** put it in that topic's `_shared/`.
@@ -128,7 +129,7 @@ Topics are built in syllabus order, because each one uses words from the ones be
 | Phase | Topics | Content                                              | Lessons | Site feature shipped with it      |
 | ----- | ------ | ---------------------------------------------------- | ------- | --------------------------------- |
 | 0     |        | Go public                                            |         | Deploy, SEO basics, README        |
-| 1     | 08–14  | Components & Templates (control flow, directives…)   | 50      | Reading features                  |
+| 1     | 08–14  | Components & Templates (control flow, directives…)   | 51      | Reading features                  |
 | 2     | 15–20  | Services & DI, Routing                               | 42      | Questions per topic               |
 | 3     | 21–26  | Forms, HTTP                                          | 48      | `/interview` page                 |
 | 4     | 27–32  | RxJS                                                 | 40      | Flashcards                        |

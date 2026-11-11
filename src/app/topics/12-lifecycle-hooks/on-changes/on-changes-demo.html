@@ -1,0 +1,21 @@
+<div class="row">
+  <button type="button" (click)="replace()">Replace the user</button>
+  <button type="button" (click)="mutate()">Mutate user.name</button>
+  <button type="button" (click)="changeRole()">Change the role</button>
+  <button type="button" (click)="changeTwo()">Change role + theme</button>
+</div>
+
+<p class="parent-state">
+  The parent has:
+  <strong>{{ user().name }}</strong>
+  · role {{ role() }} · theme {{ theme() }}
+</p>
+
+<div class="layout">
+  <div class="cards">
+    <app-profile-card data-who="Bound card" [user]="user()" [role]="role()" [theme]="theme()" />
+    <app-profile-card data-who="Unbound card" />
+  </div>
+
+  <app-hook-timeline [who]="who" [hooks]="['ngOnChanges']" empty="Loading…" />
+</div>

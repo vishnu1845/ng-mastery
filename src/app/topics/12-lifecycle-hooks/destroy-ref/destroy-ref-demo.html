@@ -1,0 +1,87 @@
+<div class="row">
+  @if (ids()) {
+    <button type="button" (click)="remove()">Remove the component</button>
+  } @else {
+    <button type="button" class="btn-primary" (click)="create()">Create the component</button>
+  }
+</div>
+
+@if (ids(); as ids) {
+  <app-countdown [tickerId]="ids.ticker" [streamId]="ids.stream" />
+} @else {
+  <p class="muted">The component is not on the page.</p>
+}
+
+<div class="cols">
+  <div class="table-wrap">
+    <table class="data-table">
+      <caption>Timers the component started</caption>
+      <thead>
+        <tr>
+          <th scope="col">Timer</th>
+          <th scope="col">On the page</th>
+          <th scope="col">Interval</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (timer of meter.timers(); track timer.id) {
+          @let running = meter.isRunning(timer);
+          <tr>
+            <th scope="row" class="mono">{{ timer.kind }} #{{ timer.id }}</th>
+            <td>{{ timer.onPage ? 'yes' : 'removed' }}</td>
+            <td
+              [class.text-danger]="!timer.onPage && running"
+              [class.text-success]="!timer.onPage && !running"
+            >
+              {{ running ? 'running' : 'stopped' }}
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="3" class="muted">Loading…</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <table class="data-table calls">
+      <caption>The same calls inside ngOnInit</caption>
+      <tbody>
+        @for (check of ngOnInitChecks; track check) {
+          @let result = report.results()[check + '.ngOnInit'];
+          <tr>
+            <th scope="row" class="mono">{{ check }}</th>
+            <td
+              class="mono"
+              [class.text-success]="result?.ok"
+              [class.text-danger]="result && !result.ok"
+            >
+              {{ result ? (result.ok ? '✓ works' : '✗ ' + result.text) : '…' }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+@if (destroyedFlag() !== null) {
+  <div class="after callout">
+    <p>
+      The removed component's
+      <code>destroyRef.destroyed</code>
+      is
+      <strong class="mono">{{ destroyedFlag() }}</strong>
+    </p>
+    <div class="row">
+      <button type="button" (click)="registerLate()">Call destroyRef.onDestroy() now</button>
+      @if (lateRegister(); as result) {
+        <span class="mono" [class.text-danger]="!result.ok">
+          {{ result.ok ? 'works' : result.text }}
+        </span>
+      }
+    </div>
+  </div>
+}

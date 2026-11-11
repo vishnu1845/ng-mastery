@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
-import { RunCount } from '../_shared/run-count';
-import { RunCounter } from '../_shared/run-counter';
+import { RunCount } from '@shared/ui/run-count/run-count';
+import { RunCounter } from '@shared/utils/run-counter';
 import { filterPeople, Person, SearchPipe } from '../_shared/search-pipe';
 
 const PEOPLE: Person[] = [

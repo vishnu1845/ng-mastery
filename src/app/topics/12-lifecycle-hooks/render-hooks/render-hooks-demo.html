@@ -1,0 +1,22 @@
+<app-runs-where />
+
+<div class="cols">
+  <div class="stack">
+    <button type="button" (click)="searchOpen.set(!searchOpen())">
+      {{ searchOpen() ? 'Close' : 'Open' }} the search box
+    </button>
+    @if (searchOpen()) {
+      <app-search-box />
+    }
+  </div>
+
+  <div class="stack">
+    <app-growing-list />
+    <div class="row">
+      <button type="button" class="btn-ghost" (click)="elsewhere.set(elsewhere() + 1)">
+        Render something else
+      </button>
+      <span class="muted">other counter: {{ elsewhere() }}</span>
+    </div>
+  </div>
+</div>

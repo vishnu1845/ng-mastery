@@ -1,7 +1,7 @@
 import { TopicContent } from '@core/models/topic.model';
 
 const FOLDER = 'src/app/topics/10-pipes';
-const COUNTER = [`${FOLDER}/_shared/run-counter.ts`, `${FOLDER}/_shared/run-count.ts`];
+const COUNTER = ['src/app/shared/utils/run-counter.ts', 'src/app/shared/ui/run-count/run-count.ts'];
 const SEARCH = `${FOLDER}/_shared/search-pipe.ts`;
 
 /** The demos, notes and Code tab files of each lesson. Loaded only when the topic opens. */

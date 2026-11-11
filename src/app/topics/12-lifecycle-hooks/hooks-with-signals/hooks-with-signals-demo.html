@@ -1,0 +1,36 @@
+<div class="row">
+  <button type="button" (click)="nextPerson()">Change the person</button>
+  <button type="button" (click)="toggleTheme()">Change the theme</button>
+</div>
+
+<div class="cols">
+  <div class="side">
+    <p class="title">
+      Old:
+      <code>&#64;Input()</code>
+      +
+      <code>ngOnChanges</code>
+    </p>
+    <app-name-old [first]="first()" [last]="last()" [theme]="theme()" />
+    <p class="runs">
+      Name built
+      <app-run-count name="ngOnChanges" />
+      times
+    </p>
+  </div>
+
+  <div class="side">
+    <p class="title">
+      New:
+      <code>input()</code>
+      +
+      <code>computed()</code>
+    </p>
+    <app-name-new [first]="first()" [last]="last()" [theme]="theme()" />
+    <p class="runs">
+      Name built
+      <app-run-count name="computed" />
+      times
+    </p>
+  </div>
+</div>

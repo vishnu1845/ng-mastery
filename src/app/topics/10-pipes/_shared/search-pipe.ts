@@ -1,5 +1,5 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { RunCounter } from './run-counter';
+import { RunCounter } from '@shared/utils/run-counter';
 
 export interface Person {
   id: number;

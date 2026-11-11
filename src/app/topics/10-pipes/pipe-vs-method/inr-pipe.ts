@@ -1,5 +1,5 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { RunCounter } from '../_shared/run-counter';
+import { RunCounter } from '@shared/utils/run-counter';
 
 const RUPEES = new Intl.NumberFormat('en-IN', {
   style: 'currency',

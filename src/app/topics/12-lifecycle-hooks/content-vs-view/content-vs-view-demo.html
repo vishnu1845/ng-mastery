@@ -1,0 +1,42 @@
+@for (round of rounds(); track round.id) {
+  <app-card-panel>
+    <p #projected class="projected">Projected by the parent</p>
+  </app-card-panel>
+}
+
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>Which query has its element, measured in each hook</caption>
+    <thead>
+      <tr>
+        <th scope="col">Query</th>
+        @for (moment of moments; track moment) {
+          <th scope="col" class="mono">{{ moment }}</th>
+        }
+      </tr>
+    </thead>
+    <tbody>
+      @for (query of queries; track query) {
+        <tr>
+          <th scope="row" class="mono">{{ query }}</th>
+          @for (moment of moments; track moment) {
+            @let result = report.results()[query + '.' + moment];
+            <td [class.text-success]="result?.ok" [class.muted]="result && !result.ok">
+              {{ result ? (result.ok ? '✓ found' : '–') : '…' }}
+            </td>
+          }
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+
+<h3 class="trap">Changing a value in ngAfterViewInit</h3>
+@for (round of rounds(); track round.id) {
+  <div class="pair">
+    <app-late-plain />
+    <app-late-signal />
+  </div>
+}
+
+<button type="button" class="again" (click)="again()">Create everything again</button>

@@ -1,0 +1,21 @@
+<div class="row">
+  @if (shown()) {
+    <button type="button" (click)="change()">Change the input</button>
+    <button type="button" (click)="check()">Click, nothing changes</button>
+    <button type="button" (click)="remove()">Remove</button>
+  } @else {
+    <button type="button" class="btn-primary" (click)="create()">Create the components</button>
+  }
+</div>
+
+<div class="layout">
+  <div class="tree">
+    @if (shown()) {
+      <app-lc-parent [value]="value()" />
+    } @else {
+      <p class="muted">No components on the page.</p>
+    }
+  </div>
+
+  <app-hook-timeline [who]="who" [hooks]="hooks" />
+</div>

@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+caption {
+  padding-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: left;
+}
+
+td {
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+.note {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-xs);
+}

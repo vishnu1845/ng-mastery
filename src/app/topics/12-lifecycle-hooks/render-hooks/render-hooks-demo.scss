@@ -1,0 +1,12 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.cols > * {
+  min-width: 0;
+}
+
+.stack > button {
+  justify-self: start;
+}

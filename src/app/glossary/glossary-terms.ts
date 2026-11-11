@@ -159,6 +159,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/signals-basics/computed'],
   },
   {
+    slug: 'content-projection',
+    term: 'Content projection',
+    short:
+      'Passing HTML from a parent into a child component, which shows it where its template has `<ng-content>`.',
+    body: "The projected content belongs to the parent: the parent creates it and its bindings use the parent's data. The child only decides where it appears. The child sees it in `ngAfterContentInit` and with `contentChild()`.",
+    example: {
+      lang: 'angular-html',
+      code: '<!-- parent -->\n<app-card>\n  <p>Projected into the card</p>\n</app-card>\n\n<!-- card template -->\n<div class="card"><ng-content /></div>',
+    },
+    related: ['component', 'lifecycle-hook', 'template'],
+    lessons: ['/lifecycle-hooks/content-vs-view'],
+  },
+  {
     slug: 'control-flow',
     term: 'Control flow',
     short:
@@ -204,6 +217,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     },
     related: ['provider', 'service', 'injection-context'],
     lessons: ['/components/metadata'],
+  },
+  {
+    slug: 'destroy-ref',
+    term: 'DestroyRef',
+    short:
+      'An object that stands for the lifetime of a component, directive or service; `onDestroy()` registers cleanup for when it ends.',
+    body: '`inject(DestroyRef)` must run in an injection context. Because it can be injected inside any function, cleanup can live next to its setup in a reusable helper. `takeUntilDestroyed()` uses it to complete an Observable, and `destroyed` tells whether the owner is already gone.',
+    example: {
+      lang: 'angular-ts',
+      code: 'const destroyRef = inject(DestroyRef);\nconst id = setInterval(tick, 1000);\ndestroyRef.onDestroy(() => clearInterval(id));',
+    },
+    related: ['injection-context', 'lifecycle-hook', 'memory-leak', 'observable'],
+    lessons: ['/lifecycle-hooks/destroy-ref'],
   },
   {
     slug: 'directive',
@@ -422,6 +448,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/introduction/framework-vs-library'],
   },
   {
+    slug: 'lifecycle-hook',
+    term: 'Lifecycle hook',
+    short:
+      "A method Angular calls at a stage of a component's life, like `ngOnInit` after its inputs are set or `ngOnDestroy` before it is removed.",
+    body: 'The eight hooks, in order: `ngOnChanges`, `ngOnInit`, `ngDoCheck`, `ngAfterContentInit`, `ngAfterContentChecked`, `ngAfterViewInit`, `ngAfterViewChecked` and `ngOnDestroy`. Directives have them too; services get only `ngOnDestroy`. `afterNextRender()` and `afterEveryRender()` are the render hooks, run after the whole app renders.',
+    example: {
+      lang: 'angular-ts',
+      code: 'export class UserCard implements OnInit {\n  ngOnInit() {\n    // inputs are ready\n  }\n}',
+    },
+    related: ['component', 'destroy-ref', 'change-detection'],
+    lessons: ['/lifecycle-hooks/visualizer'],
+  },
+  {
     slug: 'lts',
     term: 'LTS (Long-Term Support)',
     short:
@@ -437,6 +476,15 @@ export const GLOSSARY: GlossaryTerm[] = [
     body: 'A [[pure-pipe|pure pipe]] and a [[computed|computed()]] are both memoized. A method call in a template is not.',
     related: ['pure-pipe', 'computed'],
     lessons: ['/pipes/pipe-vs-method'],
+  },
+  {
+    slug: 'memory-leak',
+    term: 'Memory leak',
+    short:
+      'Memory that stays in use after it is no longer needed, like a timer or listener that keeps running after its component is removed.',
+    body: "Removing a component does not stop what it started: `setInterval`, `window.addEventListener`, a long-lived subscription. Each one keeps the component's objects alive and keeps doing work. Clean them up in `ngOnDestroy`, with `DestroyRef`, or with `takeUntilDestroyed()`.",
+    related: ['destroy-ref', 'lifecycle-hook', 'observable'],
+    lessons: ['/lifecycle-hooks/on-destroy'],
   },
   {
     slug: 'metadata',

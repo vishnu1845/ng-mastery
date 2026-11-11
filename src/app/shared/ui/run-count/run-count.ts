@@ -1,5 +1,5 @@
 import { Component, computed, inject, input } from '@angular/core';
-import { RunCounter } from './run-counter';
+import { RunCounter } from '@shared/utils/run-counter';
 
 /**
  * Shows one counter. It is its own component on purpose: a new count refreshes only this

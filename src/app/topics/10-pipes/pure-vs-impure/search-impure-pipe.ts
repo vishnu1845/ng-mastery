@@ -1,5 +1,5 @@
 import { inject, Pipe, PipeTransform } from '@angular/core';
-import { RunCounter } from '../_shared/run-counter';
+import { RunCounter } from '@shared/utils/run-counter';
 import { filterPeople, Person } from '../_shared/search-pipe';
 
 /** The same search, marked impure: Angular runs it on every refresh of the view. */

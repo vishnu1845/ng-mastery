@@ -1,0 +1,21 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.parent-state {
+  margin: 0;
+  font-size: var(--fs-sm);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.cards {
+  display: grid;
+  gap: var(--space-3);
+}

@@ -1,0 +1,32 @@
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>Where each hook ran when this page loaded</caption>
+    <thead>
+      <tr>
+        <th scope="col">Hook</th>
+        <th scope="col">Server (prerender)</th>
+        <th scope="col">Browser, in order</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (hook of hooks; track hook) {
+        @let order = browser().indexOf(hook) + 1;
+        <tr>
+          <th scope="row" class="mono">{{ hook }}</th>
+          <td
+            [class.text-success]="server().includes(hook)"
+            [class.muted]="!server().includes(hook)"
+          >
+            {{ server().length === 0 ? '?' : server().includes(hook) ? '✓ ran' : '✗ never' }}
+          </td>
+          <td [class.text-success]="order > 0">{{ order > 0 ? '✓ ' + order : '…' }}</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+@if (server().length === 0) {
+  <p class="muted note">
+    The server column fills in when this page is loaded directly. Reload the page to see it.
+  </p>
+}

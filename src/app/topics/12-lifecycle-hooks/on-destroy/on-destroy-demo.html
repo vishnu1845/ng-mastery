@@ -1,0 +1,55 @@
+<div class="row">
+  <button type="button" (click)="add('leaky')">Add a leaky clock</button>
+  <button type="button" (click)="add('clean')">Add a clean clock</button>
+  <button type="button" (click)="removeAll()" [disabled]="clocks().length === 0">
+    Remove all clocks
+  </button>
+  <button type="button" class="btn-ghost" (click)="ping()">Ping the window</button>
+</div>
+
+<div class="clocks" aria-live="polite">
+  @for (clock of clocks(); track clock.timerId) {
+    @if (clock.kind === 'leaky') {
+      <app-leaky-clock [timerId]="clock.timerId" />
+    } @else {
+      <app-clean-clock [timerId]="clock.timerId" />
+    }
+  } @empty {
+    <span class="muted">No clocks on the page.</span>
+  }
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <caption>Every interval and window listener the clocks started, measured live</caption>
+    <thead>
+      <tr>
+        <th scope="col">Clock</th>
+        <th scope="col">On the page</th>
+        <th scope="col">Interval</th>
+        <th scope="col">Ticks</th>
+        <th scope="col">Answered ping</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (timer of meter.timers(); track timer.id) {
+        @let running = meter.isRunning(timer);
+        <tr [class.leak]="!timer.onPage && (running || timer.answeredPing)">
+          <th scope="row" class="mono">{{ timer.kind }} #{{ timer.id }}</th>
+          <td>{{ timer.onPage ? 'yes' : 'removed' }}</td>
+          <td [class.text-danger]="!timer.onPage && running">
+            {{ running ? 'running' : 'stopped' }}
+          </td>
+          <td class="mono">{{ timer.ticks }}</td>
+          <td [class.text-danger]="!timer.onPage && timer.answeredPing">
+            {{ timer.answeredPing ? 'yes' : '–' }}
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="5" class="muted">No clocks yet.</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

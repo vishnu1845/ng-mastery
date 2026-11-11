@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+p {
+  margin: 0;
+}
+
+caption {
+  padding-bottom: var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-xs);
+  text-align: left;
+}
+
+td,
+th {
+  font-size: var(--fs-xs);
+  white-space: nowrap;
+}
+
+// Long call names wrap, so the result column stays visible on phones
+.calls th {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.after {
+  display: grid;
+  gap: var(--space-3);
+  font-size: var(--fs-sm);
+}
