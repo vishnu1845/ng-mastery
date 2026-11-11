@@ -28,12 +28,22 @@ describe('Topic registry', () => {
     }
   });
 
+  it('has content in lessons.ts for exactly the finished lessons', async () => {
+    for (const topic of TOPICS.filter((topic) => topic.lessons.length > 0)) {
+      expect(topic.content, `${topic.slug} lessons.ts`).toBeDefined();
+      const content = (await topic.content!()).default;
+      expect(Object.keys(content)).toEqual(topic.lessons.map((lesson) => lesson.slug));
+    }
+  });
+
   it('loads notes for every finished lesson', async () => {
-    const lessons = TOPICS.flatMap((topic) => topic.lessons);
-    for (const lesson of lessons) {
-      const notes = (await lesson.notes()).default;
-      expect(notes, `${lesson.slug} notes`).toContain('## Definition');
-      expect(notes, `${lesson.slug} notes`).toContain('## Say it like this');
+    for (const topic of TOPICS.filter((topic) => topic.content)) {
+      const content = (await topic.content!()).default;
+      for (const [slug, lesson] of Object.entries(content)) {
+        const notes = (await lesson.notes()).default;
+        expect(notes, `${slug} notes`).toContain('## Definition');
+        expect(notes, `${slug} notes`).toContain('## Say it like this');
+      }
     }
   });
 });

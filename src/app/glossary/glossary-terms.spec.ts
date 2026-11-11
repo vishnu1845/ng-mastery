@@ -33,9 +33,10 @@ describe('Glossary', () => {
   });
 
   it('has a term page for every [[link]] in the lesson notes', async () => {
-    for (const topic of TOPICS) {
+    for (const topic of TOPICS.filter((topic) => topic.content)) {
+      const content = (await topic.content!()).default;
       for (const lesson of topic.lessons) {
-        const notes = (await lesson.notes()).default;
+        const notes = (await content[lesson.slug].notes()).default;
         for (const ref of glossaryRefs(notes)) {
           expect(slugs, `${lessonUrl(topic, lesson)} links to [[${ref}]]`).toContain(ref);
         }

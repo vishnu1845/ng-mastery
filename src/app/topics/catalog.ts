@@ -1,5 +1,5 @@
 import { Service } from '@angular/core';
-import { Lesson, LessonRef, Part, Topic } from '@core/models/topic.model';
+import { Lesson, LessonInfo, LessonRef, Part, Topic } from '@core/models/topic.model';
 import { PARTS } from './parts';
 import { TOPICS } from './topic-registry';
 
@@ -51,7 +51,7 @@ export class Catalog {
     return [...demoFiles, ...(lesson.files ?? [])];
   }
 
-  neighbours(topic: Topic, lesson: Lesson): { previous?: LessonRef; next?: LessonRef } {
+  neighbours(topic: Topic, lesson: LessonInfo): { previous?: LessonRef; next?: LessonRef } {
     const index = this.lessonPath.findIndex(
       (ref) => ref.topic === topic && ref.lesson.slug === lesson.slug,
     );
@@ -101,6 +101,6 @@ export function topicFolder(topic: Topic): string {
   return `${topicNumber(topic)}-${topic.slug}`;
 }
 
-export function lessonUrl(topic: Topic, lesson: Lesson): string {
+export function lessonUrl(topic: Topic, lesson: LessonInfo): string {
   return `/${topic.slug}/${lesson.slug}`;
 }

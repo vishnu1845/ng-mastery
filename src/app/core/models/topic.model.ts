@@ -29,10 +29,17 @@ export interface Part {
 /** A lazy import of a module whose default export is T. */
 export type LazyDefault<T> = () => Promise<{ default: T }>;
 
-/** One subtopic: a small live demo + short notes. */
-export interface Lesson {
+/**
+ * What the sidebar, search and prev/next links need to know about a lesson.
+ * Kept small, because every topic's list ships in the first download.
+ */
+export interface LessonInfo {
   slug: string;
   title: string;
+}
+
+/** The heavy part of a lesson. It lives in the topic's lessons.ts, loaded when the topic opens. */
+export interface LessonContent {
   /** Live demo component (default export). Leave it out for theory-only lessons. */
   component?: LazyDefault<Type<unknown>>;
   /** Lesson notes in markdown, imported as text. */
@@ -48,6 +55,12 @@ export interface Lesson {
   providers?: Provider[];
 }
 
+/** One subtopic: a small live demo + short notes. */
+export type Lesson = LessonInfo & LessonContent;
+
+/** A topic's lessons.ts: the content of every finished lesson, keyed by lesson slug. */
+export type TopicContent = Record<string, LessonContent>;
+
 /** One Notion topic = one folder in src/app/topics. */
 export interface Topic {
   id: number;
@@ -57,12 +70,14 @@ export interface Topic {
   /** Every planned lesson slug, in order. This is the syllabus for the topic. */
   outline: string[];
   /** Finished lessons only, so the app never shows an empty page. */
-  lessons: Lesson[];
+  lessons: LessonInfo[];
+  /** The topic's lessons.ts. Needed once the topic has a finished lesson. */
+  content?: LazyDefault<TopicContent>;
 }
 
 /** A lesson with its topic and URL, used for search and prev/next links. */
 export interface LessonRef {
   topic: Topic;
-  lesson: Lesson;
+  lesson: LessonInfo;
   url: string;
 }
