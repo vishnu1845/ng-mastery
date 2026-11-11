@@ -1,0 +1,29 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.bar {
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.cart {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-3);
+}

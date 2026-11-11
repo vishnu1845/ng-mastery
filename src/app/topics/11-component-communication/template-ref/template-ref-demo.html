@@ -1,0 +1,59 @@
+<div class="field">
+  <span id="kind-label">Inside the child</span>
+  <div class="segmented" role="radiogroup" aria-labelledby="kind-label">
+    @for (option of kinds; track option.id) {
+      <button
+        type="button"
+        role="radio"
+        class="mono"
+        [attr.aria-checked]="kind() === option.id"
+        (click)="kind.set(option.id)"
+      >
+        {{ option.label }}
+      </button>
+    }
+  </div>
+</div>
+
+<!-- The buttons are in the parent. #player is the child instance, so the parent pulls and commands. -->
+@if (kind() === 'signal') {
+  <app-signal-player #player (finished)="finished()" />
+  <div class="row">
+    <button type="button" class="btn-primary" (click)="player.play()">Play</button>
+    <button type="button" (click)="player.pause()">Pause</button>
+    <button type="button" class="btn-ghost" (click)="player.pause(); player.rewind()">
+      Rewind
+    </button>
+  </div>
+  <p class="parent-read" aria-live="polite">
+    The parent reads
+    <code>player.position()</code>
+    :
+    <strong class="mono">{{ player.position() }}s</strong>
+  </p>
+} @else {
+  <app-plain-player #player (finished)="finished()" />
+  <div class="row">
+    <button type="button" class="btn-primary" (click)="player.play()">Play</button>
+    <button type="button" (click)="player.pause()">Pause</button>
+    <button type="button" class="btn-ghost" (click)="player.pause(); player.rewind()">
+      Rewind
+    </button>
+  </div>
+  <p class="parent-read" aria-live="polite">
+    The parent reads
+    <code>player.position</code>
+    :
+    <strong class="mono">{{ player.position }}s</strong>
+  </p>
+  <p class="muted small">
+    Press Play and wait. The screen stays at 0. Press Pause: that click makes Angular look again,
+    and the real time appears.
+  </p>
+}
+
+<app-event-log
+  [entries]="log.entries()"
+  title="What the child pushed"
+  empty="Let a track play to the end (30 seconds) and the child emits (finished)."
+/>

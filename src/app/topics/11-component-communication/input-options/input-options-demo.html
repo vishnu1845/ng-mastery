@@ -1,0 +1,60 @@
+<section class="stack">
+  <h3 class="title">What each binding really delivers</h3>
+
+  <div class="cases">
+    <div class="panel case">
+      <code class="how">{{ cases[0] }}</code>
+      <app-profile-chip name="Asha" />
+    </div>
+    <div class="panel case">
+      <code class="how">{{ cases[1] }}</code>
+      <app-profile-chip name="Ravi" size="22" verified />
+    </div>
+    <div class="panel case">
+      <code class="how">{{ cases[2] }}</code>
+      <app-profile-chip name="Meera" verified="false" label="Mentor" />
+    </div>
+  </div>
+  <p class="muted small">
+    Plain attributes always pass strings. The transforms turn "22" into a number, and a bare
+    verified into true.
+  </p>
+</section>
+
+<section class="stack">
+  <h3 class="title">When is a required input ready?</h3>
+
+  <button type="button" class="toggle" (click)="showLifecycle.set(!showLifecycle())">
+    {{ showLifecycle() ? 'Remove the chip' : 'Create a chip and read name() early' }}
+  </button>
+
+  @if (showLifecycle()) {
+    <div class="panel when">
+      <code class="how">{{ lifecycleCase }}</code>
+      <app-profile-chip #chip name="Kabir" size="22" />
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Read in</th>
+              <th scope="col">name (required)</th>
+              <th scope="col">size (optional, default 14)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">constructor</th>
+              <td class="error">{{ chip.early.name }}</td>
+              <td class="warn">{{ chip.early.size }}</td>
+            </tr>
+            <tr>
+              <th scope="row">ngOnInit</th>
+              <td class="ok">{{ chip.onInit().name }}</td>
+              <td class="ok">{{ chip.onInit().size }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</section>

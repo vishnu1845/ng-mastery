@@ -1,0 +1,33 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.parent .field input {
+  width: 100%;
+}
+
+.children {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.child {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.how {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+.one-way {
+  border-style: dashed;
+}

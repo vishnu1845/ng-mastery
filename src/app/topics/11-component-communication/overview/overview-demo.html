@@ -1,0 +1,25 @@
+<div class="layout">
+  <fieldset class="needs">
+    <legend>What do you need?</legend>
+    @for (option of channels; track option.id) {
+      <label class="need" [class.is-picked]="picked() === option.id">
+        <input
+          type="radio"
+          name="need"
+          [value]="option.id"
+          [checked]="picked() === option.id"
+          (change)="picked.set(option.id)"
+        />
+        {{ option.need }}
+      </label>
+    }
+  </fieldset>
+
+  <section class="panel answer" aria-live="polite">
+    <p class="muted small">Use</p>
+    <p class="channel mono">{{ channel().answer }}</p>
+    <p>{{ channel().why }}</p>
+    <app-code-block [code]="channel().code" [lang]="channel().lang" label="Code" />
+    <a class="btn" [routerLink]="['..', channel().lesson]">Open the lesson</a>
+  </section>
+</div>

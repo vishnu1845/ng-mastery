@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+:host(app-shop) {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+}
+
+.shop-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.badge-count {
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in oklab, var(--accent) 18%, transparent);
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}

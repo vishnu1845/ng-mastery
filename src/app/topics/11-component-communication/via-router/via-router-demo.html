@@ -1,0 +1,13 @@
+<p class="address" aria-live="polite">
+  <span class="muted small">URL</span>
+  <code>{{ url() }}</code>
+</p>
+
+<div class="panel app">
+  <router-outlet />
+</div>
+
+<p class="muted small">
+  Open an order, then reload the page. The id and the tab come back, because they are in the URL.
+  The state also survives a reload in the same tab, but a copied link loses it.
+</p>

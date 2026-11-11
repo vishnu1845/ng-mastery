@@ -1,0 +1,68 @@
+.layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+// THE QUESTIONS
+.needs {
+  display: grid;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: var(--space-2);
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+  }
+}
+
+.need {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: var(--fs-sm);
+
+  input {
+    margin-top: 0.2rem;
+  }
+
+  &.is-picked {
+    border-color: var(--accent);
+    background: color-mix(in oklab, var(--accent) 8%, transparent);
+  }
+}
+
+// THE ANSWER
+.answer {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+
+  p {
+    margin: 0;
+  }
+}
+
+.channel {
+  color: var(--accent);
+  font-size: var(--fs-lg);
+  font-weight: 600;
+}
+
+.btn {
+  justify-self: start;
+  text-decoration: none;
+}

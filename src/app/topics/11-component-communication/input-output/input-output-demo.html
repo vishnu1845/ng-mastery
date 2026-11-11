@@ -1,0 +1,24 @@
+<div class="row bar">
+  <label class="tick">
+    <input type="checkbox" [checked]="sale()" (change)="toggleSale()" />
+    Sale: 10% off (the parent changes the input)
+  </label>
+  <p class="cart" aria-live="polite">
+    Cart:
+    <strong>{{ items() }}</strong>
+    {{ items() === 1 ? 'item' : 'items' }},
+    <strong class="mono">₹{{ total() }}</strong>
+    @if (items()) {
+      <button type="button" class="btn-ghost" (click)="clear()">Empty</button>
+    }
+  </p>
+</div>
+
+<div class="cards">
+  @for (product of products(); track product.id) {
+    <app-product-card [product]="product" (added)="addToCart(product, $event)" />
+  }
+  <app-product-card-old [product]="oldProduct()" (added)="addToCart(oldProduct(), $event)" />
+</div>
+
+<app-event-log [entries]="log.entries()" />

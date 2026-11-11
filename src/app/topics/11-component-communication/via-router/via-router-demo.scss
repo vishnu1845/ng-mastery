@@ -1,0 +1,25 @@
+:host {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.address {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+
+  code {
+    overflow-wrap: anywhere;
+  }
+}
+
+.app {
+  min-height: 12rem;
+}

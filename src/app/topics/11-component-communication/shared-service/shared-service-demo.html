@@ -1,0 +1,45 @@
+<section class="stack">
+  <h3 class="title">Two siblings, one service</h3>
+
+  <div class="row">
+    <div class="field">
+      <span id="store-label">The store keeps its state in</span>
+      <div class="segmented" role="radiogroup" aria-labelledby="store-label">
+        @for (option of kinds; track option.label) {
+          <button
+            type="button"
+            role="radio"
+            class="mono"
+            [attr.aria-checked]="useRx() === option.rx"
+            (click)="useRx.set(option.rx)"
+          >
+            {{ option.label }}
+          </button>
+        }
+      </div>
+    </div>
+    <button type="button" class="btn-ghost empty" (click)="emptyAll()">Empty the carts</button>
+  </div>
+
+  <app-shop name="Shop A" [useRx]="useRx()" />
+  <p class="muted small">
+    The shelf and the badge are siblings. The shelf writes to the store, the badge reads it.
+  </p>
+</section>
+
+<section class="stack">
+  <h3 class="title">Same store, or its own?</h3>
+
+  <div class="cols">
+    <div class="stack">
+      <code class="how">&lt;app-shop name="Shop B" /&gt;</code>
+      <app-shop name="Shop B" />
+      <p class="muted small">No providers of its own, so it shares the cart with Shop A.</p>
+    </div>
+    <div class="stack">
+      <code class="how">providers: [CartStore]</code>
+      <app-shop-own-cart name="Shop C" />
+      <p class="muted small">Provides CartStore itself, so it gets a new, separate cart.</p>
+    </div>
+  </div>
+</section>

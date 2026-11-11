@@ -1,0 +1,39 @@
+<div class="panel parent">
+  <label class="field">
+    <span>
+      Parent's slider:
+      <strong class="mono">{{ volume() }}%</strong>
+    </span>
+    <input
+      #parentSlider
+      type="range"
+      min="0"
+      max="100"
+      [value]="volume()"
+      (input)="volume.set(+parentSlider.value)"
+    />
+  </label>
+</div>
+
+<div class="children">
+  <div class="panel child">
+    <code class="how">{{ bindings.model }}</code>
+    <app-volume-knob [(volume)]="volume" (volumeChange)="changed('model()', $event)" />
+  </div>
+
+  <div class="panel child">
+    <code class="how">{{ bindings.old }}</code>
+    <app-volume-knob-old [(volume)]="volume" (volumeChange)="changed('Old knob', $event)" />
+  </div>
+
+  <div class="panel child one-way">
+    <code class="how">{{ bindings.oneWay }}</code>
+    <app-volume-knob [volume]="volume()" />
+    <p class="small muted">
+      Only brackets, no parentheses: the parent's value comes in, but this slider's changes stay
+      inside the child.
+    </p>
+  </div>
+</div>
+
+<app-event-log [entries]="log.entries()" title="What the children sent up" />

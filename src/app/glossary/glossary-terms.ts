@@ -98,6 +98,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/directives/directive-types', '/directives/custom-attribute'],
   },
   {
+    slug: 'behavior-subject',
+    term: 'BehaviorSubject',
+    short:
+      'An RxJS Subject that always holds a current value and gives it to every new subscriber straight away.',
+    body: 'Before [[signal|signals]], it was the usual way to keep shared state in a [[service|service]].',
+    example: {
+      lang: 'angular-ts',
+      code: 'private readonly count$ = new BehaviorSubject(0);\n\nincrement() {\n  this.count$.next(this.count$.value + 1);\n}',
+    },
+    related: ['observable', 'service', 'signal'],
+    lessons: ['/component-communication/shared-service'],
+  },
+  {
     slug: 'bootstrapping',
     term: 'Bootstrapping',
     short:
@@ -251,6 +264,15 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/data-binding/events', '/data-binding/key-events'],
   },
   {
+    slug: 'event-emitter',
+    term: 'EventEmitter',
+    short:
+      'The class behind the older `@Output()`. Calling `.emit(value)` sends the value to the parent as `$event`.',
+    body: 'The modern [[output|`output()`]] function does the same job without RxJS.',
+    related: ['output', 'event-binding'],
+    lessons: ['/component-communication/input-output'],
+  },
+  {
     slug: 'export-as',
     term: 'exportAs',
     short:
@@ -346,6 +368,18 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/signals-basics/injection-context'],
   },
   {
+    slug: 'input',
+    term: 'input()',
+    short:
+      'Declares a value a component receives from its parent. The child reads it as a read-only signal.',
+    example: {
+      lang: 'angular-ts',
+      code: 'readonly product = input.required<Product>();\nreadonly size = input(14, { transform: numberAttribute });',
+    },
+    related: ['output', 'model', 'property-binding', 'signal'],
+    lessons: ['/component-communication/input-output', '/component-communication/input-options'],
+  },
+  {
     slug: 'interpolation',
     term: 'Interpolation',
     short:
@@ -411,6 +445,18 @@ export const GLOSSARY: GlossaryTerm[] = [
       'The configuration object passed into a decorator, like `selector` and `templateUrl` in `@Component`, which tells Angular how to create and render the class.',
     related: ['decorator', 'component'],
     lessons: ['/components/metadata'],
+  },
+  {
+    slug: 'model',
+    term: 'model()',
+    short:
+      'A two-way input: the child can change it, and every change goes back to the parent through `[( )]`.',
+    example: {
+      lang: 'angular-ts',
+      code: '// child\nreadonly volume = model(50);\n\n<!-- parent -->\n<app-volume-knob [(volume)]="volume" />',
+    },
+    related: ['input', 'output', 'two-way-binding'],
+    lessons: ['/component-communication/model-two-way'],
   },
   {
     slug: 'mpa',
@@ -488,6 +534,18 @@ export const GLOSSARY: GlossaryTerm[] = [
       'A change detection strategy: Angular refreshes a component only when its inputs change, an event fires in it, a signal it reads changes, or `markForCheck()` is called. The default in Angular 22.',
     related: ['change-detection', 'signal', 'zoneless'],
     lessons: ['/components/metadata', '/signals-basics/signal-vs-property'],
+  },
+  {
+    slug: 'output',
+    term: 'output()',
+    short:
+      'Declares an event a component sends up to its parent. `.emit(value)` delivers the value to the parent as `$event`.',
+    example: {
+      lang: 'angular-ts',
+      code: '// child\nreadonly added = output<number>();\nthis.added.emit(2);\n\n<!-- parent -->\n<app-product-card (added)="addToCart($event)" />',
+    },
+    related: ['input', 'event-emitter', 'event-binding'],
+    lessons: ['/component-communication/input-output'],
   },
   {
     slug: 'pipe',
@@ -751,6 +809,15 @@ export const GLOSSARY: GlossaryTerm[] = [
       "A type that can be one of several types, written with `|`, like `string | number` or `'sm' | 'md' | 'lg'`.",
     related: ['type-narrowing', 'typescript'],
     lessons: ['/typescript/union-intersection'],
+  },
+  {
+    slug: 'view-child',
+    term: 'viewChild()',
+    short:
+      'A query that gives a component a child from its own template, as a signal. `viewChildren()` gives all of them.',
+    body: 'The older `@ViewChild()` and `@ViewChildren()` decorators do the same, but are filled only around `ngAfterViewInit`.',
+    related: ['template-reference-variable', 'element-ref', 'signal'],
+    lessons: ['/component-communication/view-child'],
   },
   {
     slug: 'view-container-ref',

@@ -1,0 +1,63 @@
+<section class="stack">
+  <h3 class="title">A parent that works with all its children</h3>
+
+  <div class="quiz panel">
+    @for (text of texts; track text) {
+      <app-question [text]="text" />
+    }
+  </div>
+
+  <div class="row">
+    <button type="button" class="btn-primary" [disabled]="!allAnswered()" (click)="submit()">
+      Submit
+    </button>
+    <button type="button" [disabled]="allAnswered()" (click)="focusFirstEmpty()">
+      Focus the first empty one
+    </button>
+    <button type="button" class="btn-ghost" (click)="resetAll()">Reset all</button>
+    <span aria-live="polite">
+      Answered
+      <strong>{{ answered() }}</strong>
+      of 3
+    </span>
+  </div>
+
+  @if (submitted()) {
+    <p class="submitted">Submitted: {{ submitted() }}</p>
+  }
+</section>
+
+<section class="stack">
+  <h3 class="title">When is the child there?</h3>
+  <app-query-timing #timing />
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Read in</th>
+          <th scope="col">&#64;ViewChild</th>
+          <th scope="col">&#64;ViewChild(…, static: true)</th>
+          <th scope="col">viewChild()</th>
+          <th scope="col">viewChild(), child inside &#64;if</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (row of timing.rows(); track row.moment) {
+          <tr>
+            <th scope="row" class="mono">{{ row.moment }}</th>
+            <td [class.yes]="row.decorator === 'the child'">{{ row.decorator }}</td>
+            <td [class.yes]="row.decoratorStatic === 'the child'">{{ row.decoratorStatic }}</td>
+            <td [class.yes]="row.signal === 'the child'">{{ row.signal }}</td>
+            <td [class.yes]="row.signalInIf === 'the child'">{{ row.signalInIf }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="small">
+    <code>viewChild.required()</code>
+    read in ngOnInit:
+    <span class="error mono">{{ timing.requiredTooEarly() }}</span>
+  </p>
+</section>
