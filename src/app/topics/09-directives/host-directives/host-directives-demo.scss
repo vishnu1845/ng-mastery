@@ -1,0 +1,60 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+p {
+  margin: 0;
+}
+
+.small {
+  font-size: var(--fs-xs);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+.way {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+// The hand-wired chips need their own copy of the chip styles
+.plain-chip {
+  display: inline-flex;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  user-select: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+}
+
+.order {
+  display: grid;
+  gap: var(--space-2);
+
+  ol {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+    padding-left: 1.25rem;
+    font-size: var(--fs-sm);
+  }
+}

@@ -1,0 +1,36 @@
+<div class="field">
+  <span id="role-label">Logged in as</span>
+  <div class="segmented" role="radiogroup" aria-labelledby="role-label">
+    @for (role of roles; track role) {
+      <button
+        type="button"
+        role="radio"
+        [attr.aria-checked]="session.role() === role"
+        (click)="session.role.set(role)"
+      >
+        {{ role }}
+      </button>
+    }
+  </div>
+</div>
+
+<div #toolbar class="toolbar panel">
+  <button type="button">View report</button>
+
+  <!-- One role or several -->
+  <button *appHasRole="['editor', 'admin']" type="button">Edit report</button>
+
+  <!-- With a fallback template -->
+  <button *appHasRole="'admin'; else locked" type="button" class="danger">Delete report</button>
+  <ng-template #locked>
+    <span class="locked">Delete is for admins</span>
+  </ng-template>
+
+  <!-- The same directive written without the star -->
+  <ng-template [appHasRole]="'admin'">
+    <button type="button">Audit log</button>
+  </ng-template>
+</div>
+
+<p class="muted small">The toolbar's real HTML right now</p>
+<pre class="dom">{{ toolbarHtml() || '…' }}</pre>

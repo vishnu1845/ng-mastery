@@ -1,0 +1,91 @@
+.stage {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.controls {
+  gap: var(--space-2) var(--space-5);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+// THE SAMPLE BUTTON
+.way {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
+}
+
+.sample {
+  border: 1px solid var(--border-strong);
+
+  &.is-bold {
+    font-weight: 700;
+  }
+
+  &.is-rounded {
+    border-radius: var(--radius-pill);
+  }
+
+  &.is-danger {
+    border-color: var(--danger);
+    color: var(--danger);
+  }
+}
+
+// DIFFERENCES TABLE
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+  }
+
+  td {
+    min-width: 13rem;
+  }
+
+  code {
+    display: block;
+    margin-top: var(--space-2);
+    font-size: var(--fs-xs);
+  }
+}
+
+.mini {
+  display: inline-block;
+  padding: 0.1rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+.mutate {
+  display: block;
+  margin-top: var(--space-2);
+}
+
+// NGMODEL STATE CLASSES, styled so the change is visible
+input.ng-touched.ng-invalid {
+  border-color: var(--danger);
+}
+
+input.ng-dirty.ng-valid {
+  border-color: var(--success);
+}

@@ -85,6 +85,19 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/data-binding/attribute'],
   },
   {
+    slug: 'attribute-directive',
+    term: 'Attribute directive',
+    short:
+      'A directive that changes the look or behavior of an existing element. It is added to the element like an attribute.',
+    body: '`ngClass`, `ngStyle` and `ngModel` are built-in ones. A custom one has a selector in square brackets, like `[appHighlight]`.',
+    example: {
+      lang: 'angular-html',
+      code: '<p [appHighlight]="\'gold\'">Hover me</p>',
+    },
+    related: ['directive', 'structural-directive', 'host-element'],
+    lessons: ['/directives/directive-types', '/directives/custom-attribute'],
+  },
+  {
     slug: 'bootstrapping',
     term: 'Bootstrapping',
     short:
@@ -185,8 +198,8 @@ export const GLOSSARY: GlossaryTerm[] = [
     short:
       'A class that adds behaviour to elements in a template. A component is a directive with a template; an attribute directive changes an existing element.',
     body: '`ngModel` is an attribute directive. The built-in `@if` and `@for` blocks replaced the old structural directives `*ngIf` and `*ngFor`. Topic 09 covers writing our own.',
-    related: ['component', 'structural-directive', 'template-reference-variable'],
-    lessons: ['/data-binding/template-refs'],
+    related: ['component', 'attribute-directive', 'structural-directive', 'host-directives'],
+    lessons: ['/directives/directive-types', '/data-binding/template-refs'],
   },
   {
     slug: 'dom',
@@ -219,6 +232,15 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/signals-basics/effect', '/signals-basics/injection-context'],
   },
   {
+    slug: 'element-ref',
+    term: 'ElementRef',
+    short:
+      'An Angular service that wraps the actual DOM element. Its `nativeElement` is the real HTML element.',
+    body: 'Use it to read from the DOM or to call `focus()`, inside `afterNextRender`. For changing the DOM, a binding or [[renderer2|Renderer2]] comes first.',
+    related: ['renderer2', 'dom', 'host-element'],
+    lessons: ['/directives/renderer2', '/directives/custom-attribute'],
+  },
+  {
     slug: 'event-binding',
     term: 'Event binding',
     short:
@@ -227,6 +249,18 @@ export const GLOSSARY: GlossaryTerm[] = [
     example: { lang: 'angular-html', code: '<button (click)="save()">Save</button>' },
     related: ['data-binding', 'two-way-binding'],
     lessons: ['/data-binding/events', '/data-binding/key-events'],
+  },
+  {
+    slug: 'export-as',
+    term: 'exportAs',
+    short:
+      'A name a directive publishes, so a template reference like `#ref="name"` points at the directive instead of the element.',
+    example: {
+      lang: 'angular-html',
+      code: '<input [(ngModel)]="email" #state="ngModel" />\n<p>Valid: {{ state.valid }}</p>',
+    },
+    related: ['template-reference-variable', 'directive'],
+    lessons: ['/directives/export-as'],
   },
   {
     slug: 'first-class-function',
@@ -259,6 +293,14 @@ export const GLOSSARY: GlossaryTerm[] = [
     },
     related: ['typescript'],
     lessons: ['/typescript/generics'],
+  },
+  {
+    slug: 'host-directives',
+    term: 'Host directives',
+    short:
+      'Directives that a component or directive applies to its own host element through `hostDirectives`. Also called the directive composition API.',
+    related: ['directive', 'host-element'],
+    lessons: ['/directives/host-directives'],
   },
   {
     slug: 'host-element',
@@ -477,6 +519,23 @@ export const GLOSSARY: GlossaryTerm[] = [
     lessons: ['/bootstrapping/app-config', '/components/metadata'],
   },
   {
+    slug: 'renderer2',
+    term: 'Renderer2',
+    short:
+      "Angular's own API for changing the DOM from code: creating elements, setting styles, adding listeners.",
+    body: "Elements it creates get the component's scoped styles. It does not clean unsafe HTML. Only template bindings are [[sanitization|sanitized]].",
+    related: ['element-ref', 'dom', 'sanitization'],
+    lessons: ['/directives/renderer2'],
+  },
+  {
+    slug: 'sanitization',
+    term: 'Sanitization',
+    short:
+      'Cleaning a value before it goes into the DOM, so it cannot run a script. Angular does it automatically for template bindings like `[innerHTML]`.',
+    related: ['renderer2', 'dom'],
+    lessons: ['/directives/renderer2'],
+  },
+  {
     slug: 'selector',
     term: 'Selector',
     short:
@@ -563,7 +622,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'A directive that adds or removes elements in the DOM, written with a `*` like `*ngIf` and `*ngFor`.',
     body: 'The `*` is short for wrapping the element in an [[ng-template|<ng-template>]]. The built-in ones are deprecated since v20 in favour of [[control-flow|control flow]] blocks. We can still write our own.',
     related: ['directive', 'control-flow', 'ng-template'],
-    lessons: ['/control-flow/legacy-structural'],
+    lessons: ['/directives/custom-structural', '/control-flow/legacy-structural'],
   },
   {
     slug: 'template',
@@ -571,6 +630,14 @@ export const GLOSSARY: GlossaryTerm[] = [
     short: 'The HTML of a component, extended with Angular syntax like bindings, `@if` and `@for`.',
     related: ['component', 'control-flow', 'data-binding', 'interpolation'],
     lessons: ['/components/anatomy'],
+  },
+  {
+    slug: 'template-ref',
+    term: 'TemplateRef',
+    short:
+      'A reference to an `<ng-template>`: a piece of template that can be rendered later, any number of times.',
+    related: ['ng-template', 'view-container-ref', 'structural-directive'],
+    lessons: ['/directives/custom-structural'],
   },
   {
     slug: 'template-reference-variable',
@@ -654,6 +721,14 @@ export const GLOSSARY: GlossaryTerm[] = [
       "A type that can be one of several types, written with `|`, like `string | number` or `'sm' | 'md' | 'lg'`.",
     related: ['type-narrowing', 'typescript'],
     lessons: ['/typescript/union-intersection'],
+  },
+  {
+    slug: 'view-container-ref',
+    term: 'ViewContainerRef',
+    short:
+      'A place in the DOM where views can be added and removed from code, with `createEmbeddedView()` and `clear()`.',
+    related: ['template-ref', 'structural-directive'],
+    lessons: ['/directives/custom-structural'],
   },
   {
     slug: 'view-encapsulation',

@@ -1,0 +1,55 @@
+<div class="cols">
+  <section class="panel way">
+    <span class="badge badge-accent">Composed with hostDirectives</span>
+    <p class="muted small">The template only says app-chip. The behaviours come with it.</p>
+
+    <div #composed class="chips">
+      @for (topic of topics; track topic.label) {
+        <app-chip
+          [label]="topic.label"
+          [color]="topic.color"
+          (pressed)="pressed.set(topic.label)"
+        />
+      }
+    </div>
+
+    <p class="muted small">A chip's real opening tag (hover one to see its style)</p>
+    <code class="dom">{{ chipTag() || '…' }}</code>
+  </section>
+
+  <section class="panel way">
+    <span class="badge">Wired by hand</span>
+    <p class="muted small">Every use has to remember both attributes.</p>
+
+    <div class="chips">
+      @for (topic of topics; track topic.label) {
+        <span
+          class="plain-chip"
+          appPressable
+          [appHighlight]="topic.color"
+          (pressed)="pressed.set(topic.label)"
+        >
+          {{ topic.label }}
+        </span>
+      }
+    </div>
+  </section>
+</div>
+
+<p aria-live="polite">
+  @if (pressed()) {
+    <strong>{{ pressed() }}</strong>
+    was pressed. Click, Enter and Space all work, because of Pressable.
+  } @else {
+    <span class="muted">Press a chip with the mouse or the keyboard.</span>
+  }
+</p>
+
+<div class="panel order">
+  <p class="muted small">The order Angular created them in, for the first chip</p>
+  <ol>
+    @for (name of order(); track name) {
+      <li>{{ name }}</li>
+    }
+  </ol>
+</div>

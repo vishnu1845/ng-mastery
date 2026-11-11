@@ -1,0 +1,67 @@
+<label class="tick">
+  <input type="checkbox" [checked]="mounted()" (change)="mounted.set(!mounted())" />
+  Keep both menus on the page
+</label>
+
+<div #stage class="cols">
+  <div class="panel way">
+    <span class="badge badge-accent">host: &#123; … &#125;</span>
+
+    @if (mounted()) {
+      <div class="menu" appDropdown [(open)]="hostOpen" (heard)="hostHeard.set(hostHeard() + 1)">
+        <button type="button" [attr.aria-expanded]="hostOpen()" (click)="hostOpen.set(!hostOpen())">
+          Options ▾
+        </button>
+        @if (hostOpen()) {
+          <ul class="items">
+            @for (action of actions; track action) {
+              <li>
+                <button type="button" (click)="pick(action, hostOpen)">{{ action }}</button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
+
+    <code class="dom">{{ hostTag() }}</code>
+    <p class="small" aria-live="polite">
+      Page clicks this directive heard:
+      <strong>{{ hostHeard() }}</strong>
+    </p>
+  </div>
+
+  <div class="panel way">
+    <span class="badge">&#64;HostBinding + &#64;HostListener</span>
+
+    @if (mounted()) {
+      <div class="menu" appDropdownOld [(open)]="oldOpen" (heard)="oldHeard.set(oldHeard() + 1)">
+        <button type="button" [attr.aria-expanded]="oldOpen()" (click)="oldOpen.set(!oldOpen())">
+          Options ▾
+        </button>
+        @if (oldOpen()) {
+          <ul class="items">
+            @for (action of actions; track action) {
+              <li>
+                <button type="button" (click)="pick(action, oldOpen)">{{ action }}</button>
+              </li>
+            }
+          </ul>
+        }
+      </div>
+    }
+
+    <code class="dom">{{ oldTag() }}</code>
+    <p class="small" aria-live="polite">
+      Page clicks this directive heard:
+      <strong>{{ oldHeard() }}</strong>
+    </p>
+  </div>
+</div>
+
+<p class="muted small" aria-live="polite">
+  Open a menu, then click outside it or press Escape.
+  @if (lastAction()) {
+    Last action: {{ lastAction() }}.
+  }
+</p>

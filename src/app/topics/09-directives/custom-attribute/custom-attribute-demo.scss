@@ -1,0 +1,42 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.segmented button {
+  text-transform: capitalize;
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+// HIGHLIGHT TARGETS
+.targets {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: start;
+}
+
+.target {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: background-color var(--duration) var(--ease);
+}
+
+p.target {
+  justify-self: stretch;
+}

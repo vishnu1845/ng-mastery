@@ -1,0 +1,47 @@
+:host {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+// FAQ
+.faq {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.item {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-2);
+}
+
+.question {
+  width: 100%;
+  border-color: transparent;
+  background: transparent;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.answer {
+  margin: 0;
+  padding: 0 var(--space-3) var(--space-2);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+}
+
+// REFERENCES TABLE
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  td {
+    font-size: var(--fs-sm);
+  }
+}

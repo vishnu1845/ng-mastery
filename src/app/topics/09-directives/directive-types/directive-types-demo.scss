@@ -1,0 +1,54 @@
+:host {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+// THE CARD
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  align-self: start;
+  min-height: 5.5rem;
+}
+
+.who {
+  display: grid;
+  flex: 1 1 9rem;
+  gap: var(--space-1);
+  justify-items: start;
+}
+
+.course {
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+
+// THE TABLE
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  td {
+    font-size: var(--fs-sm);
+  }
+
+  // Room for the HTML, so on a phone the table scrolls instead of squeezing it
+  td:last-child {
+    min-width: 15rem;
+  }
+
+  code {
+    font-size: var(--fs-xs);
+  }
+}

@@ -1,0 +1,131 @@
+<div #stage class="stage">
+  <section class="stack">
+    <h3 class="title">Same result, two ways</h3>
+
+    <div class="row controls">
+      <label class="tick">
+        <input type="checkbox" [(ngModel)]="bold" />
+        Bold
+      </label>
+      <label class="tick">
+        <input type="checkbox" [(ngModel)]="rounded" />
+        Rounded
+      </label>
+      <label class="tick">
+        <input type="checkbox" [(ngModel)]="danger" />
+        Danger
+      </label>
+      <label class="tick">
+        Size
+        <input type="range" min="12" max="24" [(ngModel)]="size" />
+        <span class="mono">{{ size() }}px</span>
+      </label>
+    </div>
+
+    <div class="cols">
+      <div class="panel way">
+        <span class="badge">NgClass + NgStyle directives</span>
+        <button
+          type="button"
+          class="sample"
+          data-tag="directives"
+          [ngClass]="classes()"
+          [ngStyle]="{ 'font-size.px': size() }"
+        >
+          Save changes
+        </button>
+        <code class="dom">{{ tags()['directives'] }}</code>
+      </div>
+
+      <div class="panel way">
+        <span class="badge badge-accent">Plain bindings, no import</span>
+        <button
+          type="button"
+          class="sample"
+          data-tag="bindings"
+          [class]="classes()"
+          [style.font-size.px]="size()"
+        >
+          Save changes
+        </button>
+        <code class="dom">{{ tags()['bindings'] }}</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h3 class="title">Where they differ</h3>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">Case</th>
+            <th scope="col">With the directive</th>
+            <th scope="col">With the plain binding</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              The same object, changed in place
+              <button type="button" class="mutate" (click)="mutate()">Change it</button>
+            </th>
+            <td>
+              <span class="sample mini" data-tag="mutate-directive" [ngClass]="flags">Text</span>
+              <code>{{ tags()['mutate-directive'] }}</code>
+            </td>
+            <td>
+              <span class="sample mini" data-tag="mutate-binding" [class]="flags">Text</span>
+              <code>{{ tags()['mutate-binding'] }}</code>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Two classes in one key</th>
+            <td>
+              <span class="sample mini" data-tag="two-directive" [ngClass]="twoClasses">Text</span>
+              <code>{{ tags()['two-directive'] }}</code>
+            </td>
+            <td>
+              <span class="sample mini" data-tag="two-binding" [class]="twoClasses">Text</span>
+              <code>{{ tags()['two-binding'] }}</code>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">A unit inside the object key</th>
+            <td>
+              <span class="sample mini" data-tag="unit-directive" [ngStyle]="withUnit">Text</span>
+              <code>{{ tags()['unit-directive'] }}</code>
+            </td>
+            <td>
+              <span class="sample mini" data-tag="unit-binding" [style]="withUnit">Text</span>
+              <code>{{ tags()['unit-binding'] }}</code>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h3 class="title">NgModel is an attribute directive too</h3>
+    <p class="muted small">
+      Type in the box, then click outside it. NgModel adds and removes classes on the input by
+      itself.
+    </p>
+
+    <label class="field">
+      Email
+      <input
+        type="email"
+        name="email"
+        data-tag="model"
+        autocomplete="off"
+        required
+        email
+        [(ngModel)]="email"
+      />
+    </label>
+    <code class="dom">{{ tags()['model'] }}</code>
+  </section>
+</div>

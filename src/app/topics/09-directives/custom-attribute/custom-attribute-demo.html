@@ -1,0 +1,58 @@
+<section class="stack">
+  <h3 class="title">One directive, any element</h3>
+
+  <div class="field">
+    <span id="colour-label">Colour passed to the directive</span>
+    <div class="segmented" role="radiogroup" aria-labelledby="colour-label">
+      @for (option of colors; track option) {
+        <button
+          type="button"
+          role="radio"
+          [attr.aria-checked]="color() === option"
+          (click)="color.set(option)"
+        >
+          {{ option }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div #targets class="targets">
+    <p class="target" appHighlight>A paragraph with the bare attribute, so it uses the default.</p>
+    <p class="target" [appHighlight]="color()">A paragraph that gets the colour above.</p>
+    <button type="button" class="target" [appHighlight]="color()">A button, same directive</button>
+  </div>
+
+  <p class="muted small">Move the pointer over each one, or tab to the button.</p>
+  <code class="dom" aria-live="polite">
+    {{ activeTag() || 'No element is highlighted right now.' }}
+  </code>
+</section>
+
+<section class="stack">
+  <h3 class="title">A directive that focuses its element</h3>
+
+  <div class="row">
+    <button type="button" (click)="toggleSearch()">
+      {{ searching() ? 'Close search' : 'Open search' }}
+    </button>
+
+    @if (searching()) {
+      <input
+        appAutoFocus
+        type="search"
+        aria-label="Search lessons"
+        placeholder="Search lessons"
+        (focus)="focused.set(true)"
+      />
+    }
+  </div>
+
+  <p class="muted small" aria-live="polite">
+    @if (focused()) {
+      The box took the focus by itself. Start typing.
+    } @else {
+      Open the search. You should not need to click the box.
+    }
+  </p>
+</section>

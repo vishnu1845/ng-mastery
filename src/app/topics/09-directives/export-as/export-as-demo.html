@@ -1,0 +1,72 @@
+<section class="stack">
+  <h3 class="title">Call a directive from the template</h3>
+
+  <div class="row">
+    <button type="button" (click)="setAll(true)">Open all</button>
+    <button type="button" class="btn-ghost" (click)="setAll(false)">Close all</button>
+  </div>
+
+  <div class="faq">
+    @for (faq of faqs; track faq.question) {
+      <div class="item panel">
+        <!-- panel is the Collapse instance, so we can call its method and read its signal -->
+        <button
+          type="button"
+          class="question"
+          [attr.aria-expanded]="panel.open()"
+          (click)="panel.toggle()"
+        >
+          <span>{{ faq.question }}</span>
+          <span class="mono" aria-hidden="true">{{ panel.open() ? '−' : '+' }}</span>
+        </button>
+
+        <p class="answer" appCollapse #panel="appCollapse">{{ faq.answer }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="stack">
+  <h3 class="title">Same element, two kinds of reference</h3>
+
+  <label class="field">
+    Email
+    <input
+      #box
+      #state="ngModel"
+      type="email"
+      name="email"
+      autocomplete="off"
+      required
+      email
+      [(ngModel)]="email"
+    />
+  </label>
+
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th scope="col">Reference</th>
+          <th scope="col">Points at</th>
+          <th scope="col">What we can read from it</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row" class="mono">#box</th>
+          <td>The input element</td>
+          <td class="mono">tagName: {{ box.tagName }}, type: {{ box.type }}</td>
+        </tr>
+        <tr>
+          <th scope="row" class="mono">#state="ngModel"</th>
+          <td>The NgModel directive on it</td>
+          <td class="mono" aria-live="polite">
+            valid: {{ state.valid }}, touched: {{ state.touched }}, dirty: {{ state.dirty }},
+            errors: {{ state.errors | json }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

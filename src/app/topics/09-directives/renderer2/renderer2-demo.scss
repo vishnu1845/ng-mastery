@@ -1,0 +1,77 @@
+.stage {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.title {
+  font-size: var(--fs-base);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+// The rule all three tags should get. It is scoped to this component.
+.tag {
+  margin-left: var(--space-2);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--bg);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.data-table {
+  th[scope='row'] {
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  td {
+    white-space: nowrap;
+  }
+
+  code {
+    font-size: var(--fs-xs);
+    white-space: normal;
+  }
+
+  .yes {
+    color: var(--success);
+  }
+
+  .no {
+    color: var(--danger);
+  }
+}
+
+// UNSAFE HTML
+.ways {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-3);
+}
+
+.way {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
+}
+
+.box {
+  min-height: 1.6rem;
+  cursor: pointer;
+}
+
+.again {
+  justify-self: start;
+}

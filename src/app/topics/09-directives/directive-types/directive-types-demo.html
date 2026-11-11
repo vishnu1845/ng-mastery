@@ -1,0 +1,73 @@
+<div class="cols">
+  <div class="stack">
+    <label class="field">
+      Name
+      <input #nameBox type="text" [value]="name()" (input)="name.set(nameBox.value)" />
+    </label>
+
+    <div class="field">
+      <span id="tint-label">Tint</span>
+      <div class="segmented" role="radiogroup" aria-labelledby="tint-label">
+        @for (option of tints; track option.value) {
+          <button
+            type="button"
+            role="radio"
+            [attr.aria-checked]="tint() === option.value"
+            (click)="tint.set(option.value)"
+          >
+            {{ option.label }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <label class="tick">
+      <input type="checkbox" [checked]="soldOut()" (change)="soldOut.set(!soldOut())" />
+      Sold out
+    </label>
+  </div>
+
+  <div #card class="card panel">
+    <app-initials [name]="name()" />
+    <div class="who">
+      <strong>{{ name() || 'No name' }}</strong>
+      <span class="course" [appTint]="tint()">Angular 22 course</span>
+    </div>
+    <button *appUnless="soldOut()" type="button" class="buy btn-primary">Enroll</button>
+  </div>
+</div>
+
+<div class="table-wrap">
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">What it does</th>
+        <th scope="col">Its real HTML right now</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Component</th>
+        <td>Renders its own template inside its tag</td>
+        <td>
+          <code>{{ componentHtml() }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Attribute</th>
+        <td>Changes the element it sits on</td>
+        <td>
+          <code>{{ attributeHtml() }}</code>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Structural</th>
+        <td>Adds or removes its element</td>
+        <td>
+          <code>{{ structuralHtml() }}</code>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,67 @@
+:host {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.small {
+  margin: 0;
+  font-size: var(--fs-xs);
+}
+
+.tick {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dom {
+  justify-self: start;
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+
+.way {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  justify-items: start;
+  min-height: 12rem;
+
+  strong {
+    color: var(--accent);
+    font-size: var(--fs-md);
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// THE MENU: the directive adds .is-open to this element
+.menu {
+  position: relative;
+
+  &.is-open > button {
+    border-color: var(--accent);
+  }
+}
+
+.items {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + var(--space-1));
+  left: 0;
+  display: grid;
+  min-width: 9rem;
+  margin: 0;
+  padding: var(--space-1);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: var(--shadow-lg);
+  list-style: none;
+
+  button {
+    width: 100%;
+    border-color: transparent;
+    background: transparent;
+    justify-content: flex-start;
+  }
+}

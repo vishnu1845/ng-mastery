@@ -1,0 +1,86 @@
+<div #stage class="stage">
+  <section class="stack">
+    <h3 class="title">Add a tag to an element, three ways</h3>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th scope="col">How the tag was added</th>
+            <th scope="col">Result</th>
+            <th scope="col">The tag's real HTML</th>
+            <th scope="col">Got the component's CSS?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">In the template</th>
+            <td data-way="template">
+              Signals course
+              <span class="tag">NEW</span>
+            </td>
+            <td>
+              <code>{{ tags()['template']?.html }}</code>
+            </td>
+            <td [class.yes]="tags()['template']?.styled" [class.no]="!tags()['template']?.styled">
+              {{ tags()['template']?.styled ? 'Yes' : 'No' }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Renderer2</th>
+            <td data-way="renderer" appRendererTag>Signals course</td>
+            <td>
+              <code>{{ tags()['renderer']?.html }}</code>
+            </td>
+            <td [class.yes]="tags()['renderer']?.styled" [class.no]="!tags()['renderer']?.styled">
+              {{ tags()['renderer']?.styled ? 'Yes' : 'No' }}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">document.createElement</th>
+            <td data-way="dom" appDomTag>Signals course</td>
+            <td>
+              <code>{{ tags()['dom']?.html }}</code>
+            </td>
+            <td [class.yes]="tags()['dom']?.styled" [class.no]="!tags()['dom']?.styled">
+              {{ tags()['dom']?.styled ? 'Yes' : 'No' }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="stack">
+    <h3 class="title">Write unsafe HTML, three ways</h3>
+    <p class="muted small">
+      The same string goes into each box. Click the bold text in each one. An onclick that still
+      works means the HTML was not cleaned.
+    </p>
+    <code class="dom">{{ payload() }}</code>
+
+    <div class="ways">
+      <div class="panel way">
+        <span class="badge badge-accent">[innerHTML] binding</span>
+        <div class="box" data-box="binding" [innerHTML]="payload()"></div>
+        <code class="dom">{{ boxes()['binding'] }}</code>
+      </div>
+
+      <div class="panel way">
+        <span class="badge">Renderer2.setProperty</span>
+        <div class="box" data-box="renderer" [appRendererHtml]="payload()"></div>
+        <code class="dom">{{ boxes()['renderer'] }}</code>
+      </div>
+
+      <div class="panel way">
+        <span class="badge">nativeElement.innerHTML</span>
+        <div class="box" data-box="dom" [appDomHtml]="payload()"></div>
+        <code class="dom">{{ boxes()['dom'] }}</code>
+      </div>
+    </div>
+
+    <button type="button" class="again" (click)="attempt.set(attempt() + 1)">
+      Reset the boxes
+    </button>
+  </section>
+</div>
