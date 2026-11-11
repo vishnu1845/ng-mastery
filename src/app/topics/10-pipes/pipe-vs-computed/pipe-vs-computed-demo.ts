@@ -3,9 +3,16 @@ import { RunCount } from '../_shared/run-count';
 import { RunCounter } from '../_shared/run-counter';
 import { filterPeople, Person, SearchPipe } from '../_shared/search-pipe';
 
-const PEOPLE: Person[] = ['Asha', 'Ravi', 'Meera', 'Kabir', 'Zoya', 'Dev', 'Isha', 'Arjun'].map(
-  (name, index) => ({ id: index + 1, name }),
-);
+const PEOPLE: Person[] = [
+  'Mikasa',
+  'Levi',
+  'Hinata',
+  'Naruto',
+  'Nezuko',
+  'Goku',
+  'Asuna',
+  'Luffy',
+].map((name, index) => ({ id: index + 1, name }));
 
 /** One search box feeding a pipe and a computed, each used in two places. */
 @Component({

@@ -32,7 +32,7 @@ import { Component, signal } from '@angular/core';
 })
 export default class BuiltInDemo {
   // THE ORIGINAL VALUES: pipes never change these
-  protected readonly name = signal('asha kulkarni');
+  protected readonly name = signal('mikasa ackerman');
   protected readonly amount = signal(1234.567);
   protected readonly joined = new Date('2026-06-12T12:00:00Z');
   protected readonly skills = ['Signals', 'Routing', 'Forms', 'RxJS', 'Testing'];

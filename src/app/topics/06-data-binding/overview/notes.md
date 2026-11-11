@@ -27,7 +27,7 @@ Attribute, class and style binding (`[attr.x]`, `[class.x]`, `[style.x]`) are sp
   `,
 })
 export class Profile {
-  name = signal('Vishnu');
+  name = signal('Gojo');
   likes = signal(0);
 
   like() {

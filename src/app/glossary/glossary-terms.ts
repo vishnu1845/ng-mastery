@@ -144,7 +144,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'The main building block of an Angular app: a class, a template, styles and `@Component` metadata that together control one part of the UI.',
     example: {
       lang: 'angular-ts',
-      code: "@Component({\n  selector: 'app-user-card',\n  template: `<h3>Hello {{ name() }}</h3>`,\n})\nexport class UserCard {\n  name = signal('Vishnu');\n}",
+      code: "@Component({\n  selector: 'app-user-card',\n  template: `<h3>Hello {{ name() }}</h3>`,\n})\nexport class UserCard {\n  name = signal('Gojo');\n}",
     },
     related: ['decorator', 'metadata', 'template', 'selector', 'standalone-component'],
     lessons: ['/components/anatomy'],
@@ -490,7 +490,7 @@ export const GLOSSARY: GlossaryTerm[] = [
       'A piece of template that Angular does not render by itself. It appears only when something stamps it, like `ngTemplateOutlet`.',
     example: {
       lang: 'angular-html',
-      code: '<ng-template #card let-name>\n  <strong>{{ name }}</strong>\n</ng-template>\n\n<ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: \'Asha\' }" />',
+      code: '<ng-template #card let-name>\n  <strong>{{ name }}</strong>\n</ng-template>\n\n<ng-container [ngTemplateOutlet]="card" [ngTemplateOutletContext]="{ $implicit: \'Mikasa\' }" />',
     },
     related: ['ng-container', 'structural-directive'],
     lessons: ['/control-flow/ng-template-container'],

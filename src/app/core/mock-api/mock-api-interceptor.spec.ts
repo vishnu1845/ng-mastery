@@ -52,14 +52,14 @@ describe('mockApiInterceptor', () => {
   it('logs in only with the demo password', async () => {
     const login = await firstValueFrom(
       http.post<{ token: string }>('api/auth/login?delay=0', {
-        username: 'vishnu',
+        username: 'naruto',
         password: 'angular',
       }),
     );
     expect(login.token.split('.')).toHaveLength(3);
 
     const error = await firstValueFrom(
-      http.post('api/auth/login?delay=0', { username: 'vishnu', password: 'wrong' }),
+      http.post('api/auth/login?delay=0', { username: 'naruto', password: 'wrong' }),
     ).catch((e) => e);
     expect((error as HttpErrorResponse).status).toBe(401);
   });

@@ -28,7 +28,7 @@ export default class SelectorsDemo {
   protected readonly buttonHtml = signal('');
   protected readonly chipHtml = signal('');
 
-  protected readonly name = signal('Asha');
+  protected readonly name = signal('Mikasa');
   protected readonly saved = signal<string | null>(null);
 
   constructor() {

@@ -13,7 +13,7 @@ interface Row {
 }
 
 // The choices we can flip in the demo
-const NICKNAMES: (string | undefined)[] = ['Sam', '', undefined];
+const NICKNAMES: (string | undefined)[] = ['Gon', '', undefined];
 const QUANTITIES: (number | null)[] = [5, 0, null];
 
 /** Shows a value the way it looks in code: strings in quotes, null and undefined as words. */
@@ -38,7 +38,7 @@ export default class NullSafetyDemo {
   protected readonly qty = signal(QUANTITIES[0]);
 
   protected readonly user = computed<Customer>(() => ({
-    name: 'Asha',
+    name: 'Mikasa',
     nickname: this.nickname(),
     address: this.hasAddress() ? { city: 'Pune' } : undefined,
   }));

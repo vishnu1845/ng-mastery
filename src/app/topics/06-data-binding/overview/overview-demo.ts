@@ -36,7 +36,7 @@ export default class OverviewDemo {
   protected readonly maxLikes = MAX_LIKES;
 
   // COMPONENT STATE
-  protected readonly name = signal('Vishnu');
+  protected readonly name = signal('Gojo');
   protected readonly likes = signal(0);
 
   protected readonly fired = signal<Record<LaneId, number>>({
@@ -63,7 +63,7 @@ export default class OverviewDemo {
   // TS ➝ VIEW: the component changes its own state and every binding follows
   protected reset(): void {
     this.flow('event', 'up');
-    this.name.set('Vishnu');
+    this.name.set('Gojo');
     this.likes.set(0);
     this.flow('interpolation', 'down', 300);
     this.flow('property', 'down', 300);

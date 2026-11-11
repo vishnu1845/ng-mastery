@@ -14,13 +14,13 @@ import { Member, MemberRow } from './member-row';
 type TrackMode = 'id' | 'index' | 'identity';
 
 const TEAM: Member[] = [
-  { id: 1, name: 'Asha', role: 'Design' },
-  { id: 2, name: 'Ravi', role: 'Frontend' },
-  { id: 3, name: 'Meera', role: 'Backend' },
-  { id: 4, name: 'Kabir', role: 'QA' },
-  { id: 5, name: 'Zoya', role: 'DevOps' },
+  { id: 1, name: 'Mikasa', role: 'Design' },
+  { id: 2, name: 'Levi', role: 'Frontend' },
+  { id: 3, name: 'Hinata', role: 'Backend' },
+  { id: 4, name: 'Naruto', role: 'QA' },
+  { id: 5, name: 'Nezuko', role: 'DevOps' },
 ];
-const NEW_NAMES = ['Dev', 'Isha', 'Neil', 'Tara'];
+const NEW_NAMES = ['Goku', 'Asuna', 'Zoro', 'Nami'];
 
 const HINTS: Record<TrackMode, string> = {
   id: 'Each row follows its member. Tick a box, then try every button: the tick stays with the person, and only really new or removed members touch the DOM.',

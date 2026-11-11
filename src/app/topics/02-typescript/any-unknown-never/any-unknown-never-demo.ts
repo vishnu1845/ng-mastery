@@ -7,7 +7,7 @@ interface Payload {
 
 // WHAT AN API MIGHT REALLY SEND BACK
 const PAYLOADS: Payload[] = [
-  { label: '{ "name": "Asha" }', value: { name: 'Asha' } },
+  { label: '{ "name": "Mikasa" }', value: { name: 'Mikasa' } },
   { label: '"hello"', value: 'hello' },
   { label: 'null', value: null },
   { label: '42', value: 42 },

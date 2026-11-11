@@ -5,11 +5,11 @@ import { Person, SearchPipe } from '../_shared/search-pipe';
 import { SearchImpurePipe } from './search-impure-pipe';
 
 const TEAM: Person[] = [
-  { id: 1, name: 'Asha' },
-  { id: 2, name: 'Ravi' },
-  { id: 3, name: 'Meera' },
+  { id: 1, name: 'Mikasa' },
+  { id: 2, name: 'Levi' },
+  { id: 3, name: 'Hinata' },
 ];
-const MORE = ['Kabir', 'Zoya', 'Dev', 'Isha'];
+const MORE = ['Naruto', 'Nezuko', 'Goku', 'Asuna'];
 
 /** One list through a pure and an impure pipe, changed by mutation and by a new array. */
 @Component({

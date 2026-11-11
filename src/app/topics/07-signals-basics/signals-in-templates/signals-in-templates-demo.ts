@@ -10,7 +10,7 @@ import {
 import { flash, watchChanges } from '@shared/utils/dom-watch';
 
 const NEW_POSTS = ['Signals finally clicked', 'Zoneless in prod 🚀', 'OnPush is the default now'];
-const NAMES = ['Vishnu Bandgar', 'Arjun Mehta'];
+const NAMES = ['Satoru Gojo', 'Monkey D. Luffy'];
 
 /** Change one signal and see exactly which DOM nodes Angular wrote to. */
 @Component({

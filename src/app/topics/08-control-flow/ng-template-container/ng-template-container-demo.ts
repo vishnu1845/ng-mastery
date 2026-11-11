@@ -17,10 +17,10 @@ interface Speaker {
 }
 
 const SPEAKERS: Omit<Speaker, 'id'>[] = [
-  { name: 'Asha', talk: 'Signals in practice' },
-  { name: 'Ravi', talk: 'Zoneless at scale' },
-  { name: 'Meera', talk: 'Typed forms' },
-  { name: 'Kabir', talk: 'Testing with Vitest' },
+  { name: 'Mikasa', talk: 'Signals in practice' },
+  { name: 'Levi', talk: 'Zoneless at scale' },
+  { name: 'Hinata', talk: 'Typed forms' },
+  { name: 'Naruto', talk: 'Testing with Vitest' },
 ];
 
 /** One <ng-template> stamped many times, with a host that leaves an element or leaves nothing. */

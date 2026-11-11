@@ -24,8 +24,8 @@ const EXAMPLES: Example[] = [
   },
   { code: 'point = [10, 20]', value: [10, 20], letType: 'number[]', constType: 'number[]' },
   {
-    code: "user = { name: 'Asha', age: 24 }",
-    value: { name: 'Asha', age: 24 },
+    code: "user = { name: 'Mikasa', age: 24 }",
+    value: { name: 'Mikasa', age: 24 },
     letType: '{ name: string; age: number }',
     constType: '{ name: string; age: number }',
   },

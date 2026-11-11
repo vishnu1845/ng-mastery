@@ -17,14 +17,14 @@ export class SearchImpurePipe implements PipeTransform { … }
 ## The mutation problem
 
 ```ts
-people = [{ name: 'Asha' }, { name: 'Ravi' }];
+people = [{ name: 'Mikasa' }, { name: 'Levi' }];
 
 add() {
   // ❌ MUTATION: same array reference, so the pure pipe does not run. The list is stale.
-  this.people.push({ name: 'Kabir' });
+  this.people.push({ name: 'Naruto' });
 
   // ✅ NEW REFERENCE: the pure pipe runs again and the list updates.
-  this.people = [...this.people, { name: 'Kabir' }];
+  this.people = [...this.people, { name: 'Naruto' }];
 }
 ```
 

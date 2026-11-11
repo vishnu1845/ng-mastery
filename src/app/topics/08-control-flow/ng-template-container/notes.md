@@ -18,7 +18,7 @@
 <!-- stamped here, with data -->
 <ng-container
   [ngTemplateOutlet]="card"
-  [ngTemplateOutletContext]="{ $implicit: 'Asha', talk: 'Signals in practice' }"
+  [ngTemplateOutletContext]="{ $implicit: 'Mikasa', talk: 'Signals in practice' }"
 />
 ```
 

@@ -6,22 +6,22 @@ A **pipe** is used to **transform data from one format to another in Angular [[t
 
 ```html
 <p>{{ name | uppercase }}</p>
-<!-- asha → ASHA -->
+<!-- mikasa → MIKASA -->
 ```
 
 ## The built-in pipes
 
-| Pipe                                  | What it does                                                  | Example                                        |
-| ------------------------------------- | ------------------------------------------------------------- | ---------------------------------------------- |
-| `uppercase`, `lowercase`, `titlecase` | Changes the letter case                                       | `'asha kulkarni' \| titlecase` → Asha Kulkarni |
-| `number`                              | Formats a number                                              | `1234.567 \| number: '1.2-2'` → 1,234.57       |
-| `currency`                            | Formats money                                                 | `1234.567 \| currency: 'INR'` → ₹1,234.57      |
-| `percent`                             | Turns a fraction into a percentage                            | `0.259 \| percent` → 26%                       |
-| `date`                                | Formats a date                                                | `joined \| date: 'dd/MM/yyyy'` → 12/06/2026    |
-| `slice`                               | A part of an array or a string                                | `skills \| slice: 0 : 3` → the first 3 items   |
-| `json`                                | Shows an object as text, for debugging                        | `marks \| json` → `{ "typescript": 82 }`       |
-| `keyvalue`                            | Lets `@for` loop over an object                               | `marks \| keyvalue` → pairs of key and value   |
-| `async`                               | Reads an [[observable\|Observable]] or a [[promise\|Promise]] | `user$ \| async` → the latest value            |
+| Pipe                                  | What it does                                                  | Example                                            |
+| ------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------- |
+| `uppercase`, `lowercase`, `titlecase` | Changes the letter case                                       | `'mikasa ackerman' \| titlecase` → Mikasa Ackerman |
+| `number`                              | Formats a number                                              | `1234.567 \| number: '1.2-2'` → 1,234.57           |
+| `currency`                            | Formats money                                                 | `1234.567 \| currency: 'INR'` → ₹1,234.57          |
+| `percent`                             | Turns a fraction into a percentage                            | `0.259 \| percent` → 26%                           |
+| `date`                                | Formats a date                                                | `joined \| date: 'dd/MM/yyyy'` → 12/06/2026        |
+| `slice`                               | A part of an array or a string                                | `skills \| slice: 0 : 3` → the first 3 items       |
+| `json`                                | Shows an object as text, for debugging                        | `marks \| json` → `{ "typescript": 82 }`           |
+| `keyvalue`                            | Lets `@for` loop over an object                               | `marks \| keyvalue` → pairs of key and value       |
+| `async`                               | Reads an [[observable\|Observable]] or a [[promise\|Promise]] | `user$ \| async` → the latest value                |
 
 ## Key points
 

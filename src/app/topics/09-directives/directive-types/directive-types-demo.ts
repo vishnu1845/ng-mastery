@@ -21,7 +21,7 @@ export default class DirectiveTypesDemo {
   private readonly card = viewChild.required<ElementRef<HTMLElement>>('card');
 
   // CONTROLS
-  protected readonly name = signal('Asha Kulkarni');
+  protected readonly name = signal('Mikasa Ackerman');
   protected readonly tint = signal('#7c3aed55');
   protected readonly soldOut = signal(false);
 

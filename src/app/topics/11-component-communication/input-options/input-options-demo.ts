@@ -13,9 +13,9 @@ export default class InputOptionsDemo {
 
   // The parent's template, as the reader would write it. Kept in TS: a { in a template starts an ICU.
   protected readonly cases = [
-    '<app-profile-chip name="Asha" />',
-    '<app-profile-chip name="Ravi" size="22" verified />',
-    '<app-profile-chip name="Meera" verified="false" label="Mentor" />',
+    '<app-profile-chip name="Mikasa" />',
+    '<app-profile-chip name="Levi" size="22" verified />',
+    '<app-profile-chip name="Hinata" verified="false" label="Mentor" />',
   ];
-  protected readonly lifecycleCase = '<app-profile-chip name="Kabir" size="22" />';
+  protected readonly lifecycleCase = '<app-profile-chip name="Naruto" size="22" />';
 }

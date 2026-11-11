@@ -24,8 +24,8 @@ const PERMISSIONS: Record<Role, string[]> = {
 // Readonly: SAVED.name = 'x' would be a compile error
 const SAVED: Readonly<User> = {
   id: 7,
-  name: 'Asha Patil',
-  email: 'asha@example.dev',
+  name: 'Mikasa Ackerman',
+  email: 'mikasa@example.dev',
   role: 'user',
 };
 

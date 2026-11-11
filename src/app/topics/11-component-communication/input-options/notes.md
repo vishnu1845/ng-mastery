@@ -14,7 +14,7 @@ export class ProfileChip {
 ```
 
 ```html
-<app-profile-chip name="Ravi" size="22" verified />
+<app-profile-chip name="Levi" size="22" verified />
 ```
 
 ## Key points
@@ -38,7 +38,7 @@ Inputs are set **after the constructor**. The demo reads them in both places:
 | Read in       | `name` (required) | `size` (optional, parent passed 22) |
 | ------------- | ----------------- | ----------------------------------- |
 | `constructor` | **NG0950** error  | **14**, the default                 |
-| `ngOnInit`    | `"Kabir"`         | `22`                                |
+| `ngOnInit`    | `"Naruto"`        | `22`                                |
 
 - Reading a required input **directly** in the constructor or a field initializer is caught at build time: **NG8118** _`name` is a required `input` and does not have a value in this context_.
 - Through a helper method, the compiler can't see it, so it fails at runtime: **NG0950** _Input is required but no value is available yet_.

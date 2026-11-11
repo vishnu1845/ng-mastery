@@ -24,7 +24,7 @@
     <div class="panel card">
       <span class="badge">Legacy directives</span>
 
-      <p *ngIf="loggedIn(); else guest">Welcome back, Asha.</p>
+      <p *ngIf="loggedIn(); else guest">Welcome back, Mikasa.</p>
       <ng-template #guest><p class="muted">Please log in.</p></ng-template>
 
       <div [ngSwitch]="plan()">
@@ -38,7 +38,7 @@
       <span class="badge badge-accent">Built-in blocks</span>
 
       @if (loggedIn()) {
-        <p>Welcome back, Asha.</p>
+        <p>Welcome back, Mikasa.</p>
       } @else {
         <p class="muted">Please log in.</p>
       }

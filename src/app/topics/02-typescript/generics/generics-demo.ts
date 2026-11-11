@@ -13,10 +13,10 @@ interface Product {
 }
 
 const USERS: User[] = [
-  { id: 1, name: 'Aarav Mehta', email: 'aarav@example.dev' },
-  { id: 2, name: 'Diya Sharma', email: 'diya@example.dev' },
-  { id: 3, name: 'Kabir Rao', email: 'kabir@example.dev' },
-  { id: 4, name: 'Meera Iyer', email: 'meera@example.dev' },
+  { id: 1, name: 'Itachi Uchiha', email: 'itachi@example.dev' },
+  { id: 2, name: 'Sakura Haruno', email: 'sakura@example.dev' },
+  { id: 3, name: 'Naruto Uzumaki', email: 'naruto@example.dev' },
+  { id: 4, name: 'Hinata Hyuga', email: 'hinata@example.dev' },
 ];
 
 const PRODUCTS: Product[] = [

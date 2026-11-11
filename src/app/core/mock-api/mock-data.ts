@@ -32,14 +32,20 @@ export interface Todo {
 
 export const MOCK_DATA = {
   users: [
-    { id: 1, name: 'Aarav Mehta', email: 'aarav@example.dev', role: 'admin', city: 'Pune' },
-    { id: 2, name: 'Diya Sharma', email: 'diya@example.dev', role: 'editor', city: 'Mumbai' },
-    { id: 3, name: 'Kabir Rao', email: 'kabir@example.dev', role: 'viewer', city: 'Bengaluru' },
-    { id: 4, name: 'Meera Iyer', email: 'meera@example.dev', role: 'editor', city: 'Chennai' },
-    { id: 5, name: 'Rohan Das', email: 'rohan@example.dev', role: 'viewer', city: 'Kolkata' },
-    { id: 6, name: 'Sara Khan', email: 'sara@example.dev', role: 'viewer', city: 'Hyderabad' },
-    { id: 7, name: 'Vivaan Joshi', email: 'vivaan@example.dev', role: 'editor', city: 'Ahmedabad' },
-    { id: 8, name: 'Zoya Ali', email: 'zoya@example.dev', role: 'viewer', city: 'Delhi' },
+    { id: 1, name: 'Itachi Uchiha', email: 'itachi@example.dev', role: 'admin', city: 'Pune' },
+    { id: 2, name: 'Sakura Haruno', email: 'sakura@example.dev', role: 'editor', city: 'Mumbai' },
+    {
+      id: 3,
+      name: 'Naruto Uzumaki',
+      email: 'naruto@example.dev',
+      role: 'viewer',
+      city: 'Bengaluru',
+    },
+    { id: 4, name: 'Hinata Hyuga', email: 'hinata@example.dev', role: 'editor', city: 'Chennai' },
+    { id: 5, name: 'Killua Zoldyck', email: 'killua@example.dev', role: 'viewer', city: 'Kolkata' },
+    { id: 6, name: 'Erza Scarlet', email: 'erza@example.dev', role: 'viewer', city: 'Hyderabad' },
+    { id: 7, name: 'Edward Elric', email: 'edward@example.dev', role: 'editor', city: 'Ahmedabad' },
+    { id: 8, name: 'Nezuko Kamado', email: 'nezuko@example.dev', role: 'viewer', city: 'Delhi' },
   ] satisfies User[],
 
   products: [

@@ -63,7 +63,7 @@ export default class IfElseDemo {
   protected logIn(): void {
     this.loading.set(true);
     this.timer = setTimeout(() => {
-      this.user.set({ name: 'Asha', plan: 'free' });
+      this.user.set({ name: 'Mikasa', plan: 'free' });
       this.loading.set(false);
     }, 900);
   }

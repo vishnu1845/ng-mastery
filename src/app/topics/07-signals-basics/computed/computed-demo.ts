@@ -24,7 +24,7 @@ export default class ComputedDemo {
   protected readonly qty = signal(2);
   protected readonly showTotal = signal(true);
   protected readonly vip = signal(false);
-  protected readonly name = signal('Vishnu');
+  protected readonly name = signal('Gojo');
 
   // DERIVED STATE
   protected readonly total = computed(() => {

@@ -31,7 +31,7 @@ export default class PropertyDemo {
   protected readonly themes: AvatarTheme[] = ['sunset', 'ocean', 'forest'];
 
   // PROFILE STATE
-  protected readonly name = signal('Vishnu Bandgar');
+  protected readonly name = signal('Satoru Gojo');
   protected readonly theme = signal<AvatarTheme>('sunset');
   protected readonly locked = signal(false);
   protected readonly saving = signal(false);

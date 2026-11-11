@@ -14,7 +14,7 @@ import { Component, signal } from '@angular/core';
   styleUrl: './user-card.css', // styles
 })
 export class UserCard {
-  name = signal('Pratik'); // logic / data
+  name = signal('Luffy'); // logic / data
 }
 ```
 
