@@ -66,7 +66,8 @@ src/app/
 ├── pages/      # home, about, not found
 └── topics/     # 01-introduction … 52-scenarios (one folder per topic)
     └── 01-introduction/
-        ├── topic.ts
+        ├── topic.ts      # titles (sidebar, search)
+        ├── lessons.ts    # demos and notes, loaded when the topic opens
         └── spa-vs-mpa/
             ├── spa-vs-mpa-demo.ts / .html / .scss
             └── notes.md

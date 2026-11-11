@@ -47,7 +47,8 @@ src/
         ├── topic-registry.ts # TOPICS: 01 → 52
         ├── catalog.ts        # lookups, prev/next, search
         └── NN-topic-slug/
-            ├── topic.ts      # topic info, outline (planned lessons) and finished lessons
+            ├── topic.ts      # topic info, outline (planned lessons), finished lesson titles
+            ├── lessons.ts    # demo + notes loaders and Code tab files (loaded when the topic opens)
             ├── _shared/      # optional: code shared by lessons of this topic
             └── lesson-slug/
                 ├── lesson-slug-demo.ts / .html / .scss
@@ -77,22 +78,29 @@ TOPICS ──► topicRoutes() ──► /rxjs-flattening/switch-map
    - `lesson-slug-demo.ts`, using `export default class LessonSlugDemo`
    - `lesson-slug-demo.html` (and `.scss` if needed)
    - `notes.md` with these headings: `## Definition`, `## Key points`, `## Say it like this`
-2. Add the lesson to that topic's `topic.ts`:
+2. Add the lesson's title to that topic's `topic.ts`, in `lessons`:
 
    ```ts
-   {
-     slug: 'switch-map',
-     title: 'switchMap',
+   { slug: 'switch-map', title: 'switchMap' },
+   ```
+
+3. Add its content to the topic's `lessons.ts`, under the same slug:
+
+   ```ts
+   'switch-map': {
      component: () => import('./switch-map/switch-map-demo'),
      notes: () => import('./switch-map/notes.md'),
      files: [], // optional extra files for the Code tab (project paths)
    },
    ```
 
-3. Keep `lessons` in the same order as `outline`. The registry test fails otherwise.
+   `topic.ts` ships in the first download, because the sidebar and search need every title. `lessons.ts` loads only when the topic opens, so adding lessons doesn't grow the first download. The first finished lesson of a topic also adds `content: () => import('./lessons')` to `topic.ts`.
+
+   Keep `lessons` in the same order as `outline`, with the same slugs in `lessons.ts`. The registry test fails otherwise.
+
 4. Run `npm start`. The route, sidebar entry, search result and previous/next links appear automatically.
 
-Optional lesson fields: `children` (child routes for routing demos), `providers` (route-level providers, e.g. an NgRx store), and no `component` for a theory-only lesson.
+Optional fields in `lessons.ts`: `children` (child routes for routing demos), `providers` (route-level providers, e.g. an NgRx store), and no `component` for a theory-only lesson.
 
 ## Glossary links
 
